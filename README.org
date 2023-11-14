@@ -5,6 +5,31 @@
 #+latex_class: ox-latex-scrarticle
 
 
+#+begin_abstract
+(/You are recommended to read this blog [[https://ochicken.net/projects/workspace/][here]] or read it on your Emacs/)
+
+This blog is my configuration of Emacs as a personal workspace, includes:
+- *A mini-IDE for programming;*
+- *Use Org mode to preview LaTeX TikZ pictures;*
+- *Use Org mode Babel, like what you do in Jupyter.*
+
+The code is available on this [[https://github.com/OChicken/Workspace][repo]]. It consists of:
+- =.emacs.d/=: Emacs config
+- =.sage/=: SageMath config
+- =texmf/=: LaTeX config
+My blog's configuration files are also in this repo. They are:
+- =static/=: Blog's CSS
+- =blog.el=
+- =Makefile=
+For the blog's config doc, read [[https://ochicken.net/projects/server/][this]] (in CN).
+
+These are sample projects for mini-IDE:
+- =mini-ide/=
+- =ede/=
+- =eglot-clangd/=
+- =eglot-ccls/=
+#+end_abstract
+
 * Sitemap
 
 [[https://OChicken.net/projects/workspace][~/]]
@@ -66,7 +91,7 @@
     - =Makefile=
 
 
-* Front Word
+* Before the Beginning
 
 Refs:
 - [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Maintaining.html][29 Maintaining (GNU Emacs Manual)]]
@@ -182,7 +207,6 @@ autoreconf -f -i; ./configure; make -f Makefile all  # EDE's commands
 autoreconf -i; cd build; ../configure; make all      # You can put the *.o to build/
 #+end_src
 
-#+caption: compile
 [[file:./Compile.png]]
 
 
@@ -378,7 +402,7 @@ Refs:
 
 * Org Mode: Yet Another Jupyter Lab
 
-You can use Org mode just like using Jupyter Lab. *Open me (index.org) in Emacs* to see how powerful it is.
+You can use Org mode just like using Jupyter Lab. *Open me ([[https://github.com/OChicken/Workspace][README.org]]) in Emacs* to see how powerful it is.
 
 [[file:./Org.png]]
 
