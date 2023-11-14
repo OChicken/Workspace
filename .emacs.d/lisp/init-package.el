@@ -1,0 +1,47 @@
+;;; init-package.el --- package management -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
+(require 'package)
+(add-to-list 'package-archives '( "melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
+(setq-local package-list '(
+  ; opt
+  wakatime-mode sunshine
+  ; utils
+  which-key list-unicode-display
+  ; org
+  org-fragtog xenops org-ref
+  gnuplot
+  imenu-list rainbow-mode
+  yaml yaml-mode
+  rust-mode ob-sagemath sage-shell-mode multi-term auctex gnuplot-mode
+  ; progmodes
+  flycheck flycheck-clang-tidy
+  yasnippet-snippets yasnippet
+  company-math company-c-headers company-auctex company
+  projectile ibuffer-projectile
+  ; edit
+  magit git-gutter ibuffer-vc
+  anzu
+  move-dup xclip multiple-cursors symbol-overlay whole-line-or-region
+  ; view
+  htmlize crontab-mode markdown-mode web-mode
+  highlight-escape-sequences
+  vertico rainbow-delimiters mode-line-bell page-break-lines diminish
+  vscode-dark-plus-theme
+  ; keyring
+  gnu-elpa-keyring-update))
+
+; fetch the list of packages available
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+(provide 'init-package)
+;;; init-package.el ends here

@@ -7,8 +7,9 @@
 
 * Sitemap
 
-[[https://OChicken.net/][~/]]
+[[https://OChicken.net/projects/workspace][~/]]
 - =blog.el=
+- =README.org=
 - static/
   - =Cola.png=
   - font-awesome/
@@ -18,7 +19,7 @@
       - =fa-brands-400.woff2=
       - =fa-regular-400.woff2=
       - =fa-solid-900.woff2=
-  - =header.html=
+  - =head.html=
   - =preamble.html=
   - =postamble.html=
   - =main.css=

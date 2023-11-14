@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: latex-drawer
+# key:  latex-drawer
+# --
+#+begin_src latex :results drawer
+  $0
+#+end_src

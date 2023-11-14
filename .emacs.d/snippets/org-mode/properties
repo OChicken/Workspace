@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: properties
+# key:  prop_
+# --
+:PROPERTIES:
+:CUSTOM_ID: $0
+:END:

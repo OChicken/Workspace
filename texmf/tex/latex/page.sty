@@ -1,0 +1,20 @@
+\ProvidesPackage{page}
+
+% --------------------------------------------------------------
+% Margin Settings
+% --------------------------------------------------------------
+\usepackage[a4paper,left=0.5in,top=1in,right=0.5in,bottom=1in]{geometry}  % Word-like page
+
+% --------------------------------------------------------------
+% Page Header and Footer Settings
+% --------------------------------------------------------------
+%\iffalse
+\usepackage{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\usepackage{lastpage}                                           % Determine the last page for the footer
+
+\ihead{\href{mailto:shouran.ma@rwth-aachen.de}
+            {\textsf{Shouran Ma}}}                              % Top left header
+\ohead{\textsf{EIT@LTH, Lund}}                                  % Top right head
+\cfoot{\textsf{Page \thepage}}           % Bottom right footer
+% \fi

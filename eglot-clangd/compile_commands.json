@@ -1,0 +1,7 @@
+[
+  {
+    "directory": "/home/OChicken/projects/workspace/eglot-clangd/",
+    "file": "",
+    "command": "gcc -I./include -I./build"
+  }
+]

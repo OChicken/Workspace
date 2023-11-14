@@ -1,0 +1,197 @@
+% This file contains the core required packages in LaTeX which 
+% can be used in various document class z.B. article, report,
+% CV and motivation letters
+\ProvidesPackage{OChicken}
+
+% --------------------------------------------------------------
+% Emacs default packages
+% --------------------------------------------------------------
+
+% Emacs includes the following packages by default when exporting org to pdf:
+% \usepackage{graphicx}
+% \usepackage{longtable}
+% \usepackage{wrapfig}
+% \usepackage{rotating}
+% \usepackage[normalem]{ulem}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{capt-of}
+% \usepackage{hyperref}
+% \author{OChicken}
+% \date{\today}
+% \title{}
+% \hypersetup{
+%  pdfauthor={OChicken},
+%  pdftitle={},
+%  pdfkeywords={},
+%  pdfsubject={},
+%  pdfcreator={Emacs 29.1 (Org mode 9.6.6)},
+%  pdflang={English}}
+
+% --------------------------------------------------------------
+% Font Settings
+% --------------------------------------------------------------
+%\usepackage{ctex}  % Required for Chinese characters
+%\CTEXoptions[today=old]
+
+% --------------------------------------------------------------
+% Page Styles Settings
+% --------------------------------------------------------------
+\usepackage{indentfirst}                                        % Indents before each paragraph
+\usepackage[toc,page]{appendix}                                 % Appendix environment
+\usepackage{extramarks}                                         % Required for headers and footers
+
+% --------------------------------------------------------------
+% Colors Settings
+% --------------------------------------------------------------
+\usepackage{color,xcolor}                                       % Custom colors
+\definecolor{RWTH-Blue}{RGB}{142, 186, 229}                     % RWTH-Aachen blue
+
+% --------------------------------------------------------------
+% Hyperlinks Settings
+% --------------------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue,                                              % url links to websites or emails
+  citecolor=blue,                                             % links to references
+  linkcolor=blue,                                             % internal links
+  anchorcolor=red,                                            % internal targets (have bugs)
+}
+
+% --------------------------------------------------------------
+% Math Settings
+% --------------------------------------------------------------
+\usepackage{dsfont}                                             % Identity matrix
+\usepackage{amsmath,amsfonts,amssymb,amsbsy}                    % Required for the math display
+\usepackage{mathtools,esint}
+\usepackage{xfrac}                                              % Inline text mode of fraction instead of math mode
+\usepackage{bm}                                                 % Bold in math display
+\usepackage{tensor}
+\usepackage{braket}                                             % Physics bracket (package 'physics' can also do this)
+\usepackage[makeroom]{cancel}                                   % Cancel the selected word
+\usepackage{extarrows}                                          % Long equal
+\usepackage{siunitx}                                            % Unit
+\usepackage{upgreek}
+% \usepackage{stix}                                               % intbar
+\usepackage{pmboxdraw}                                          % Box-drawing symbols
+\allowdisplaybreaks[4]                                          % Allow equation display breaks
+
+% --------------------------------------------------------------
+% Theorem Settings
+% --------------------------------------------------------------
+\usepackage{amsthm}
+\newtheoremstyle{theoremstyle}% name
+{0.25\baselineskip}               % Space above
+{0.25\baselineskip}               % Space below
+{}                  % Body font
+{\parindent}        % Indent amount
+{\bfseries\sffamily}% Theorem head font
+{:}                 % Punctuation after theorem head
+{.5em}              % Space after theorem headi
+{}                  % Theorem head spec (can be left empty, meaning ‘normal’)
+\theoremstyle{theoremstyle}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+
+% --------------------------------------------------------------
+% Code Settings
+% --------------------------------------------------------------
+\usepackage{fancyvrb}                                           % for "\Verb" macro
+\VerbatimFootnotes{}                                            % Enable use of \Verb in footnotes
+\usepackage{textcomp}                                           % Inline text symbols for company
+\usepackage{listings}                                           % Enable inserting code
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
+\lstset{ 
+    %language=C, % choose the language of the code
+    basicstyle=\ttfamily\small\color{black},
+    keywordstyle=\color{blue}\bfseries, % style for keywords
+    numbers=left, % where to put the line-numbers
+    showspaces=false, % show spaces adding particular underscores
+    showstringspaces=false, % underline spaces within strings
+    frame=t1b, % adds a frame around the code
+    tabsize=2, % sets default tabsize to 2 spaces
+    captionpos=b, % sets the caption-position to bottom
+    breaklines=true, % sets automatic line breaking
+    breakatwhitespace=false, 
+}
+
+% --------------------------------------------------------------
+% Tabular Settings
+% --------------------------------------------------------------
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}                                           % Multi-rows in tabular
+\usepackage{multicol}                                           % Multi-columns in page
+\usepackage{diagbox}
+\usepackage{tcolorbox}
+% --------------------------------------------------------------
+% Pictures Settings
+% --------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{subfig}                                             % Enable sub-figure
+\usepackage[labelfont=bf]{caption}                              % Captions
+\usepackage{eso-pic}                                            % Enable arbitrary pictures position
+\usepackage{svg}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{shapes,arrows}
+
+% --------------------------------------------------------------
+% Set Equal Linespace of Enumerate, Itemize and Description
+% --------------------------------------------------------------
+\usepackage{enumitem}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+
+% --------------------------------------------------------------
+% Reference's Line Space Settings
+% --------------------------------------------------------------
+\usepackage[style=numeric,citestyle=ieee,sorting=ynt]{biblatex}
+
+% --------------------------------------------------------------
+% Others
+% --------------------------------------------------------------
+\usepackage{lipsum}
+\usepackage{dialogue}
+\usepackage[normalem]{ulem}
+%\usepackage{xspace}% http://ctan.org/pkg/xspace  Definitions for words to auto-complete
+%\newcommand{\sync}{synchrocyclotrons\xspace}
+%\usepackage{float}
+%\usepackage[english]{babel}
+%\usepackage[noabbrev]{cleveref}
+
+% --------------------------------------------------------------
+% Self-Defined Math Commands
+% --------------------------------------------------------------
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\Im}{\text{Im}}
+\newcommand{\ud}{\text{d}}                                      % upright d in integration
+\newcommand{\tr}{\text{tr}}                                     % trace
+\newcommand{\argmin}{\text{argmin}}                             % argmin
+\newcommand{\argmax}{\text{argmax}}                             % argmax
+\newcommand{\tssum}{\textstyle\sum}                             % TextStyle sum
+\newcommand{\tsprod}{\textstyle\prod}                           % TextStyle prod
+\newcommand{\tsint}{\textstyle\int}                             % TextStyle int
+\newcommand{\with}{\text{ with }}
+\newcommand{\Dom}{\text{Dom}}
+\newcommand{\Range}{\text{Range}}
+\newcommand{\card}{\text{card}}
+\newcommand{\Res}{\text{Res}}                                 % Res
+\newcommand{\const}{\text{const}}
+\newcommand{\supp}{\text{supp}}
+\newcommand{\GF}{\text{GF}}                                     % Galois field
+\newcommand{\Gal}{\text{Gal}}                                   % Galois group
