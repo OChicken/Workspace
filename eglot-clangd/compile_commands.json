@@ -1,7 +1,70 @@
 [
   {
-    "directory": "/home/OChicken/projects/workspace/eglot-clangd/",
-    "file": "",
-    "command": "gcc -I./include -I./build"
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-I../include",
+      "-I../build",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wredundant-decls",
+      "-Wshadow",
+      "-Wpointer-arith",
+      "-Og",
+      "-fomit-frame-pointer",
+      "-fPIC",
+      "-o",
+      "../build/libmylib.so",
+      "mylib.c"
+    ],
+    "directory": "/home/OChicken/projects/workspace/eglot-clangd/src",
+    "file": "/home/OChicken/projects/workspace/eglot-clangd/src/mylib.c",
+    "output": "/home/OChicken/projects/workspace/eglot-clangd/build/libmylib.so"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-I../include",
+      "-I../build",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wredundant-decls",
+      "-Wshadow",
+      "-Wpointer-arith",
+      "-Og",
+      "-fomit-frame-pointer",
+      "-c",
+      "-o",
+      "mylib.o",
+      "mylib.c"
+    ],
+    "directory": "/home/OChicken/projects/workspace/eglot-clangd/src",
+    "file": "/home/OChicken/projects/workspace/eglot-clangd/src/mylib.c",
+    "output": "/home/OChicken/projects/workspace/eglot-clangd/src/mylib.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-I../include",
+      "-I../build",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wredundant-decls",
+      "-Wshadow",
+      "-Wpointer-arith",
+      "-Og",
+      "-fomit-frame-pointer",
+      "../build/libmylib.a",
+      "-o",
+      "../build/hello",
+      "main.c"
+    ],
+    "directory": "/home/OChicken/projects/workspace/eglot-clangd/tests",
+    "file": "/home/OChicken/projects/workspace/eglot-clangd/tests/main.c",
+    "output": "/home/OChicken/projects/workspace/eglot-clangd/build/hello"
   }
 ]

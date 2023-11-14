@@ -364,23 +364,29 @@ In the variable =eglot-server-programs=, there are two candidates: clangd & ccls
 
 ** Eglot + clangd
 
-Put =compile_commands.json= to the project root. Its content is the following. Need not specify "file".
+The contents of the project dir =eglot-clangd= is exactly the same as =mini-ide=: *a series of =Makefile= are prepared*. As they are prepared, do this command in the project root
+#+begin_src shell
+bear -- make
+#+end_src
+which will generate the important =compile_commands.json=. Its content is
 #+begin_src json
 [
   {
+    "arguments": [
+      "/usr/bin/cc",
+      "-I../include",
+      "-I../build",
+      //...
+      "mylib.c"
+    ],
     "directory": "/absolute/path/to/eglot-clangd/",
-    "file": "",
-    "command": "gcc -I./include -I./build"
+    "file": "/absolute/path/to/eglot-clangd/src/mylib.c",
+    "output": "/absolute/path/to/eglot-clangd/build/libmylib.so"
   }
 ]
 #+end_src
 
 The [[https://clangd.llvm.org/installation.html][official site of clangd]] itself has guidance on using Eglot with clangd backends (the basic usage of Eglot is not in Eglot's official site, but in clangd's, surprise?)
-
-Refs:
-- [[https://clangd.llvm.org/installation.html][Getting started]]
-- [[https://www.reddit.com/r/emacs/comments/yin0p3/eglot_configuration_with_clangd/][Eglot configuration with `clangd` : emacs]]
-- [[https://www.reddit.com/r/emacs/comments/voc8gn/add_a_i_include_path_for_clangd_in_eglot/?sort=new][Add a -I include path for clangd in eglot : emacs]]
 
 
 ** Eglot + ccls (buggy)
