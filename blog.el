@@ -20,7 +20,7 @@
 (add-to-list 'org-html-mathjax-options '(path "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"))
 
 ;; Set sub-dirs
-(defvar blog-dirs '("static" "research" "projects" "footprint" "private"))
+(defvar blog-dirs '("static" "research" "projects" "footprint"))
 
 
 
