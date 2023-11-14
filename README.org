@@ -1,0 +1,476 @@
+#+title: Workspace
+#+options: \n:t
+#+latex_header: \usepackage{common}
+#+latex_header_extra: \usepackage{page}
+#+latex_class: ox-latex-scrarticle
+
+
+* Sitemap
+
+[[https://OChicken.net/][~/]]
+- =blog.el=
+- static/
+  - =Cola.png=
+  - font-awesome/
+    - css/
+      - =all.min.css=
+    - webfonts/
+      - =fa-brands-400.woff2=
+      - =fa-regular-400.woff2=
+      - =fa-solid-900.woff2=
+  - =header.html=
+  - =preamble.html=
+  - =postamble.html=
+  - =main.css=
+- .emacs.d/
+  - =init.el=
+  - lisp/
+    - =init-edit.el=
+    - =init-gnus.el= (private)
+    - =init-kbd.el=
+    - =init-opt.el= (private)
+    - =init-org.el=
+    - =init-package.el=
+    - =init-progmodes.el=
+    - =init-sessions.el=
+    - =init-utils.el=
+    - =init-view.el=
+  - snippets/
+    - =ditaa=
+    - =latex-drawer=
+    - =latex-graphics=
+    - =properties=
+    - =sage=
+    - =shell=
+- .sage/
+  - =init.sage=
+- texmf/
+  - tex/
+    - latex/
+      - =common.sty=
+      - =page.sty=
+- mini-ide/
+  - build/
+    - =config.h=
+    - =Makefile=
+  - =.dir-locals.el=
+  - include/
+    - =myproj.h=
+  - =Makefile=
+  - src/
+    - =Makefile=
+    - =mylib.c=
+  - test/
+    - =main.c=
+    - =Makefile=
+
+
+* Front Word
+
+Refs:
+- [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Maintaining.html][29 Maintaining (GNU Emacs Manual)]]
+- [[https://tuhdo.github.io/c-ide.html][C/C++ Development Environment for Emacs]]
+- [[https://www.reddit.com/r/emacs/comments/dlf0w7/whats_your_setup_for_cc_in_emacs/][What's your setup for C/C++ in emacs ? : emacs]]
+- [[https://github.com/junahan/junahan-emacs/blob/master/docs/cpp-ide.org][GitHub - junahan/junahan-emacs: Emacs config for c/c++]]
+
+*本文的面向读者不是 Emacs 初学者, 而是那些用 Emacs 写过一段时间的代码的读者.* 跟别的介绍 Emacs IDE 的文章不同的是, 他们都把精力放在 =.emacs.d=, 我则着墨于如何构建项目目录. 因为项目目录各有各的结构, 在 =.emacs.d= 里把全局配置写死是很不明智的.
+*This article is not intended for Emacs beginners, but for those who have coded in Emacs for some months.* Instead of focusing on the contents of =.emacs.d= (like many articles talking about), I focus on how to configure the project's dir. This is because each project dir have their own structure, it is unwise to write the global configuration in =.emacs.d=.
+
+我没有 Vim 的历史包袱, 所以配置里 *没有使用 evil, ivy, helm* (总觉得太庞大的插件污染了原生键位增加复杂性). 在 =init-kbd.el= 里我自定义了一些快捷键, 使得如 *单行滚动浏览* 以及 *编译* 等操作都可以 *用左手来完成*.
+I don't have much historical baggage on Vim, so that I *didn't use evil, ivy, helm* (I think they dirty the native configurations and increase unnecessary complications). In =init-kbd.el= I defined some custom shortcuts, such that you *can use left hand* to do most tasks like *single line scroll*, *compile* etc.
+
+
+* Recap: C-h to Fetch Info
+
+Use =C-h v= to see a variable. Execute[fn:1] the following command to reset it.
+#+begin_src emacs-lisp
+(setq foo (eval (car (get 'foo 'standard-value))))
+#+end_src
+Use =C-h c= or =C-h k= to see the information of a key bindings.
+
+
+* Mini IDE: Syntax Check, Complete, Compile
+
+The title is self-explained. *What you need are [[https://www.flycheck.org/en/latest/][Flycheck]] + [[https://company-mode.github.io/][Company]] + [[https://docs.projectile.mx/projectile/][Projectile]] + [[https://github.com/purcell/ibuffer-projectile][Ibuffer-Projectile]]. Such a mini-IDE don't need =eglot= or =lsp-mode=.*
+
+cd to =mini-ide= to have a try. You can do =make= in terminal, or alternately in Emacs:
+#+begin_example
+M-x compile RET make
+#+end_example
+
+** Flycheck & Include Path
+
+[[https://www.flycheck.org/en/latest/][Flycheck]] is ready to go-out-of-the-box (开箱即用) after you set the follows. Use =C-c ! c= to rerun it and =C-c ! l= to list errors.
+#+begin_src emacs-lisp
+(dolist (hook '(prog-mode-hook text-mode-hook))
+  (add-hook hook 'flycheck-mode))
+#+end_src
+
+The *global* search path is configured in =.emacs.d/='s file:
+#+begin_src emacs-lisp
+(setq flycheck-clang-include-path
+      (list
+       (expand-file-name "~/.local/include/")
+       "/usr/share/verilator/include/"))
+#+end_src
+Paths like =/usr/include/= and =/usr/lib/gcc/.../include/= are automatically searched, so need not add.
+
+The *local* search path is =.dir.locals.el= in your project dir. Its content is
+#+begin_src emacs-lisp
+((c-mode . ((flycheck-clang-include-path . ("/absolute/path/to/mini-ide/include"
+                                            "/absolute/path/to/mini-ide/build")))))
+#+end_src
+After you set =.dir.locals.el=, do =C-x x g= to revert the opened =c= file.[fn:2]
+
+
+Emacs's team also has Flymake. You'll dislike it after having a try. I assure you.
+
+
+** Company
+
+[[https://company-mode.github.io/][Company]] is ready to go-out-of-the-box after you set
+#+begin_src emacs-lisp
+(add-hook 'after-init-hook 'global-company-mode)
+#+end_src
+
+
+** Projectile
+
+[[https://docs.projectile.mx/projectile/][Projectile]] is ready to go-out-of-the-box after you set
+#+begin_src emacs-lisp
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+#+end_src
+
+[[https://github.com/purcell/ibuffer-projectile][Ibuffer-Projectile]] is used to group the buffers in the same project so that you can have a more nicer view in the buffer list. So you need an *"indicator file"* to mark that "this path is a project". [[https://docs.projectile.mx/projectile/][Projectile]] has a built-in solution: just create an empty file =.projectile= in it. You can add many other "indicator files" in the following way:
+#+begin_src emacs-lisp
+(dolist (file '(".dir-locals.el" ".ccls" "compile_flags.el"))
+  (add-to-list 'projectile-project-root-files-bottom-up file t))
+#+end_src
+
+
+** About Emacs's EDE
+
+*TLDR*: Emacs's built-in EDE is a white elephant (鸡肋). Write your own =Makefile= then =M-x compile RET make= is better.
+
+=ede= is a sample project on how to write GNU make. cd to it and do:
+#+begin_src shell
+mkdir build m4
+autoreconf -i; cd build; ../configure; make all
+make-clean.sh
+#+end_src
+
+[[https://www.gnu.org/software/automake/manual/automake.html#Hello-World][automake: 2.4.1 Creating amhello-1.0.tar.gz]] 🚩
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/EDE.html][29.5 EDE (GNU Emacs Manual)]]
+[[https://www.gnu.org/software/emacs/manual/html_node/ede/Quick-Start.html][3. Quick Start (EDE)]]
+[[https://www.gnu.org/software/emacs/manual/html_node/ede/index.html][EDE manual - GNU Project - Free Software Foundation (FSF)]]
+
+Emacs provides a built-in EDE to help you generate =configure.ac= & =Makefile.am=, the two essential files for a typical GNU-make project. However, few body says EDE is convenient to use:
+[[https://www.reddit.com/r/emacs/comments/12ptn61/does_anyone_use_ede_emacs_development_environment/][Does anyone use "EDE" (Emacs Development Environment)? If so, what do you like/dislike about it and how does your config look for it? : emacs]]
+#+begin_quote
+I was a long time EDE user, but basically had to give it up.
+1. It's no longer maintained, so the bugs that are in there are staying in there.
+2. It is difficult to set up and configure, compared with e.g. Treemacs + lsp-mode.
+So there it is. EDE, CEDET, all that has been supplanted by newer and better things like LSP.
+#+end_quote
+
+我自己使用 EDE 的体验是, 其文档 [[https://www.gnu.org/software/emacs/manual/html_node/ede/Quick-Start.html][Quick Start]] 实际上做的只是这三连命令. 但凡有过一点写 =configure.ac= 和 =Makefile.am= 的经验的人, 都不会认为把这种可以自行高度定制化的任务外包给一个年久失修的项目去生成, 是简化了工作的, 甚至是安全的.
+My experience on using EDE is, what its [[https://www.gnu.org/software/emacs/manual/html_node/ede/Quick-Start.html][Quick Start]] talking about is nothing but the following commands. *Anybody has experience on writing =configure.ac= & =Makefile.am= will /NOT/ think that it's "simplified your life" (and even safe) to outsource such a highly customizable task to an outdated project.*
+#+begin_src shell
+autoreconf -f -i; ./configure; make -f Makefile all  # EDE's commands
+autoreconf -i; cd build; ../configure; make all      # You can put the *.o to build/
+#+end_src
+
+#+caption: compile
+[[file:./Compile.png]]
+
+
+* Identifier References (jump-to-&-back)
+
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Xref.html][29.4 Xref (GNU Emacs Manual)]]
+
+*Identifiers* are also known as */tags/*. An identifier is a name of a syntactical subunit of the program: a function, a subroutine, a method, a class, a data type, a macro, etc. In a programming language, *each identifier is a symbol* in the language's syntax. In a large programming project, it's vital to quickly find where an identifier is *declared, defined & referenced*. Emacs provides a unified interface to these capabilities --- =xref=.
+
+This task requires mode-specific knowledge, to search for identifiers, find references to identifiers, complete on identifiers, etc. =xref= delegates the mode-specific parts of its job to a *backend* provided by the mode. A *backend* can implement its capabilities in a variety of ways:
+
+1. =etags=-like commands to generate =TAGS= file, or =Semantic= to generate a database. Major modes for languages supported by =etags= can use *tags tables* as basis for their backend. So using =TAGS= file as a backend has a huge drawback: *you must update your =TAGS= timely*.
+2. =Eglot= or =lsp-mode=. The *language server protocol*. *LSP does NOT introduce the concepts like "symbol table" or =TAGS= file*, but use message protocol as a support backend.
+
+A work-around is, *for system headers*, you can simply generate a =TAGS= file for them, which does not need to open lsp; while *for the current project*, open lsp to perform real-time analysis. Here is a basic idea on how to generate =TAGS= for system headers:
+- [[https://tuhdo.github.io/c-ide.html#orgheadline37][C/C++ Development Environment for Emacs]]
+
+
+** Find Identifiers (29.4.1)
+
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Find-Identifiers.html][29.4.1 Find Identifiers (GNU Emacs Manual)]]
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Looking-Up-Identifiers.html][29.4.1.1 Looking Up Identifiers (GNU Emacs Manual)]]
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Xref-Commands.html][29.4.1.2 Xref Commands (GNU Emacs Manual)]]
+
+Use these commands to jump among the function definitions:
+
+#+begin_src shell
+M-.                            # xref-find-definitions
+M-,                            # xref-go-back
+M-?                            # xref-find-references
+#+end_src
+
+
+** Tags Tables (29.4.2)
+
+*TLDR*: Use =ctags= to generate =TAGS= file, do not use Emacs's built-in =etags=.
+
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Tags-Tables.html][29.4.2 Tags Tables (GNU Emacs Manual)]]
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Create-Tags-Table.html][29.4.2.2 Create Tags Table (GNU Emacs Manual)]]
+[[https://stackoverflow.com/questions/10738219/how-to-use-shell-magic-to-create-a-recursive-etags-using-gnu-etags][c++ - How to use shell magic to create a recursive etags using GNU etags? - Stack Overflow]]
+
+Emacs's built-in Tag generator is =etags=:
+#+begin_src shell
+find . -name "*.[chCH]" -print | etags -
+find . -type f -regex "./\(foo\|bar\)/.*" | etags -
+find . -type f -regex "./\(foo\|bar\)/.*" | xargs etags
+etags $(find . -type f -regex "./\(foo\|bar\)/.*")
+#+end_src
+This will generate a =TAGS= file in the project dir. The first time doing =M-.=, Emacs will ask you which =TAGS= file to use, then input the path. Use =C-h v= to view the var =tags-table-list=.
+
+=ctags= is more versatile than =etags=. Basic Use:
+#+begin_src shell
+ctags -e --kinds-C=+p    -R . --exclude=foo
+ctags -e --kinds-C=+px-d -R . --exclude=foo
+#+end_src
+where =-e= indicates that the output format should compatible with Emacs; =--kinds-C=+p= is the vital options that resolved the problem, to *generate tags for function prototypes and external variable declarations*; =--kinds-C=+px-d= means *excludes macros* (sometimes macros are annoying).
+
+First create =~/.emacs.d/ctags/= and cd to it. To create the =TAGS= for the frequently used system headers:
+#+begin_src shell
+ctags -e -a --kinds-c=+px-d /usr/include/*.h --exclude=gcrypt.h --exclude=gpg-error.h
+ctags -e -a --kinds-c=+p    /usr/include/gcrypt.h /usr/include/gpg-error.h
+ctags -e -a --kinds-c=+px-d /usr/lib/gcc/x86_64-pc-linux-gnu/$(gcc --version | awk 'NR==1{print $3}')/include/*.h
+#+end_src
+where =-a= means *append* to =TAGS= if it exists. These are commands to generated the interested system headers:
+#+begin_src shell
+ctags -e --kinds-c=+px-d -f TAGS-verilator    /usr/share/verilator/include/*.h
+ctags -e --kinds-c=+px-d -f TAGS-linux     -R /usr/src/linux/
+#+end_src
+
+=etags= does not have so much options like =ctags=, so that it cannot even generate the references like identifier =printf=, the *function prototype* of =stdio.h=, which is its *huge drawback*; but =ctags= can.
+
+Here are the links that hint me (search "ctags not generate =printf="):
+- 2010.05.21 [[https://stackoverflow.com/questions/1632633/ctags-does-not-parse-stdio-h-properly][c++ - ctags does not parse stdio.h properly - Stack Overflow]]
+- 2017.02.09 [[https://stackoverflow.com/questions/10989141/how-can-jump-to-a-c-functions-declaration-with-etags][emacs - How can jump to a C++ function's declaration with etags? - Stack Overflow]]
+- 2020.01.07 [[https://stackoverflow.com/questions/59625163/why-tags-file-increasing-large-and-how-to-avoid-this-issue][vim - Why tags file increasing large and how to avoid this issue - Stack Overflow]]
+- 2020 [[https://www.reddit.com/r/C_Programming/comments/ms80ah/how_to_handle_variable_scope_in_ctags_in_c/][How to handle variable scope in ctags in C? : C_Programming]]
+- [[https://www.emacswiki.org/emacs/EtagsTable][EmacsWiki: Etags Table]]
+
+
+** Selecting a Tags Table (29.4.3)
+
+You may add TAGS via
+#+begin_src shell
+M-x visit-tags-table           # You can add TAGS to tags-table-list in this way
+#+end_src
+or alternately set =tags-table-list= in =.emacs.d/init.el=:
+#+begin_src emacs-lisp
+(setq tags-table-list '("~/.emacs.d/ctags/TAGS"))
+#+end_src
+I didn't add =TAGS-verilator= and =TAGS-linux=, simply because they are barely used (and =TAGS-linux= is huge). Indeed, you can add them when you need.
+
+
+** Semantic
+
+Semantic is an alternate framework to generate tags: in its context, the =TAGS= files is a *database* in =.emacs.d/semanticdb/=.
+
+Use =semantic-ia-fast-mouse-jump= to jump to the definition: [[https://www.gnu.org/software/emacs/manual/html_node/semantic/Smart-Jump.html][2.4.3 Smart Jump (Semantic Manual)]]. But its problem is, it cannot jump back 😂 so you need properly set: [[https://www.cnblogs.com/xiaoshiwang/p/11912533.html][emacs semantic，speedbar，gdb汇总 - 小石王 - 博客园]]
+
+I am not the Semantic user, but still put the settings I have tried (it works, of course):
+#+begin_src emacs-lisp
+(require 'semantic)
+; Semantic buffer evaluator
+; file:///usr/share/emacs/29.1/lisp/cedet/semantic.el.gz
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
+(global-semantic-idle-summary-mode 1)
+(semantic-mode 1)
+(semantic-add-system-include "/usr/include/")
+(semantic-add-system-include "/usr/share/verilator/include/")
+(semantic-add-system-include "/usr/src/linux/")
+(define-key semantic-mode (kbd "M-.") 'semantic-ia-fast-jump)
+#+end_src
+
+
+* LSP Tools: Eglot & lsp-mode
+
+As the title explains, LSP tools are encompassed, Eglot & =lsp-mode= are two of them. Readers should familiar that /they are two competitors/. *I use Eglot*.
+
+** Background
+
+读者应该也清楚, LSP 的 backends 主要是 clangd. 其实除它以外还有 *ccls* 等, *但是, gcc 通常不作为 LSP 的 backend*.
+Readers should familiar with the fact that *clangd* is the backend of LSP, but besides clangd, there are other options such as *ccls* etc. *However, gcc is not served as the backend of LSP*.
+
+gcc 诞生的时间比较早, 最初设计时集成了编译的所有阶段, 包括 *词法分析, 语法分析, 语义分析和代码生成* 四个任务, *紧密耦合* (这大概也解释了 "cc" 的含义: compiler collection). 后来随着编译器和编辑器技术的发展, 人们意识到, 在编辑的时候要做的词法分析其实并不需要生成机器代码, 解耦前后端好处多多, 遂引入了 *中间表象* 这个概念作为一个通用的接口, 使得可以在不生成最终机器代码的情况下完成前三项任务, 这为编辑器以及其他工具链提供了更灵活的接口. 现代编译器的代表性项目就是 clangd 和 ccls, 其优势主要在于 *前端编辑的时候做实时语法检查,* gcc 就并不胜任这一点.
+gcc was born relatively early, initially designed to integrate all stages of compilation, including *lexical analysis, syntax analysis, semantic analysis and code generation.* Four tasks are tightly coupled (this probably also explains the meaning of "cc": compiler collection). Later, as compiler and editor technologies evolved, people realize that the lexical/syntax/semantic analysis during editing *does not require machine code generation*, and that decoupling the frontend and backend has much benefit. So the concept of *intermediate representations* was introduced as a common interface that allowed the first three tasks to be accomplished without generating the final machine code, which provided a more flexible interface to editors and other tool-chains. Modern compilers, such as clangd and ccls, have the advantage of doing real-time syntax checking during front-end editing, which gcc is not capable of doing.
+
+可以采用 "Eglot + ccls" 或 "Eglot + clangd", 我都会在这里介绍. 我不是 =lsp-mode= 用户, 但也不是 =Eglot= 的忠实用户: 实际上 Mini-IDE 一章所涉及的工具已经陪伴我走过了很长一段路.
+You can choose either "Eglot + ccls" or "Eglot + clangd". I will talk about them here. I am not the =lsp-mode= user, but also not the faithful user of =Eglot=: actually, the tools involved in Mini-IDE have been with me for a long time.
+
+Eglot:
+- [[https://github.com/joaotavora/eglot][GitHub - joaotavora/eglot: A client for Language Server Protocol servers]]
+- [[https://joaotavora.github.io/eglot/][Eglot: The Emacs Client for the Language Server Protocol]]
+- [[https://whatacold.io/zh-cn/blog/2018-12-22-c-cpp-devel-with-lsp-in-emacs/][在 Emacs 中使用 LSP 开发 C/C++ 工程 - whatacold 的空间]] (用的是 Eglot, 标题的 LSP 有点误导)
+
+lsp-mode:
+- [[https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/][Configuring Emacs as a C/C++ IDE - LSP Mode - LSP support for Emacs]]
+- [[https://emacs-lsp.github.io/lsp-mode/page/lsp-ccls/][C++ (ccls) - LSP Mode - LSP support for Emacs]]
+- [[https://github.com/joaotavora/eglot/discussions/988][Breadcrumb feature (can eglot support headerline like lsp-mode does?) · joaotavora/eglot · Discussion #988 · GitHub]] (=lsp-mode= has a headline menu, a fancy feature)
+- [[https://zhuanlan.zhihu.com/p/467681146][专业 Emacs 入门（七）：插件篇——编程开发类 - 知乎]]: 代码分析
+- [[https://emacs-china.org/t/emacs-lsp-ccls/9952][怎样在emacs中完整的使用lsp + ccls - Emacs-general - Emacs China]]
+
+
+** Eglot Basic Use
+
+After setting =compile_commands.json= (for clangd) and/or =.ccls= (for ccls) in the project root, =M-x eglot= to open. The candidates of =eglot-xxx= are not so much, altogether 31. Three of them are what you want:
+- =eglot-find-declaration=
+- =eglot-find-implementation=
+- =eglot-find-typeDefinition=
+
+In the variable =eglot-server-programs=, there are two candidates: clangd & ccls. Set the following to use clangd by default:
+#+begin_src emacs-lisp
+(add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+#+end_src
+
+
+** Eglot + clangd
+
+Put =compile_commands.json= to the project root. Its content is the following. Need not specify "file".
+#+begin_src json
+[
+  {
+    "directory": "/absolute/path/to/eglot-clangd/",
+    "file": "",
+    "command": "gcc -I./include -I./build"
+  }
+]
+#+end_src
+
+The [[https://clangd.llvm.org/installation.html][official site of clangd]] itself has guidance on using Eglot with clangd backends (the basic usage of Eglot is not in Eglot's official site, but in clangd's, surprise?)
+
+Refs:
+- [[https://clangd.llvm.org/installation.html][Getting started]]
+- [[https://www.reddit.com/r/emacs/comments/yin0p3/eglot_configuration_with_clangd/][Eglot configuration with `clangd` : emacs]]
+- [[https://www.reddit.com/r/emacs/comments/voc8gn/add_a_i_include_path_for_clangd_in_eglot/?sort=new][Add a -I include path for clangd in eglot : emacs]]
+
+
+** Eglot + ccls (buggy)
+
+Put =.ccls= to the projects folders. Its content is the following:
+
+#+begin_src
+clang
+-I./include
+-I./build
+#+end_src
+
+Refs:
+- [[https://github.com/MaskRay/ccls/wiki/eglot][eglot · MaskRay/ccls Wiki · GitHub]]
+- [[https://github.com/MaskRay/ccls/wiki/Project-Setup#ccls-file][Project Setup · MaskRay/ccls Wiki · GitHub]]: ccls-file
+- [[https://github.com/MaskRay/ccls/wiki/Project-Setup#ccls-examples][Project Setup · MaskRay/ccls Wiki · GitHub]]: ccls-example
+- [[https://github.com/joaotavora/eglot/issues/663][joaotavora/eglot#663 eglot with ccls: M-. can only find and jump to func definitions if they are in buffers]]
+
+
+* Org Mode: Yet Another Jupyter Lab
+
+You can use Org mode just like using Jupyter Lab. *Open me (index.org) in Emacs* to see how powerful it is.
+
+[[file:./Org.png]]
+
+** Org mode + LaTeX
+
+TikZ drawing is the most suitable example to illustrate how powerful it is. Example comes from [[https://www.overleaf.com/learn/latex/TikZ_package][Overleaf]].
+
+#+begin_src latex :results drawer
+\begin{tikzpicture}
+\draw[blue, very thick] (0,0) rectangle (3,2);
+\draw[orange, ultra thick] (4,0) -- (6,0) -- (5.7,2) -- cycle;
+\end{tikzpicture}
+#+end_src
+
+#+RESULTS:
+:results:
+\begin{tikzpicture}
+\draw[blue, very thick] (0,0) rectangle (3,2);
+\draw[orange, ultra thick] (4,0) -- (6,0) -- (5.7,2) -- cycle;
+\end{tikzpicture}
+:end:
+
+
+** Org mode + Babel
+
+Use =C-c C-x C-v= to toggle image show.
+
+*** C
+
+#+begin_src C :compiler-options "-Wall -O2" :libs "-lm" :results verbatim
+#include <stdio.h>
+#include <math.h>
+printf("%f\n", sin(1));
+printf("Hello OChicken!\n");
+printf("Hello World, I am OChicken!\n");
+#+end_src
+
+#+RESULTS:
+: 0.841471
+: Hello OChicken!
+: Hello World, I am OChicken!
+
+
+*** Python
+
+#+begin_src python :results file link
+import numpy as np
+import matplotlib.pyplot as plt
+fig=plt.figure(figsize=(4,2))
+x=np.linspace(-15,15)
+plt.plot(np.sin(x)/x)
+fig.tight_layout()
+plt.savefig("/tmp/python.png")
+return "/tmp/python.png"
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/python.png]]
+
+
+*** SageMath
+
+#+begin_src sage :session t :results drawer
+m = random_matrix(ZZ, 3, 3)
+latexp(m)
+#+end_src
+
+#+RESULTS:
+:results:
+\[ \left(\begin{array}{rrr}
+0 & 3 & 3 \\
+1 & 2 & -1 \\
+1 & 0 & -1
+\end{array}\right) \]
+:end:
+
+
+*** Gnuplot
+
+#+begin_src gnuplot :file /tmp/gnuplot.png
+set title "Some Math Functions"
+set xrange [-10:10]
+set yrange [-2:2]
+set zeroaxis
+plot (x/4)**2, sin(x), 1/x
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/gnuplot.png]]
+
+
+* Footnotes
+
+[fn:1] The "execute" means, place the cursor at the end of the emacs-lisp's sexp, then =C-x C-e=.
+
+[fn:2] Setting =.dir.locals.el= in this way covers the global settings, so that if you =#include <header.h>= where =header.h= located in =~/.local/include=, Flycheck would warn header not found. However, if you alternately use =setq= or =add-to-list= to append the local settings to the global, there would gives an "unsafe warn", if you type 'y' or '!', the local paths are merged with the global (the distinguish between local and global vanishes), and register in =safe-local-variable=. This tricky fact is due to the *"trust safe local var" nature in elisp*. I have an unsatisfactory workaround up to my current knowledge, but want to keep it secret.
