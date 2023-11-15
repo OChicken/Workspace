@@ -1,4 +1,4 @@
-#+title: Workspace
+#+title: Emacs Workspace: IDE + Yet Another Jupyter
 #+options: \n:t
 #+latex_header: \usepackage{common}
 #+latex_header_extra: \usepackage{page}
@@ -7,19 +7,113 @@
 
 #+begin_abstract
 (/You are recommended to read this blog [[https://ochicken.net/projects/workspace/][here]] or read it on your Emacs/)
+(This article is not intended for Emacs beginners, but for those who have coded in Emacs for some months)
 
 This blog is my configuration of Emacs as a personal workspace, includes:
 - *A mini-IDE for programming;*
 - *Use Org mode to preview LaTeX TikZ pictures;*
 - *Use Org mode Babel, like what you do in Jupyter.*
+#+end_abstract
 
-The code is available on this [[https://github.com/OChicken/Workspace][repo]]. It consists of:
+* Before You Start (CN+EN)
+:PROPERTIES:
+:CUSTOM_ID: before-you-start
+:END:
+
+*/You are recommended to read this blog [[https://ochicken.net/projects/workspace/][here]], or download from the [[https://github.com/OChicken/Workspace][repo]] then read on your Emacs locally./*
+
+/This article is *not intended for Emacs beginners*, but for those who have coded in Emacs for some months./
+
+** What You DON'T Need And What You Need
+
+有不少人分享出自己如何[[https://tieba.baidu.com/p/1402662061?pn=1][把 Emacs 当作 OS 来用]]. 我的目标相比之下就很卑微, 我真的 *不需要* 用 Emacs 来
+- 浏览网页 --- Emacs 的确也可以, 但我从不使用它来浏览网页;
+- 阅读邮件 --- Gmail 本身就很好用 (其实我也配了 Gnus, 但隐私起见不便分享);
+- 阅读 PDF --- Emacs 自带的 PDF 阅读器 *不支持 continuous scrolling*, 也不能在上面做笔记;
+- 翻译 --- 用浏览器就好了;
+- 听歌 --- 怼码时间怼码, 听歌时间听歌, alright?
+- ...
+原则上讲, 这些功能都可以在现代浏览器以及 GUI 应用程序上使用. 如果按某些人的话讲, 用 text browser 才是正统, 其他 GUI browser 都是异端, 那么他们 *阅读 pdf 也是违背了自己的信条的*.
+
+但是如果有谁能实现这些功能, 那我真的会谢:
+- 编辑文件 & console 运行测试 (也就是一个 IDE 应有的模样);
+- 像 Jupyter 那样使用 Emacs
+  - 逐块执行代码
+  - 用 LaTeX 渲染出结果
+- Org mode 导出博客
+  - 不借助 Hexo 和 Hugo;
+  - 长得像 [[https://hexo.io/][Hexo]] 的 [[https://theme-next.js.org/][NexT.Pisces]];
+  - 侧边 TOC.
+数理系学生对 Jupyter 和 Mathematica 的逐块执行的功能有很大粘性. [[https://mahmoodsheikh36.github.io/][Mahmood Sheikh]] 做到了把 Emacs Org mode 当 Jupyter 来用. 受此启发, 就有了本文.
+
+Many people shared how they use Emacs as an OS. My goal is really humble in comparison. I DON'T require Emacs to
+- Browsing the web --- Emacs's EWW can indeed do this, but I have never use it to browsing the web;
+- Reading E-Mail --- Gmail works fine (I have configured Gnus, but don't want to share it for privacy reason);
+- Reading PDF --- Emacs's built-in PDF reader *doesn't support continuous scrolling*, and cannot take notes;
+- Translation and Grammarly --- Use browser;
+- Listening to Music --- Use VLC;
+- ...
+In principle, all of these requests can be satisfied in modern browsers and GUI applications. If, according to some cynical persons, that "text browsers are orthodox and all other GUI browsers are heretical", then *reading PDF violates their own credo*.
+
+However, if anyone can implement these features, I'd really appreciate it:
+- editing files & run tests in console (which is what an IDE should look like).
+- Yet another Jupyter, in Emacs
+  - Execute code block by block;
+  - Render/preview results in LaTeX.
+- Org mode to export blogs
+  - Not rely on Hexo or Hugo;
+  - Looks like [[https://hexo.io/][Hexo]]'s [[https://theme-next.js.org/][NexT.Pisces]].
+  - Sidebar TOC.
+Math and science students are very attached to the block-by-block execution feature of Jupyter and Mathematica. [[https://mahmoodsheikh36.github.io/][Mahmood Sheikh]] made it possible to use Emacs Org mode as Jupyter. This article is inspired by that.
+
+
+** Refs
+
+Use Emacs as an *IDE*:
+- [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Maintaining.html][29 Maintaining (GNU Emacs Manual)]]
+- [[https://tuhdo.github.io/c-ide.html][C/C++ Development Environment for Emacs]]
+- [[https://www.reddit.com/r/emacs/comments/dlf0w7/whats_your_setup_for_cc_in_emacs/][What's your setup for C/C++ in emacs ? : emacs]]
+- [[https://github.com/junahan/junahan-emacs/blob/master/docs/cpp-ide.org][GitHub - junahan/junahan-emacs: Emacs config for c/c++]]
+
+Use Emacs as *yet another Jupyter*:
+- Mahmood Sheikh: [[https://www.reddit.com/r/emacs/comments/ufcvfl/the_real_reason_emacs_is_superior_orglatexsagemath/][the real reason emacs is superior - org+latex+sagemath : r/emacs]] 👍
+- Mahmood Sheikh's repo: [[https://github.com/mahmoodsheikh36/dotfiles/][mahmoodsheikh36/dotfiles: my config files for various programs like emacs]]
+- [[https://www.youtube.com/watch?v=WuRPOPocEXY&t=38s][怎样用 Emacs 做所有事 - YouTube]]
+
+
+** My Preference on KBD
+
+读过不少博客就会发现, 作者的编辑器使用历史会影响此人在配置 Emacs 时的偏好, 特别是 key-binding. 譬如说, 如果此人之前用 Vim, 那么大概率会采用 evil 这款在 Emacs 里使用 Vim 键位的插件. 我之前用 Sublime Text, *没有 Vim 的历史包袱*, 所以配置里 *没有使用 evil, ivy, helm* 等流行插件 (总觉得太庞大的插件污染了原生键位增加复杂性).
+
+在 =init-kbd.el= 里我自定义了一些快捷键, 使得如 *单行滚动浏览* 以及 *编译* 等操作都可以 *用左手来完成*. 这里提及部分:
+- 单行下滚绑定了 =C-z=, 上滚绑定了 =M-z.= 二者原来分别绑定的是 =suspend-frame= 和 =zap-to-char=, 前者实际上就是最小化到系统图标的意思, 都极不常用, 不用白不用;
+- =C-x C-v= 绑定了半屏下滚, =C-x M-v= 绑定了半屏上滚. 半屏滚是用自己写的函数.
+- 因为整屏滚用得少 (也即方向键的 Page Down/Up), 所以就把 =C-v= 绑定到 yank.
+- 在 Minibuffer 模式里把绑定 =M-q= 绑定为 =previous-command=. 这个命令原来是绑定了 =M-p=, 必须使用右手, 而绑定 =M-q= 的话就可以用左手完成.
+- 绑定 =M-e= 为 =<return>=. 它原来绑定的是 =forward-sentence=, 极不常用. 这样也可以用左手敲回车.
+- =C-<tab>= 和 =C-S-<tab>= 分别绑定为 =next/previous-window=, 这样就可以不使用 =C-x o= (你需要右手敲 =o=).
+
+As you can read from many other blogs, the author's editor's usage history affects her/his Emacs config preference, especially the key-binding. For example, if the person has used Vim previously, it's very likely that she/he will use evil, the plugin that uses the Vim's kbd in Emacs. I used Sublime Text before, and *don't have history baggage on Vim*, so I *don't use evil, ivy, helm* etc other popular plugins (I think they dirty the native configurations and increase unnecessary complications).
+
+In =init-kbd.el= I customized shortcuts, such that operations like *single line scroll*, *compile* etc can *done with left hand*. Here are some of them:
+- =C-z= & =M-z= are bounded to scroll down/up one line. These two kbd are previously bounded to =suspend-frame= (nothing but minimize to system icon) & =zap-to-char=, both are extremely unused, so I make full use of them.
+- =C-x C-v= & =C-x M-v= are bounded to /*half* screen scroll/ down/up.
+- =C-v= is bounded to yank, because /*full* screen scroll/ (i.e. Page Down/Up) is barely used.
+- =M-q= is bounded to =previous-command= in the Minibuffer mode. This command was bounded to =M-p= and you have to use right hand. Bounding to =M-q= can free your right hand.
+- =M-e= is bounded to =<return>=. =M-e= was previously bounded to =forward-sentence=, barely used. So that you can do "Enter" by left hand.
+- =C-<tab>= & =C-S-<tab>= are bounded to =next/previous-window=, so that you don't need =C-x o= to do so (=o= requires right hand).
+
+
+** Structure of the Repo & Blog
+
+The code is available on this [[https://github.com/OChicken/Workspace][repo]]. Emacs-related configurations consist of:
 - =.emacs.d/=: Emacs config
 - =.sage/=: SageMath config
 - =texmf/=: LaTeX config
-My blog's configuration files are also in this repo. They are:
-- =static/=: Blog's CSS
-- =blog.el=
+
+My blog's configuration files are:
+- =static/=: Blog's CSS & layout
+- =blog.el=: Blog's Makefile
 - =Makefile=
 For the blog's config doc, read [[https://ochicken.net/projects/server/][this]] (in CN).
 
@@ -28,85 +122,9 @@ These are sample projects for mini-IDE:
 - =ede/=
 - =eglot-clangd/=
 - =eglot-ccls/=
-#+end_abstract
-
-* Sitemap
-
-[[https://OChicken.net/projects/workspace][~/]]
-- =blog.el=
-- =README.org=
-- static/
-  - =Cola.png=
-  - font-awesome/
-    - css/
-      - =all.min.css=
-    - webfonts/
-      - =fa-brands-400.woff2=
-      - =fa-regular-400.woff2=
-      - =fa-solid-900.woff2=
-  - =head.html=
-  - =preamble.html=
-  - =postamble.html=
-  - =main.css=
-- .emacs.d/
-  - =init.el=
-  - lisp/
-    - =init-edit.el=
-    - =init-gnus.el= (private)
-    - =init-kbd.el=
-    - =init-opt.el= (private)
-    - =init-org.el=
-    - =init-package.el=
-    - =init-progmodes.el=
-    - =init-sessions.el=
-    - =init-utils.el=
-    - =init-view.el=
-  - snippets/
-    - =ditaa=
-    - =latex-drawer=
-    - =latex-graphics=
-    - =properties=
-    - =sage=
-    - =shell=
-- .sage/
-  - =init.sage=
-- texmf/
-  - tex/
-    - latex/
-      - =common.sty=
-      - =page.sty=
-- mini-ide/
-  - build/
-    - =config.h=
-    - =Makefile=
-  - =.dir-locals.el=
-  - include/
-    - =myproj.h=
-  - =Makefile=
-  - src/
-    - =Makefile=
-    - =mylib.c=
-  - test/
-    - =main.c=
-    - =Makefile=
 
 
-* Before the Beginning
-
-Refs:
-- [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Maintaining.html][29 Maintaining (GNU Emacs Manual)]]
-- [[https://tuhdo.github.io/c-ide.html][C/C++ Development Environment for Emacs]]
-- [[https://www.reddit.com/r/emacs/comments/dlf0w7/whats_your_setup_for_cc_in_emacs/][What's your setup for C/C++ in emacs ? : emacs]]
-- [[https://github.com/junahan/junahan-emacs/blob/master/docs/cpp-ide.org][GitHub - junahan/junahan-emacs: Emacs config for c/c++]]
-
-*本文的面向读者不是 Emacs 初学者, 而是那些用 Emacs 写过一段时间的代码的读者.* 跟别的介绍 Emacs IDE 的文章不同的是, 他们都把精力放在 =.emacs.d=, 我则着墨于如何构建项目目录. 因为项目目录各有各的结构, 在 =.emacs.d= 里把全局配置写死是很不明智的.
-*This article is not intended for Emacs beginners, but for those who have coded in Emacs for some months.* Instead of focusing on the contents of =.emacs.d= (like many articles talking about), I focus on how to configure the project's dir. This is because each project dir have their own structure, it is unwise to write the global configuration in =.emacs.d=.
-
-我没有 Vim 的历史包袱, 所以配置里 *没有使用 evil, ivy, helm* (总觉得太庞大的插件污染了原生键位增加复杂性). 在 =init-kbd.el= 里我自定义了一些快捷键, 使得如 *单行滚动浏览* 以及 *编译* 等操作都可以 *用左手来完成*.
-I don't have much historical baggage on Vim, so that I *didn't use evil, ivy, helm* (I think they dirty the native configurations and increase unnecessary complications). In =init-kbd.el= I defined some custom shortcuts, such that you *can use left hand* to do most tasks like *single line scroll*, *compile* etc.
-
-
-* Recap: C-h to Fetch Info
+** Recap: C-h to Fetch Info
 
 Use =C-h v= to see a variable. Execute[fn:1] the following command to reset it.
 #+begin_src emacs-lisp
@@ -115,9 +133,120 @@ Use =C-h v= to see a variable. Execute[fn:1] the following command to reset it.
 Use =C-h c= or =C-h k= to see the information of a key bindings.
 
 
+* Org Mode: Yet Another Jupyter Lab
+:PROPERTIES:
+:CUSTOM_ID: ya-jupyter
+:END:
+
+You can use Org mode just like using Jupyter Lab. *Open me ([[https://github.com/OChicken/Workspace][README.org]]) in Emacs* to see how powerful it is.
+
+[[file:./Org.png]]
+
+** Org mode + LaTeX
+
+TikZ drawing is the most suitable example to illustrate how powerful it is. Example comes from [[https://www.overleaf.com/learn/latex/TikZ_package][Overleaf]].
+
+#+begin_src latex :results drawer
+\begin{tikzpicture}
+\draw[blue, very thick] (0,0) rectangle (3,2);
+\draw[orange, ultra thick] (4,0) -- (6,0) -- (5.7,2) -- cycle;
+\end{tikzpicture}
+#+end_src
+
+#+RESULTS:
+:results:
+\begin{tikzpicture}
+\draw[blue, very thick] (0,0) rectangle (3,2);
+\draw[orange, ultra thick] (4,0) -- (6,0) -- (5.7,2) -- cycle;
+\end{tikzpicture}
+:end:
+
+
+** Org mode + Babel
+
+Use =C-c C-x C-v= to toggle image show.
+
+*** C
+
+#+begin_src C :compiler-options "-Wall -O2" :libs "-lm" :results verbatim
+#include <stdio.h>
+#include <math.h>
+printf("%f\n", sin(1));
+printf("Hello OChicken!\n");
+printf("Hello World, I am OChicken!\n");
+#+end_src
+
+#+RESULTS:
+: 0.841471
+: Hello OChicken!
+: Hello World, I am OChicken!
+
+
+*** Python
+
+#+begin_src python :results file link
+import numpy as np
+import matplotlib.pyplot as plt
+fig=plt.figure(figsize=(4,2))
+x=np.linspace(-15,15)
+plt.plot(np.sin(x)/x)
+fig.tight_layout()
+plt.savefig("/tmp/python.png")
+return "/tmp/python.png"
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/python.png]]
+
+
+*** SageMath
+
+#+begin_src sage :session t :results drawer
+m = random_matrix(ZZ, 3, 3)
+latexp(m)                      # This function is defined in .sage/init.sage
+#+end_src
+
+#+RESULTS:
+:results:
+\[ \left(\begin{array}{rrr}
+0 & 3 & 3 \\
+1 & 2 & -1 \\
+1 & 0 & -1
+\end{array}\right) \]
+:end:
+
+
+*** Gnuplot
+
+#+begin_src gnuplot :file /tmp/gnuplot.png
+set title "Some Math Functions"
+set xrange [-10:10]
+set yrange [-2:2]
+set zeroaxis
+plot (x/4)**2, sin(x), 1/x
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/gnuplot.png]]
+
+
+* Org Mode: Export Blog
+:PROPERTIES:
+:CUSTOM_ID: export-blog
+:END:
+
+
+
 * Mini IDE: Syntax Check, Complete, Compile
+:PROPERTIES:
+:CUSTOM_ID: mini-ide
+:END:
+
 
 The title is self-explained. *What you need are [[https://www.flycheck.org/en/latest/][Flycheck]] + [[https://company-mode.github.io/][Company]] + [[https://docs.projectile.mx/projectile/][Projectile]] + [[https://github.com/purcell/ibuffer-projectile][Ibuffer-Projectile]]. Such a mini-IDE don't need =eglot= or =lsp-mode=.*
+
+跟别的介绍 Emacs IDE 的文章不同的是, 他们都把精力放在 =.emacs.d=, 我则着墨于如何构建项目目录. 因为项目目录各有各的结构, 在 =.emacs.d= 里把全局配置写死是很不明智的.
+Instead of focusing on the contents of =.emacs.d= (like many articles talking about), I focus on how to configure the project's dir. This is because each project dir have their own structure, it is unwise to write the global configuration in =.emacs.d=.
 
 cd to =mini-ide= to have a try. You can do =make= in terminal, or alternately in Emacs:
 #+begin_example
@@ -210,7 +339,7 @@ autoreconf -i; cd build; ../configure; make all      # You can put the *.o to bu
 [[file:./Compile.png]]
 
 
-* Identifier References (jump-to-&-back)
+** Identifier References (jump-to-&-back)
 
 [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Xref.html][29.4 Xref (GNU Emacs Manual)]]
 
@@ -224,8 +353,7 @@ This task requires mode-specific knowledge, to search for identifiers, find refe
 A work-around is, *for system headers*, you can simply generate a =TAGS= file for them, which does not need to open lsp; while *for the current project*, open lsp to perform real-time analysis. Here is a basic idea on how to generate =TAGS= for system headers:
 - [[https://tuhdo.github.io/c-ide.html#orgheadline37][C/C++ Development Environment for Emacs]]
 
-
-** Find Identifiers (29.4.1)
+*** Find Identifiers (29.4.1)
 
 [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Find-Identifiers.html][29.4.1 Find Identifiers (GNU Emacs Manual)]]
 [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Looking-Up-Identifiers.html][29.4.1.1 Looking Up Identifiers (GNU Emacs Manual)]]
@@ -240,7 +368,7 @@ M-?                            # xref-find-references
 #+end_src
 
 
-** Tags Tables (29.4.2)
+*** Tags Tables (29.4.2)
 
 *TLDR*: Use =ctags= to generate =TAGS= file, do not use Emacs's built-in =etags=.
 
@@ -286,7 +414,7 @@ Here are the links that hint me (search "ctags not generate =printf="):
 - [[https://www.emacswiki.org/emacs/EtagsTable][EmacsWiki: Etags Table]]
 
 
-** Selecting a Tags Table (29.4.3)
+*** Selecting a Tags Table (29.4.3)
 
 You may add TAGS via
 #+begin_src shell
@@ -299,7 +427,7 @@ or alternately set =tags-table-list= in =.emacs.d/init.el=:
 I didn't add =TAGS-verilator= and =TAGS-linux=, simply because they are barely used (and =TAGS-linux= is huge). Indeed, you can add them when you need.
 
 
-** Semantic
+*** Semantic
 
 Semantic is an alternate framework to generate tags: in its context, the =TAGS= files is a *database* in =.emacs.d/semanticdb/=.
 
@@ -321,11 +449,11 @@ I am not the Semantic user, but still put the settings I have tried (it works, o
 #+end_src
 
 
-* LSP Tools: Eglot & lsp-mode
+** LSP Tools: Eglot & lsp-mode
 
 As the title explains, LSP tools are encompassed, Eglot & =lsp-mode= are two of them. Readers should familiar that /they are two competitors/. *I use Eglot*.
 
-** Background
+*** Background
 
 读者应该也清楚, LSP 的 backends 主要是 clangd. 其实除它以外还有 *ccls* 等, *但是, gcc 通常不作为 LSP 的 backend*.
 Readers should familiar with the fact that *clangd* is the backend of LSP, but besides clangd, there are other options such as *ccls* etc. *However, gcc is not served as the backend of LSP*.
@@ -349,7 +477,7 @@ lsp-mode:
 - [[https://emacs-china.org/t/emacs-lsp-ccls/9952][怎样在emacs中完整的使用lsp + ccls - Emacs-general - Emacs China]]
 
 
-** Eglot Basic Use
+*** Eglot Basic Use
 
 After setting =compile_commands.json= (for clangd) and/or =.ccls= (for ccls) in the project root, =M-x eglot= to open. The candidates of =eglot-xxx= are not so much, altogether 31. Three of them are what you want:
 - =eglot-find-declaration=
@@ -362,7 +490,7 @@ In the variable =eglot-server-programs=, there are two candidates: clangd & ccls
 #+end_src
 
 
-** Eglot + clangd
+*** Eglot + clangd
 
 The contents of the project dir =eglot-clangd= is exactly the same as =mini-ide=: *a series of =Makefile= are prepared*. As they are prepared, do this command in the project root
 #+begin_src shell
@@ -389,7 +517,7 @@ which will generate the important =compile_commands.json=. Its content is
 The [[https://clangd.llvm.org/installation.html][official site of clangd]] itself has guidance on using Eglot with clangd backends (the basic usage of Eglot is not in Eglot's official site, but in clangd's, surprise?)
 
 
-** Eglot + ccls (buggy)
+*** Eglot + ccls (buggy)
 
 Put =.ccls= to the projects folders. Its content is the following:
 
@@ -406,98 +534,65 @@ Refs:
 - [[https://github.com/joaotavora/eglot/issues/663][joaotavora/eglot#663 eglot with ccls: M-. can only find and jump to func definitions if they are in buffers]]
 
 
-* Org Mode: Yet Another Jupyter Lab
+* Appendix: Tree View of the Repo
 
-You can use Org mode just like using Jupyter Lab. *Open me ([[https://github.com/OChicken/Workspace][README.org]]) in Emacs* to see how powerful it is.
-
-[[file:./Org.png]]
-
-** Org mode + LaTeX
-
-TikZ drawing is the most suitable example to illustrate how powerful it is. Example comes from [[https://www.overleaf.com/learn/latex/TikZ_package][Overleaf]].
-
-#+begin_src latex :results drawer
-\begin{tikzpicture}
-\draw[blue, very thick] (0,0) rectangle (3,2);
-\draw[orange, ultra thick] (4,0) -- (6,0) -- (5.7,2) -- cycle;
-\end{tikzpicture}
-#+end_src
-
-#+RESULTS:
-:results:
-\begin{tikzpicture}
-\draw[blue, very thick] (0,0) rectangle (3,2);
-\draw[orange, ultra thick] (4,0) -- (6,0) -- (5.7,2) -- cycle;
-\end{tikzpicture}
-:end:
-
-
-** Org mode + Babel
-
-Use =C-c C-x C-v= to toggle image show.
-
-*** C
-
-#+begin_src C :compiler-options "-Wall -O2" :libs "-lm" :results verbatim
-#include <stdio.h>
-#include <math.h>
-printf("%f\n", sin(1));
-printf("Hello OChicken!\n");
-printf("Hello World, I am OChicken!\n");
-#+end_src
-
-#+RESULTS:
-: 0.841471
-: Hello OChicken!
-: Hello World, I am OChicken!
-
-
-*** Python
-
-#+begin_src python :results file link
-import numpy as np
-import matplotlib.pyplot as plt
-fig=plt.figure(figsize=(4,2))
-x=np.linspace(-15,15)
-plt.plot(np.sin(x)/x)
-fig.tight_layout()
-plt.savefig("/tmp/python.png")
-return "/tmp/python.png"
-#+end_src
-
-#+RESULTS:
-[[file:/tmp/python.png]]
-
-
-*** SageMath
-
-#+begin_src sage :session t :results drawer
-m = random_matrix(ZZ, 3, 3)
-latexp(m)
-#+end_src
-
-#+RESULTS:
-:results:
-\[ \left(\begin{array}{rrr}
-0 & 3 & 3 \\
-1 & 2 & -1 \\
-1 & 0 & -1
-\end{array}\right) \]
-:end:
-
-
-*** Gnuplot
-
-#+begin_src gnuplot :file /tmp/gnuplot.png
-set title "Some Math Functions"
-set xrange [-10:10]
-set yrange [-2:2]
-set zeroaxis
-plot (x/4)**2, sin(x), 1/x
-#+end_src
-
-#+RESULTS:
-[[file:/tmp/gnuplot.png]]
+[[https://OChicken.net/projects/workspace][~/]]
+- =blog.el=
+- =README.org=
+- static/
+  - =Cola.png=
+  - font-awesome/
+    - css/
+      - =all.min.css=
+    - webfonts/
+      - =fa-brands-400.woff2=
+      - =fa-regular-400.woff2=
+      - =fa-solid-900.woff2=
+  - =head.html=
+  - =preamble.html=
+  - =postamble.html=
+  - =main.css=
+- .emacs.d/
+  - =init.el=
+  - lisp/
+    - =init-edit.el=
+    - =init-gnus.el= (private)
+    - =init-kbd.el=
+    - =init-opt.el= (private)
+    - =init-org.el=
+    - =init-package.el=
+    - =init-progmodes.el=
+    - =init-sessions.el=
+    - =init-utils.el=
+    - =init-view.el=
+  - snippets/
+    - =ditaa=
+    - =latex-drawer=
+    - =latex-graphics=
+    - =properties=
+    - =sage=
+    - =shell=
+- .sage/
+  - =init.sage=
+- texmf/
+  - tex/
+    - latex/
+      - =common.sty=
+      - =page.sty=
+- mini-ide/
+  - build/
+    - =config.h=
+    - =Makefile=
+  - =.dir-locals.el=
+  - include/
+    - =myproj.h=
+  - =Makefile=
+  - src/
+    - =Makefile=
+    - =mylib.c=
+  - test/
+    - =main.c=
+    - =Makefile=
 
 
 * Footnotes
