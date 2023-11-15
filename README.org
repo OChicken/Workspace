@@ -26,26 +26,6 @@ This blog is my configuration of Emacs as a personal workspace, includes:
 
 ** What You DON'T Need And What You Need
 
-有不少人分享出自己如何[[https://tieba.baidu.com/p/1402662061?pn=1][把 Emacs 当作 OS 来用]]. 我的目标相比之下就很卑微, 我真的 *不需要* 用 Emacs 来
-- 浏览网页 --- Emacs 的确也可以, 但我从不使用它来浏览网页;
-- 阅读邮件 --- Gmail 本身就很好用 (其实我也配了 Gnus, 但隐私起见不便分享);
-- 阅读 PDF --- Emacs 自带的 PDF 阅读器 *不支持 continuous scrolling*, 也不能在上面做笔记;
-- 翻译 --- 用浏览器就好了;
-- 听歌 --- 怼码时间怼码, 听歌时间听歌, alright?
-- ...
-原则上讲, 这些功能都可以在现代浏览器以及 GUI 应用程序上使用. 如果按某些人的话讲, 用 text browser 才是正统, 其他 GUI browser 都是异端, 那么他们 *阅读 pdf 也是违背了自己的信条的*.
-
-但是如果有谁能实现这些功能, 那我真的会谢:
-- 编辑文件 & console 运行测试 (也就是一个 IDE 应有的模样);
-- 像 Jupyter 那样使用 Emacs
-  - 逐块执行代码
-  - 用 LaTeX 渲染出结果
-- Org mode 导出博客
-  - 不借助 Hexo 和 Hugo;
-  - 长得像 [[https://hexo.io/][Hexo]] 的 [[https://theme-next.js.org/][NexT.Pisces]];
-  - 侧边 TOC.
-数理系学生对 Jupyter 和 Mathematica 的逐块执行的功能有很大粘性. [[https://mahmoodsheikh36.github.io/][Mahmood Sheikh]] 做到了把 Emacs Org mode 当 Jupyter 来用. 受此启发, 就有了本文.
-
 Many people shared how they use Emacs as an OS. My goal is really humble in comparison. I DON'T require Emacs to
 - Browsing the web --- Emacs's EWW can indeed do this, but I have never use it to browsing the web;
 - Reading E-Mail --- Gmail works fine (I have configured Gnus, but don't want to share it for privacy reason);
@@ -66,6 +46,26 @@ However, if anyone can implement these features, I'd really appreciate it:
   - Sidebar TOC.
 Math and science students are very attached to the block-by-block execution feature of Jupyter and Mathematica. [[https://mahmoodsheikh36.github.io/][Mahmood Sheikh]] made it possible to use Emacs Org mode as Jupyter. This article is inspired by that.
 
+有不少人分享出自己如何[[https://tieba.baidu.com/p/1402662061?pn=1][把 Emacs 当作 OS 来用]]. 我的目标相比之下就很卑微, 我真的 *不需要* 用 Emacs 来
+- 浏览网页 --- Emacs 的确也可以, 但我从不使用它来浏览网页;
+- 阅读邮件 --- Gmail 本身就很好用 (其实我也配了 Gnus, 但隐私起见不便分享);
+- 阅读 PDF --- Emacs 自带的 PDF 阅读器 *不支持 continuous scrolling*, 也不能在上面做笔记;
+- 翻译 --- 用浏览器就好了;
+- 听歌 --- 怼码时间怼码, 听歌时间听歌, alright?
+- ...
+原则上讲, 这些功能都可以在现代浏览器以及 GUI 应用程序上使用. 如果按某些人的话讲, 用 text browser 才是正统, 其他 GUI browser 都是异端, 那么他们 *阅读 pdf 也是违背了自己的信条的*.
+
+但是如果有谁能实现这些功能, 那我真的会谢:
+- 编辑文件 & console 运行测试 (也就是一个 IDE 应有的模样);
+- 像 Jupyter 那样使用 Emacs
+  - 逐块执行代码
+  - 用 LaTeX 渲染出结果
+- Org mode 导出博客
+  - 不借助 Hexo 和 Hugo;
+  - 长得像 [[https://hexo.io/][Hexo]] 的 [[https://theme-next.js.org/][NexT.Pisces]];
+  - 侧边 TOC.
+数理系学生对 Jupyter 和 Mathematica 的逐块执行的功能有很大粘性. [[https://mahmoodsheikh36.github.io/][Mahmood Sheikh]] 做到了把 Emacs Org mode 当 Jupyter 来用. 受此启发, 就有了本文.
+
 
 ** Refs
 
@@ -83,6 +83,16 @@ Use Emacs as *yet another Jupyter*:
 
 ** My Preference on KBD
 
+As you can read from many other blogs, the author's editor's usage history affects her/his Emacs config preference, especially the key-binding. For example, if the person has used Vim previously, it's very likely that she/he will use evil, the plugin that uses the Vim's kbd in Emacs. I used Sublime Text before, and *don't have history baggage on Vim*, so I *don't use evil, ivy, helm* etc other popular plugins (I think they dirty the native configurations and increase unnecessary complications).
+
+I customized shortcuts in =init-kbd.el=, s.t. operations like *single line scroll*, *compile* etc can *done with left hand*. Here are some of them:
+- =C-z= & =M-z= are bounded to /one-line scroll/ down/up. They were previously bounded to =suspend-frame= (nothing but minimize to system icon) & =zap-to-char=, both were barely used, so I make full use of them.
+- =C-x C-v= & =C-x M-v= are bounded to /*half* screen scroll/ down/up.
+- =C-v= is bounded to yank, because /*full* screen scroll/ (i.e. Page Down/Up) was barely used.
+- =M-q= is bounded to =previous-command= in the Minibuffer mode. This command was bounded to =M-p= and you have to use right hand. Bounding to =M-q= can free your right hand.
+- =M-e= is bounded to =<return>=. =M-e= was previously bounded to =forward-sentence=, barely used. So that you can do "Enter" by left hand.
+- =C-<tab>= & =C-S-<tab>= are bounded to =next/previous-window=, so that you don't need =C-x o= to do so (=o= uses right hand).
+
 读过不少博客就会发现, 作者的编辑器使用历史会影响此人在配置 Emacs 时的偏好, 特别是 key-binding. 譬如说, 如果此人之前用 Vim, 那么大概率会采用 evil 这款在 Emacs 里使用 Vim 键位的插件. 我之前用 Sublime Text, *没有 Vim 的历史包袱*, 所以配置里 *没有使用 evil, ivy, helm* 等流行插件 (总觉得太庞大的插件污染了原生键位增加复杂性).
 
 在 =init-kbd.el= 里我自定义了一些快捷键, 使得如 *单行滚动浏览* 以及 *编译* 等操作都可以 *用左手来完成*. 这里提及部分:
@@ -93,43 +103,124 @@ Use Emacs as *yet another Jupyter*:
 - 绑定 =M-e= 为 =<return>=. 它原来绑定的是 =forward-sentence=, 极不常用. 这样也可以用左手敲回车.
 - =C-<tab>= 和 =C-S-<tab>= 分别绑定为 =next/previous-window=, 这样就可以不使用 =C-x o= (你需要右手敲 =o=).
 
-As you can read from many other blogs, the author's editor's usage history affects her/his Emacs config preference, especially the key-binding. For example, if the person has used Vim previously, it's very likely that she/he will use evil, the plugin that uses the Vim's kbd in Emacs. I used Sublime Text before, and *don't have history baggage on Vim*, so I *don't use evil, ivy, helm* etc other popular plugins (I think they dirty the native configurations and increase unnecessary complications).
 
-In =init-kbd.el= I customized shortcuts, such that operations like *single line scroll*, *compile* etc can *done with left hand*. Here are some of them:
-- =C-z= & =M-z= are bounded to scroll down/up one line. These two kbd are previously bounded to =suspend-frame= (nothing but minimize to system icon) & =zap-to-char=, both are extremely unused, so I make full use of them.
-- =C-x C-v= & =C-x M-v= are bounded to /*half* screen scroll/ down/up.
-- =C-v= is bounded to yank, because /*full* screen scroll/ (i.e. Page Down/Up) is barely used.
-- =M-q= is bounded to =previous-command= in the Minibuffer mode. This command was bounded to =M-p= and you have to use right hand. Bounding to =M-q= can free your right hand.
-- =M-e= is bounded to =<return>=. =M-e= was previously bounded to =forward-sentence=, barely used. So that you can do "Enter" by left hand.
-- =C-<tab>= & =C-S-<tab>= are bounded to =next/previous-window=, so that you don't need =C-x o= to do so (=o= requires right hand).
+** Structure of the Repo
+
+The code is available on this [[https://github.com/OChicken/Workspace][repo]].
+
+*** Emacs & Org mode Config
+
+Consists of the following. Read Chapter [[#ya-jupyter]] for detail.
+#+begin_src txt
+.
+├── .emacs.d/
+│   ├── ctags/
+│   │   ├── TAGS
+│   │   ├── TAGS-linux         /* large file */
+│   │   └── TAGS-verilator
+│   ├── init.el
+│   ├── lisp/
+│   │   ├── init-edit.el
+│   │   ├── init-gnus.el       /* private */
+│   │   ├── init-kbd.el
+│   │   ├── init-opt.el        /* private */
+│   │   ├── init-org.el
+│   │   ├── init-package.el
+│   │   ├── init-progmodes.el
+│   │   ├── init-sessions.el
+│   │   ├── init-utils.el
+│   │   └── init-view.el
+│   └── snippets/
+│       └── org-mode/
+│           ├── ditaa
+│           ├── latex-drawer
+│           ├── latex-graphics
+│           ├── properties
+│           ├── sage
+│           └── shell
+├── .sage/                     /* SageMath config, enpower your Org-mode */
+│   └── init.sage
+└── texmf/                     /* LaTeX    config, enpower your Org-mode */
+    └── tex/
+        └── latex/
+            ├── common.sty
+            └── page.sty
+#+end_src
 
 
-** Structure of the Repo & Blog
+*** Blog config
 
-The code is available on this [[https://github.com/OChicken/Workspace][repo]]. Emacs-related configurations consist of:
-- =.emacs.d/=: Emacs config
-- =.sage/=: SageMath config
-- =texmf/=: LaTeX config
+Consists of the following. Read Chapter [[#export-blog]] for detail (or [[https://ochicken.net/projects/server/][this]] in CN).
+#+begin_src txt
+.
+├── blog.el                    /* script to generate html and deploy */
+├── Makefile                   /* make g, make s, make d */
+├── README.org                 /* It's index.html */
+└── static
+    ├── Cola.png
+    ├── font-awesome/
+    │   ├── css/
+    │   │   └── all.min.css
+    │   └── webfonts/
+    │       ├── fa-brands-400.woff2
+    │       ├── fa-regular-400.woff2
+    │       └── fa-solid-900.woff2
+    ├── head.html              /* layout */
+    ├── postamble.html         /* layout */
+    ├── preamble.html          /* layout */
+    └── main.css               /* css    */
+#+end_src
 
-My blog's configuration files are:
-- =static/=: Blog's CSS & layout
-- =blog.el=: Blog's Makefile
-- =Makefile=
-For the blog's config doc, read [[https://ochicken.net/projects/server/][this]] (in CN).
+*** Sample Projects of Mini-IDE
 
-These are sample projects for mini-IDE:
-- =mini-ide/=
-- =ede/=
-- =eglot-clangd/=
-- =eglot-ccls/=
+Instead of focusing on the contents of =.emacs.d= (like many articles talking about), I would like to tell you more about the project's dir. This is because each project dir have their own structure, and it is unwise to write the global configuration in =.emacs.d=.
+
+There are 4 sample projects. =mini-ide/= & =eglot-clangd/= & =eglot-ccls/= have almost the same structure, while =ede/= has slightly more (it is a minimum GNU make project).
+#+begin_src txt
+.
+├── mini-ide/ or eglot-clangd/ or eglot-ccls/
+│   ├── build/
+│   │   ├── config.h
+│   │   └── Makefile
+│   ├── compile_commands.json  /* exists in eglot-clangd */
+│   ├── .dir-locals.el
+│   ├── include/
+│   │   └── myproj.h
+│   ├── Makefile
+│   ├── src/
+│   │   ├── mylib.c
+│   │   └── Makefile
+│   └── tests/
+│       ├── main.c
+│       └── Makefile
+└── ede/                       /* a GNU make project */
+    ├── AUTHORS
+    ├── ChangeLog
+    ├── configure.ac           /* important */
+    ├── .dir-locals.el
+    ├── include/
+    │   └── myproj.h
+    ├── make-clean.sh          /* just a script to reset the content back to the state before build */
+    ├── Makefile.am
+    ├── NEWS
+    ├── README
+    ├── src/
+    │   ├── mylib.c
+    │   └── Makefile.am
+    └── tests/
+        ├── main.c
+        └── Makefile.am
+#+end_src
 
 
 ** Recap: C-h to Fetch Info
 
-Use =C-h v= to see a variable. Execute[fn:1] the following command to reset it.
+Use =C-h v= to see a variable. Execute the following command to reset it.
 #+begin_src emacs-lisp
 (setq foo (eval (car (get 'foo 'standard-value))))
 #+end_src
+where the "execute" means, place the cursor at the end of the emacs-lisp's sexp, then =C-x C-e=.
+
 Use =C-h c= or =C-h k= to see the information of a key bindings.
 
 
@@ -242,11 +333,7 @@ plot (x/4)**2, sin(x), 1/x
 :CUSTOM_ID: mini-ide
 :END:
 
-
 The title is self-explained. *What you need are [[https://www.flycheck.org/en/latest/][Flycheck]] + [[https://company-mode.github.io/][Company]] + [[https://docs.projectile.mx/projectile/][Projectile]] + [[https://github.com/purcell/ibuffer-projectile][Ibuffer-Projectile]]. Such a mini-IDE don't need =eglot= or =lsp-mode=.*
-
-跟别的介绍 Emacs IDE 的文章不同的是, 他们都把精力放在 =.emacs.d=, 我则着墨于如何构建项目目录. 因为项目目录各有各的结构, 在 =.emacs.d= 里把全局配置写死是很不明智的.
-Instead of focusing on the contents of =.emacs.d= (like many articles talking about), I focus on how to configure the project's dir. This is because each project dir have their own structure, it is unwise to write the global configuration in =.emacs.d=.
 
 cd to =mini-ide= to have a try. You can do =make= in terminal, or alternately in Emacs:
 #+begin_example
@@ -275,7 +362,7 @@ The *local* search path is =.dir.locals.el= in your project dir. Its content is
 ((c-mode . ((flycheck-clang-include-path . ("/absolute/path/to/mini-ide/include"
                                             "/absolute/path/to/mini-ide/build")))))
 #+end_src
-After you set =.dir.locals.el=, do =C-x x g= to revert the opened =c= file.[fn:2]
+After you set =.dir.locals.el=, do =C-x x g= to revert the opened =c= file.[fn:1]
 
 
 Emacs's team also has Flymake. You'll dislike it after having a try. I assure you.
@@ -534,69 +621,17 @@ Refs:
 - [[https://github.com/joaotavora/eglot/issues/663][joaotavora/eglot#663 eglot with ccls: M-. can only find and jump to func definitions if they are in buffers]]
 
 
-* Appendix: Tree View of the Repo
+* Vielen Dank
+:PROPERTIES:
+:CUSTOM_ID: vielen-dank
+:END:
 
-[[https://OChicken.net/projects/workspace][~/]]
-- =blog.el=
-- =README.org=
-- static/
-  - =Cola.png=
-  - font-awesome/
-    - css/
-      - =all.min.css=
-    - webfonts/
-      - =fa-brands-400.woff2=
-      - =fa-regular-400.woff2=
-      - =fa-solid-900.woff2=
-  - =head.html=
-  - =preamble.html=
-  - =postamble.html=
-  - =main.css=
-- .emacs.d/
-  - =init.el=
-  - lisp/
-    - =init-edit.el=
-    - =init-gnus.el= (private)
-    - =init-kbd.el=
-    - =init-opt.el= (private)
-    - =init-org.el=
-    - =init-package.el=
-    - =init-progmodes.el=
-    - =init-sessions.el=
-    - =init-utils.el=
-    - =init-view.el=
-  - snippets/
-    - =ditaa=
-    - =latex-drawer=
-    - =latex-graphics=
-    - =properties=
-    - =sage=
-    - =shell=
-- .sage/
-  - =init.sage=
-- texmf/
-  - tex/
-    - latex/
-      - =common.sty=
-      - =page.sty=
-- mini-ide/
-  - build/
-    - =config.h=
-    - =Makefile=
-  - =.dir-locals.el=
-  - include/
-    - =myproj.h=
-  - =Makefile=
-  - src/
-    - =Makefile=
-    - =mylib.c=
-  - test/
-    - =main.c=
-    - =Makefile=
+[[file:Danke.gif]]
 
+Buy me a Cola (1.3EUR) or an [[https://www.google.com/maps/place/Eiscaf%C3%A9+San+Remo/@50.7799241,6.0801078,20.36z/data=!4m6!3m5!1s0x47c099645487ff85:0x1b1ceee6d970dc7e!8m2!3d50.7799268!4d6.0804921!16s][ice cream]] (1.5EUR) or a cup of [[https://www.heytea.com/][喜茶]] (30CNY) or a meal of [[https://www.google.com/maps/place/China-Imbiss+Xinlong/@50.7808239,6.0782324,19.45z/data=!3m1!5s0x47c09979de297d6f:0x1ba9082f532d105!4m6!3m5!1s0x47c09979e0879747:0x468773be7804ba35!8m2!3d50.7810414!4d6.0781773!16s%2Fg%2F11b7k15wb0?entry=ttu][鑫隆]] (5.9EUR) 😋
+
+PayPal: shouran.ma@gmail.com; [[file:WeChatPay.png][WeChat Pay]]
 
 * Footnotes
 
-[fn:1] The "execute" means, place the cursor at the end of the emacs-lisp's sexp, then =C-x C-e=.
-
-[fn:2] Setting =.dir.locals.el= in this way covers the global settings, so that if you =#include <header.h>= where =header.h= located in =~/.local/include=, Flycheck would warn header not found. However, if you alternately use =setq= or =add-to-list= to append the local settings to the global, there would gives an "unsafe warn", if you type 'y' or '!', the local paths are merged with the global (the distinguish between local and global vanishes), and register in =safe-local-variable=. This tricky fact is due to the *"trust safe local var" nature in elisp*. I have an unsatisfactory workaround up to my current knowledge, but want to keep it secret.
+[fn:1] Setting =.dir.locals.el= in this way covers the global settings, so that if you =#include <header.h>= where =header.h= located in =~/.local/include=, Flycheck would warn header not found. However, if you alternately use =setq= or =add-to-list= to append the local settings to the global, there would gives an "unsafe warn", if you type 'y' or '!', the local paths are merged with the global (the distinguish between local and global vanishes), and register in =safe-local-variable=. This tricky fact is due to the *"trust safe local var" nature in elisp*. I have an unsatisfactory workaround up to my current knowledge, but want to keep it secret.

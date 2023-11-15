@@ -1,0 +1,2342 @@
+
+/usr/share/verilator/include/verilated_config.h,173
+#define VERILATOR_PRODUCT VERILATOR_PRODUCT21,805
+#define VERILATOR_VERSION VERILATOR_VERSION25,956
+#define VERILATOR_VERSION_INTEGER VERILATOR_VERSION_INTEGER30,1162
+
+/usr/share/verilator/include/verilated_cov.h,1977
+#define VERILATOR_VERILATED_COV_H_VERILATOR_VERILATED_COV_H_26,940
+#define VL_COVER_INSERT(VL_COVER_INSERT69,2672
+std::string vlCovCvtToStr(const T& t) VL_PURE {vlCovCvtToStr80,3080
+class VerilatedCovContext VL_NOT_FINAL : public VerilatedVirtualBase {VL_NOT_FINAL94,3495
+    VL_UNCOPYABLE(VerilatedCovContext);VL_UNCOPYABLE95,3566
+    static const char* defaultFilename() VL_PURE { return "coverage.dat"; }defaultFilename100,3662
+    void forcePerInstance(bool flag) VL_MT_SAFE;forcePerInstance102,3806
+    void write(const char* filenamep = defaultFilename()) VL_MT_SAFE;write104,3897
+    void clear() VL_MT_SAFE;clear106,4028
+    void clearNonMatch(const char* matchp) VL_MT_SAFE;clearNonMatch108,4110
+    void zero() VL_MT_SAFE;zero110,4194
+    void _inserti(uint32_t* itemp) VL_MT_SAFE;_inserti119,4589
+    void _inserti(uint64_t* itemp) VL_MT_SAFE;_inserti120,4636
+    void _insertf(const char* filename, int lineno) VL_MT_SAFE;_insertf122,4737
+#define K(K128,5077
+#define A(n) const char *key##n, const char *valp##n  // ArA129,5109
+#define D(D130,5180
+    VerilatedCovContext() = default;VerilatedCovContext150,6157
+    ~VerilatedCovContext() override = default;~VerilatedCovContext151,6194
+    VerilatedCovImp* impp() VL_MT_SAFE { return reinterpret_cast<VerilatedCovImp*>(this); }impp155,6305
+class VerilatedCov final {VerilatedCov167,6742
+    VL_UNCOPYABLE(VerilatedCov);VL_UNCOPYABLE168,6769
+    static const char* defaultFilename() VL_PURE { return VerilatedCovContext::defaultFilename()defaultFilename173,6881
+    static void write(const char* filenamep = defaultFilename()) VL_MT_SAFE {write175,7046
+    static void clear() VL_MT_SAFE { threadCovp()->clear(); }clear179,7254
+    static void clearNonMatch(const char* matchp) VL_MT_SAFE {clearNonMatch181,7392
+    static void zero() VL_MT_SAFE { threadCovp()->zero(); }zero185,7558
+    static VerilatedCovContext* threadCovp() VL_MT_SAFE;threadCovp189,7671
+
+/usr/share/verilator/include/verilated_cov_key.h,723
+#define VERILATOR_VERILATED_COV_KEY_H_VERILATOR_VERILATED_COV_KEY_H_23,893
+#define VLCOVGEN_ITEM(VLCOVGEN_ITEM32,1107
+#define VL_CIK_COLUMN VL_CIK_COLUMN49,2640
+#define VL_CIK_COMMENT VL_CIK_COMMENT50,2666
+#define VL_CIK_FILENAME VL_CIK_FILENAME51,2693
+#define VL_CIK_HIER VL_CIK_HIER52,2721
+#define VL_CIK_LINENO VL_CIK_LINENO53,2745
+#define VL_CIK_LINESCOV VL_CIK_LINESCOV54,2771
+#define VL_CIK_PER_INSTANCE VL_CIK_PER_INSTANCE55,2799
+#define VL_CIK_THRESH VL_CIK_THRESH56,2831
+#define VL_CIK_TYPE VL_CIK_TYPE57,2857
+#define VL_CIK_WEIGHT VL_CIK_WEIGHT58,2881
+class VerilatedCovKey final {VerilatedCovKey65,3089
+    static std::string shortKey(const std::string& key) VL_PURE {shortKey68,3192
+
+/usr/share/verilator/include/verilated_dpi.h,1402
+#define VERILATOR_VERILATED_DPI_H_VERILATOR_VERILATED_DPI_H_27,1004
+static inline void VL_SET_W_SVBV(int obits, WDataOutP owp, const svBitVecVal* lwp) VL_MT_SAFE {VL_SET_W_SVBV40,1324
+static inline QData VL_SET_Q_SVBV(const svBitVecVal* lwp) VL_MT_SAFE {VL_SET_Q_SVBV45,1576
+static inline IData VL_SET_I_SVBV(const svBitVecVal* lwp) VL_MT_SAFE { return lwp[0]; }VL_SET_I_SVBV48,1688
+static inline void VL_SET_SVBV_W(int obits, svBitVecVal* owp, const WDataInP lwp) VL_MT_SAFE {VL_SET_SVBV_W51,1827
+static inline void VL_SET_SVBV_I(int, svBitVecVal* owp, const IData ld) VL_MT_SAFE { owp[0] = ldVL_SET_SVBV_I56,2078
+static inline void VL_SET_SVBV_Q(int, svBitVecVal* owp, const QData ld) VL_MT_SAFE {VL_SET_SVBV_Q57,2178
+static inline void VL_SET_W_SVLV(int obits, WDataOutP owp, const svLogicVecVal* lwp) VL_MT_SAFE VL_SET_W_SVLV63,2394
+static inline QData VL_SET_Q_SVLV(const svLogicVecVal* lwp) VL_MT_SAFE {VL_SET_Q_SVLV68,2658
+static inline IData VL_SET_I_SVLV(const svLogicVecVal* lwp) VL_MT_SAFE { return lwp[0].aval; }VL_SET_I_SVLV71,2782
+static inline void VL_SET_SVLV_W(int obits, svLogicVecVal* owp, const WDataInP lwp) VL_MT_SAFE {VL_SET_SVLV_W75,2988
+static inline void VL_SET_SVLV_I(int, svLogicVecVal* owp, const IData ld) VL_MT_SAFE {VL_SET_SVLV_I81,3304
+static inline void VL_SET_SVLV_Q(int, svLogicVecVal* owp, const QData ld) VL_MT_SAFE {VL_SET_SVLV_Q85,3436
+
+/usr/share/verilator/include/verilated_fst_c.h,5861
+#define VERILATOR_VERILATED_FST_C_H_VERILATOR_VERILATED_FST_C_H_22,818
+class VerilatedFst final : public VerilatedTrace<VerilatedFst, VerilatedFstBuffer> {VerilatedFst41,1266
+    using Super = VerilatedTrace<VerilatedFst, VerilatedFstBuffer>;Super43,1359
+    void* m_fst = nullptr;m_fst51,1627
+    std::map<uint32_t, fstHandle> m_code2symbol;m_code2symbol52,1654
+    std::map<int, fstEnumHandle> m_local2fstdtype;m_local2fstdtype53,1703
+    std::list<std::string> m_curScope;m_curScope54,1754
+    fstHandle* m_symbolp = nullptr;  // same as m_code2symbol, but as an arraym_symbolp55,1793
+    char* m_strbufp = nullptr;  // String buffer long enough to hold maxBits() charsm_strbufp56,1872
+    bool m_useFstWriterThread = false;  // Whether to use the separate FST writer threadm_useFstWriterThread58,1958
+    VL_UNCOPYABLE(VerilatedFst);VL_UNCOPYABLE61,2068
+    void declare(uint32_t code, const char* name, int dtypenum, fstVarDir vardir,declare62,2101
+    void emitTimeChange(uint64_t timeui) override;emitTimeChange70,2484
+    bool preFullDump() override { return isOpen(); }preFullDump73,2576
+    bool preChangeDump() override { return isOpen(); }preChangeDump74,2629
+    Buffer* getTraceBuffer() override;getTraceBuffer77,2716
+    void commitTraceBuffer(Buffer*) override;commitTraceBuffer78,2755
+    void configure(const VerilatedTraceConfig&) override;configure81,2829
+    explicit VerilatedFst(void* fst = nullptr);VerilatedFst88,3037
+    ~VerilatedFst();~VerilatedFst89,3085
+    void open(const char* filename) VL_MT_SAFE_EXCLUDES(m_mutex);open93,3201
+    void close() VL_MT_SAFE_EXCLUDES(m_mutex);close95,3289
+    void flush() VL_MT_SAFE_EXCLUDES(m_mutex);flush97,3381
+    bool isOpen() const VL_MT_SAFE { return m_fst != nullptr; }isOpen99,3458
+    void declEvent(uint32_t code, const char* name, int dtypenum, fstVarDir vardir,declEvent104,3658
+    void declBit(uint32_t code, const char* name, int dtypenum, fstVarDir vardir,declBit106,3808
+    void declBus(uint32_t code, const char* name, int dtypenum, fstVarDir vardir,declBus108,3954
+    void declQuad(uint32_t code, const char* name, int dtypenum, fstVarDir vardir,declQuad110,4118
+    void declArray(uint32_t code, const char* name, int dtypenum, fstVarDir vardir,declArray112,4284
+    void declDouble(uint32_t code, const char* name, int dtypenum, fstVarDir vardir,declDouble114,4452
+    void declDTypeEnum(int dtypenum, const char* name, uint32_t elements, unsigned int minValbitdeclDTypeEnum117,4605
+void VerilatedFst::Super::dump(uint64_t time);dump124,4883
+void VerilatedFst::Super::set_time_unit(const char* unitp);set_time_unit126,4942
+void VerilatedFst::Super::set_time_unit(const std::string& unit);set_time_unit128,5014
+void VerilatedFst::Super::set_time_resolution(const char* unitp);set_time_resolution130,5092
+void VerilatedFst::Super::set_time_resolution(const std::string& unit);set_time_resolution132,5170
+void VerilatedFst::Super::dumpvars(int level, const std::string& hier);dumpvars134,5254
+class VerilatedFstBuffer VL_NOT_FINAL {VL_NOT_FINAL140,5437
+    VerilatedFst& m_owner;  // Trace file owning this buffer. Required by subclasses.m_owner147,5662
+    void* const m_fst = m_owner.m_fst;m_fst150,5776
+    const fstHandle* const m_symbolp = m_owner.m_symbolp;m_symbolp152,5856
+    char* const m_strbufp = m_owner.m_strbufp;m_strbufp154,5971
+    explicit VerilatedFstBuffer(VerilatedFst& owner)VerilatedFstBuffer157,6038
+    virtual ~VerilatedFstBuffer() = default;~VerilatedFstBuffer159,6119
+    VL_ATTR_ALWINLINE void emitEvent(uint32_t code, VlEvent newval);emitEvent166,6461
+    VL_ATTR_ALWINLINE void emitBit(uint32_t code, CData newval);emitBit167,6530
+    VL_ATTR_ALWINLINE void emitCData(uint32_t code, CData newval, int bits);emitCData168,6595
+    VL_ATTR_ALWINLINE void emitSData(uint32_t code, SData newval, int bits);emitSData169,6672
+    VL_ATTR_ALWINLINE void emitIData(uint32_t code, IData newval, int bits);emitIData170,6749
+    VL_ATTR_ALWINLINE void emitQData(uint32_t code, QData newval, int bits);emitQData171,6826
+    VL_ATTR_ALWINLINE void emitWData(uint32_t code, const WData* newvalp, int bits);emitWData172,6903
+    VL_ATTR_ALWINLINE void emitDouble(uint32_t code, double newval);emitDouble173,6988
+class VerilatedFstC VL_NOT_FINAL {VL_NOT_FINAL181,7277
+    VerilatedFst m_sptrace;  // Trace file being createdm_sptrace182,7312
+    VL_UNCOPYABLE(VerilatedFstC);VL_UNCOPYABLE185,7390
+    explicit VerilatedFstC(void* filep = nullptr)VerilatedFstC189,7491
+    virtual ~VerilatedFstC() { close(); }~VerilatedFstC192,7615
+    bool isOpen() const VL_MT_SAFE { return m_sptrace.isOpen(); }isOpen197,7719
+    void open(const char* filename) VL_MT_SAFE { m_sptrace.open(filename); }open199,7813
+    void close() VL_MT_SAFE { m_sptrace.close(); }close201,7909
+    void flush() VL_MT_SAFE { m_sptrace.flush(); }flush203,7979
+    void dump(uint64_t timeui) { m_sptrace.dump(timeui); }dump207,8170
+    void dump(double timestamp) { dump(static_cast<uint64_t>(timestamp)); }dump210,8376
+    void dump(uint32_t timestamp) { dump(static_cast<uint64_t>(timestamp)); }dump211,8452
+    void dump(int timestamp) { dump(static_cast<uint64_t>(timestamp)); }dump212,8530
+    void set_time_unit(const char* unitp) VL_MT_SAFE { m_sptrace.set_time_unit(unitp); }set_time_unit220,8846
+    void set_time_unit(const std::string& unit) VL_MT_SAFE { m_sptrace.set_time_unit(unit); }set_time_unit221,8935
+    void set_time_resolution(const char* unitp) VL_MT_SAFE {set_time_resolution225,9209
+    void set_time_resolution(const std::string& unit) VL_MT_SAFE {set_time_resolution228,9322
+    void dumpvars(int level, const std::string& hier) VL_MT_SAFE {dumpvars233,9555
+    VerilatedFst* spTrace() { return &m_sptrace; }spTrace238,9699
+
+/usr/share/verilator/include/verilated_fst_sc.h,968
+#define VERILATOR_VERILATED_FST_SC_H_VERILATOR_VERILATED_FST_SC_H_23,873
+class VerilatedFstSc final : sc_core::sc_trace_file, public VerilatedFstC {VerilatedFstSc39,1277
+    VL_UNCOPYABLE(VerilatedFstSc);VL_UNCOPYABLE41,1373
+    VerilatedFstSc() {VerilatedFstSc45,1491
+    ~VerilatedFstSc() override { close(); }~VerilatedFstSc58,2182
+    void cycle(bool delta_cycle) override {cycle62,2294
+    virtual void open(const char* filename) VL_MT_SAFE {open68,2574
+    void set_time_unit(int exponent10_seconds) override {}  // deprecatedset_time_unit80,2971
+    void set_time_unit(double v, sc_core::sc_time_unit tu) override {}  // LCOV_EXCL_LINEset_time_unit82,3052
+    void write_comment(const std::string&) override {}write_comment87,3223
+    void trace(const unsigned int&, const std::string&, const char**) override {}trace88,3278
+#define DECL_TRACE_METHOD_A(DECL_TRACE_METHOD_A90,3361
+#define DECL_TRACE_METHOD_B(DECL_TRACE_METHOD_B92,3465
+
+/usr/share/verilator/include/verilated_funcs.h,34382
+#define VERILATOR_VERILATED_FUNCS_H_VERILATOR_VERILATED_FUNCS_H_25,926
+extern void vl_finish(const char* filename, int linenum, const char* hier) VL_MT_UNSAFE;vl_finish40,1486
+extern void vl_stop(const char* filename, int linenum, const char* hier) VL_MT_UNSAFE;vl_stop46,1842
+extern void vl_fatal(const char* filename, int linenum, const char* hier,vl_fatal52,2186
+extern void vl_warn(const char* filename, int linenum, const char* hier,vl_warn58,2481
+extern void VL_FINISH_MT(const char* filename, int linenum, const char* hier) VL_MT_SAFE;VL_FINISH_MT65,2766
+extern void VL_STOP_MT(const char* filename, int linenum, const char* hier,VL_STOP_MT67,2904
+extern void VL_FATAL_MT(const char* filename, int linenum, const char* hier,VL_FATAL_MT70,3090
+extern void VL_WARN_MT(const char* filename, int linenum, const char* hier,VL_WARN_MT73,3278
+extern void VL_PRINTF_MT(const char* formatp, ...) VL_ATTR_PRINTF(1) VL_MT_SAFE;VL_PRINTF_MT78,3503
+extern void VL_DBG_MSGF(const char* formatp, ...) VL_ATTR_PRINTF(1) VL_MT_SAFE;VL_DBG_MSGF82,3692
+inline IData VL_RANDOM_I() VL_MT_SAFE { return vl_rand64(); }VL_RANDOM_I85,3812
+inline QData VL_RANDOM_Q() VL_MT_SAFE { return vl_rand64(); }VL_RANDOM_Q86,3874
+extern WDataOutP VL_RANDOM_W(int obits, WDataOutP outwp) VL_MT_SAFE;VL_RANDOM_W87,3936
+extern IData VL_RANDOM_SEEDED_II(IData& seedr) VL_MT_SAFE;VL_RANDOM_SEEDED_II88,4005
+extern IData VL_URANDOM_SEEDED_II(IData seed) VL_MT_SAFE;VL_URANDOM_SEEDED_II89,4064
+inline IData VL_URANDOM_RANGE_I(IData hi, IData lo) {VL_URANDOM_RANGE_I90,4122
+extern IData VL_RAND_RESET_I(int obits) VL_MT_SAFE;VL_RAND_RESET_I104,4671
+extern QData VL_RAND_RESET_Q(int obits) VL_MT_SAFE;VL_RAND_RESET_Q106,4781
+extern WDataOutP VL_RAND_RESET_W(int obits, WDataOutP outwp) VL_MT_SAFE;VL_RAND_RESET_W108,4891
+extern WDataOutP VL_ZERO_RESET_W(int obits, WDataOutP outwp) VL_MT_SAFE;VL_ZERO_RESET_W110,5016
+extern void VL_PRINTTIMESCALE(const char* namep, const char* timeunitp,VL_PRINTTIMESCALE112,5090
+extern WDataOutP _vl_moddiv_w(int lbits, WDataOutP owp, WDataInP const lwp, WDataInP const rwp,_vl_moddiv_w115,5239
+extern IData VL_FGETS_IXI(int obits, void* destp, IData fpi) VL_MT_SAFE;VL_FGETS_IXI118,5395
+extern void VL_FFLUSH_I(IData fdi) VL_MT_SAFE;VL_FFLUSH_I120,5469
+extern IData VL_FSEEK_I(IData fdi, IData offset, IData origin) VL_MT_SAFE;VL_FSEEK_I121,5516
+extern IData VL_FTELL_I(IData fdi) VL_MT_SAFE;VL_FTELL_I122,5591
+extern void VL_FCLOSE_I(IData fdi) VL_MT_SAFE;VL_FCLOSE_I123,5638
+extern IData VL_FREAD_I(int width, int array_lsb, int array_size, void* memp, IData fpi,VL_FREAD_I125,5686
+extern void VL_WRITEF(const char* formatp, ...) VL_MT_SAFE;VL_WRITEF128,5838
+extern void VL_FWRITEF(IData fpi, const char* formatp, ...) VL_MT_SAFE;VL_FWRITEF129,5898
+extern IData VL_FSCANF_IX(IData fpi, const char* formatp, ...) VL_MT_SAFE;VL_FSCANF_IX131,5971
+extern IData VL_SSCANF_IIX(int lbits, IData ld, const char* formatp, ...) VL_MT_SAFE;VL_SSCANF_IIX132,6046
+extern IData VL_SSCANF_IQX(int lbits, QData ld, const char* formatp, ...) VL_MT_SAFE;VL_SSCANF_IQX133,6132
+extern IData VL_SSCANF_IWX(int lbits, WDataInP const lwp, const char* formatp, ...) VL_MT_SAFE;VL_SSCANF_IWX134,6218
+extern void VL_SFORMAT_X(int obits, CData& destr, const char* formatp, ...) VL_MT_SAFE;VL_SFORMAT_X136,6315
+extern void VL_SFORMAT_X(int obits, SData& destr, const char* formatp, ...) VL_MT_SAFE;VL_SFORMAT_X137,6403
+extern void VL_SFORMAT_X(int obits, IData& destr, const char* formatp, ...) VL_MT_SAFE;VL_SFORMAT_X138,6491
+extern void VL_SFORMAT_X(int obits, QData& destr, const char* formatp, ...) VL_MT_SAFE;VL_SFORMAT_X139,6579
+extern void VL_SFORMAT_X(int obits, void* destp, const char* formatp, ...) VL_MT_SAFE;VL_SFORMAT_X140,6667
+extern void VL_STACKTRACE() VL_MT_SAFE;VL_STACKTRACE142,6755
+extern std::string VL_STACKTRACE_N() VL_MT_SAFE;VL_STACKTRACE_N143,6795
+extern IData VL_SYSTEM_IW(int lhswords, WDataInP const lhsp) VL_MT_SAFE;VL_SYSTEM_IW144,6844
+extern IData VL_SYSTEM_IQ(QData lhs) VL_MT_SAFE;VL_SYSTEM_IQ145,6917
+inline IData VL_SYSTEM_II(IData lhs) VL_MT_SAFE { return VL_SYSTEM_IQ(lhs); }VL_SYSTEM_II146,6966
+extern IData VL_TESTPLUSARGS_I(const std::string& format) VL_MT_SAFE;VL_TESTPLUSARGS_I148,7045
+extern const char* vl_mc_scan_plusargs(const char* prefixp) VL_MT_SAFE;  // PLIishvl_mc_scan_plusargs149,7115
+#define VL_BITISSETLIMIT_W(VL_BITISSETLIMIT_W156,7403
+#define VL_BITRSHIFT_W(VL_BITRSHIFT_W160,7624
+#define VL_SET_WQ(VL_SET_WQ164,7811
+#define VL_SET_WI(VL_SET_WI169,7985
+#define VL_SET_QW(VL_SET_QW174,8118
+#define VL_SET_QII(VL_SET_QII177,8258
+extern FILE* VL_CVT_I_FP(IData lhs) VL_MT_SAFE;VL_CVT_I_FP180,8374
+static inline void* VL_CVT_Q_VP(QData lhs) VL_PURE {VL_CVT_Q_VP185,8526
+    union { void* fp; QData q; } u;__anon3fce07cd010a186,8579
+    union { void* fp; QData q; } u;fp186,8579
+    union { void* fp; QData q; } u;q186,8579
+static inline QData VL_CVT_VP_Q(const void* fp) VL_PURE {VL_CVT_VP_Q191,8682
+    union { const void* fp; QData q; } u;__anon3fce07cd020a192,8740
+    union { const void* fp; QData q; } u;fp192,8740
+    union { const void* fp; QData q; } u;q192,8740
+static inline double VL_CVT_D_Q(QData lhs) VL_PURE {VL_CVT_D_Q198,8880
+    union { double d; QData q; } u;__anon3fce07cd030a199,8933
+    union { double d; QData q; } u;d199,8933
+    union { double d; QData q; } u;q199,8933
+static inline QData VL_CVT_Q_D(double lhs) VL_PURE {VL_CVT_Q_D204,9054
+    union { double d; QData q; } u;__anon3fce07cd040a205,9107
+    union { double d; QData q; } u;d205,9107
+    union { double d; QData q; } u;q205,9107
+double VL_ITOR_D_W(int lbits, WDataInP const lwp) VL_PURE;VL_ITOR_D_W212,9241
+static inline double VL_ITOR_D_I(int, IData lhs) VL_PURE {VL_ITOR_D_I213,9300
+static inline double VL_ITOR_D_Q(int, QData lhs) VL_PURE {VL_ITOR_D_Q216,9421
+double VL_ISTOR_D_W(int lbits, WDataInP const lwp) VL_MT_SAFE;VL_ISTOR_D_W220,9585
+static inline double VL_ISTOR_D_I(int lbits, IData lhs) VL_MT_SAFE {VL_ISTOR_D_I221,9648
+static inline double VL_ISTOR_D_Q(int lbits, QData lhs) VL_MT_SAFE {VL_ISTOR_D_Q227,9888
+static inline IData VL_RTOI_I_D(double lhs) VL_PURE { return static_cast<int32_t>(VL_TRUNC(lhs))VL_RTOI_I_D234,10166
+#define VL_SIGN_I(VL_SIGN_I238,10356
+#define VL_SIGN_Q(VL_SIGN_Q239,10427
+#define VL_SIGN_E(VL_SIGN_E240,10494
+#define VL_SIGN_W(VL_SIGN_W241,10566
+#define VL_SIGNONES_E(VL_SIGNONES_E243,10677
+static inline IData VL_EXTENDSIGN_I(int lbits, IData lhs) VL_PURE {VL_EXTENDSIGN_I247,10882
+static inline QData VL_EXTENDSIGN_Q(int lbits, QData lhs) VL_PURE {VL_EXTENDSIGN_Q250,11003
+extern void _vl_debug_print_w(int lbits, WDataInP const iwp) VL_MT_SAFE;_vl_debug_print_w255,11141
+inline uint64_t vl_time_stamp64() VL_MT_SAFE { return sc_core::sc_time_stamp().value(); }vl_time_stamp64265,11443
+extern uint64_t vl_time_stamp64() VL_ATTR_WEAK VL_MT_SAFE;vl_time_stamp64272,11807
+extern double sc_time_stamp() VL_ATTR_WEAK VL_MT_SAFE;  // Verilator 4.032 and newersc_time_stamp277,12042
+inline uint64_t vl_time_stamp64() VL_MT_SAFE {vl_time_stamp64278,12127
+uint64_t VerilatedContext::time() const VL_MT_SAFE {time287,12409
+#define VL_TIME_Q(VL_TIME_Q300,12952
+#define VL_TIME_D(VL_TIME_D301,13010
+#define VL_TIME_UNITED_Q(VL_TIME_UNITED_Q306,13262
+#define VL_TIME_UNITED_D(VL_TIME_UNITED_D307,13336
+double vl_time_multiplier(int scale) VL_PURE;vl_time_multiplier310,13465
+uint64_t vl_time_pow10(int n) VL_PURE;vl_time_pow10312,13559
+# define VL_DEBUG_IFDEF(VL_DEBUG_IFDEF316,13658
+# define VL_DEBUG_IF(VL_DEBUG_IF321,13810
+# define VL_DEBUG_IFDEF(VL_DEBUG_IFDEF327,13999
+# define VL_DEBUG_IF(VL_DEBUG_IF328,14049
+#define VL_CLEAN_II(VL_CLEAN_II347,14710
+#define VL_CLEAN_QQ(VL_CLEAN_QQ348,14774
+#define VL_ASSIGNCLEAN_W(VL_ASSIGNCLEAN_W351,14898
+static inline WDataOutP _vl_clean_inplace_w(int obits, WDataOutP owp) VL_MT_SAFE {_vl_clean_inplace_w352,14975
+static inline WDataOutP VL_CLEAN_WW(int obits, WDataOutP owp, WDataInP const lwp) VL_MT_SAFE {VL_CLEAN_WW357,15157
+static inline WDataOutP VL_ZERO_W(int obits, WDataOutP owp) VL_MT_SAFE {VL_ZERO_W363,15428
+static inline WDataOutP VL_ALLONES_W(int obits, WDataOutP owp) VL_MT_SAFE {VL_ALLONES_W368,15608
+static inline WDataOutP VL_ASSIGN_W(int obits, WDataOutP owp, WDataInP const lwp) VL_MT_SAFE {VL_ASSIGN_W378,16024
+static inline void VL_ASSIGNBIT_II(int bit, CData& lhsr, IData rhs) VL_PURE {VL_ASSIGNBIT_II385,16275
+static inline void VL_ASSIGNBIT_II(int bit, SData& lhsr, IData rhs) VL_PURE {VL_ASSIGNBIT_II388,16438
+static inline void VL_ASSIGNBIT_II(int bit, IData& lhsr, IData rhs) VL_PURE {VL_ASSIGNBIT_II391,16601
+static inline void VL_ASSIGNBIT_QI(int bit, QData& lhsr, QData rhs) VL_PURE {VL_ASSIGNBIT_QI394,16764
+static inline void VL_ASSIGNBIT_WI(int bit, WDataOutP owp, IData rhs) VL_MT_SAFE {VL_ASSIGNBIT_WI397,16943
+static inline void VL_ASSIGNBIT_IO(int bit, CData& lhsr) VL_PURE {VL_ASSIGNBIT_IO403,17303
+static inline void VL_ASSIGNBIT_IO(int bit, SData& lhsr) VL_PURE {VL_ASSIGNBIT_IO406,17424
+static inline void VL_ASSIGNBIT_IO(int bit, IData& lhsr) VL_PURE {VL_ASSIGNBIT_IO409,17545
+static inline void VL_ASSIGNBIT_QO(int bit, QData& lhsr) VL_PURE {VL_ASSIGNBIT_QO412,17666
+static inline void VL_ASSIGNBIT_WO(int bit, WDataOutP owp) VL_MT_SAFE {VL_ASSIGNBIT_WO415,17783
+#define VL_ASSIGN_ISI(VL_ASSIGN_ISI425,18157
+#define VL_ASSIGN_QSQ(VL_ASSIGN_QSQ427,18263
+#define VL_ASSIGN_ISW(VL_ASSIGN_ISW430,18370
+#define VL_ASSIGN_QSW(VL_ASSIGN_QSW432,18474
+#define VL_ASSIGN_WSW(VL_ASSIGN_WSW438,18695
+#define VL_ASSIGN_ISU(VL_ASSIGN_ISU445,18927
+#define VL_ASSIGN_QSU(VL_ASSIGN_QSU447,19043
+#define VL_ASSIGN_WSB(VL_ASSIGN_WSB449,19161
+#define VL_ASSIGN_SII(VL_ASSIGN_SII471,19937
+#define VL_ASSIGN_SQQ(VL_ASSIGN_SQQ473,20008
+#define VL_ASSIGN_SWI(VL_ASSIGN_SWI476,20080
+#define VL_ASSIGN_SWQ(VL_ASSIGN_SWQ482,20239
+#define VL_ASSIGN_SWW(VL_ASSIGN_SWW489,20489
+#define VL_ASSIGN_SUI(VL_ASSIGN_SUI496,20698
+#define VL_ASSIGN_SUQ(VL_ASSIGN_SUQ498,20765
+#define VL_ASSIGN_SBI(VL_ASSIGN_SBI500,20832
+#define VL_ASSIGN_SBQ(VL_ASSIGN_SBQ502,20899
+#define VL_SC_BITS_PER_DIGIT VL_SC_BITS_PER_DIGIT504,20966
+#define VL_ASSIGN_SBW(VL_ASSIGN_SBW505,21045
+#define VL_EXTEND_II(VL_EXTEND_II532,22185
+#define VL_EXTEND_QI(VL_EXTEND_QI533,22233
+#define VL_EXTEND_QQ(VL_EXTEND_QQ534,22299
+static inline WDataOutP VL_EXTEND_WI(int obits, int, WDataOutP owp, IData ld) VL_MT_SAFE {VL_EXTEND_WI536,22348
+static inline WDataOutP VL_EXTEND_WQ(int obits, int, WDataOutP owp, QData ld) VL_MT_SAFE {VL_EXTEND_WQ542,22579
+static inline WDataOutP VL_EXTEND_WW(int obits, int lbits, WDataOutP owp,VL_EXTEND_WW547,22784
+static inline IData VL_EXTENDS_II(int, int lbits, IData lhs) VL_PURE {VL_EXTENDS_II556,23176
+static inline QData VL_EXTENDS_QI(int, int lbits, QData lhs /*Q_as_need_extended*/) VL_PURE {VL_EXTENDS_QI559,23295
+static inline QData VL_EXTENDS_QQ(int, int lbits, QData lhs) VL_PURE {VL_EXTENDS_QQ562,23437
+static inline WDataOutP VL_EXTENDS_WI(int obits, int lbits, WDataOutP owp, IData ld) VL_MT_SAFE VL_EXTENDS_WI566,23557
+static inline WDataOutP VL_EXTENDS_WQ(int obits, int lbits, WDataOutP owp, QData ld) VL_MT_SAFE VL_EXTENDS_WQ572,23851
+static inline WDataOutP VL_EXTENDS_WW(int obits, int lbits, WDataOutP owp,VL_EXTENDS_WW579,24159
+#define VL_REDAND_II(VL_REDAND_II593,24786
+#define VL_REDAND_IQ(VL_REDAND_IQ594,24847
+static inline IData VL_REDAND_IW(int lbits, WDataInP const lwp) VL_PURE {VL_REDAND_IW595,24908
+#define VL_REDOR_I(VL_REDOR_I605,25314
+#define VL_REDOR_Q(VL_REDOR_Q606,25351
+static inline IData VL_REDOR_W(int words, WDataInP const lwp) VL_PURE {VL_REDOR_W607,25388
+static inline IData VL_REDXOR_2(IData r) VL_PURE {VL_REDXOR_2614,25611
+static inline IData VL_REDXOR_4(IData r) VL_PURE {VL_REDXOR_4619,25771
+static inline IData VL_REDXOR_8(IData r) VL_PURE {VL_REDXOR_8628,26001
+static inline IData VL_REDXOR_16(IData r) VL_PURE {VL_REDXOR_16638,26255
+static inline IData VL_REDXOR_32(IData r) VL_PURE {VL_REDXOR_32649,26534
+static inline IData VL_REDXOR_64(QData r) VL_PURE {VL_REDXOR_64661,26838
+static inline IData VL_REDXOR_W(int words, WDataInP const lwp) VL_PURE {VL_REDXOR_W674,27188
+static inline IData VL_COUNTONES_I(IData lhs) VL_PURE {VL_COUNTONES_I681,27421
+static inline IData VL_COUNTONES_Q(QData lhs) VL_PURE {VL_COUNTONES_Q689,27725
+#define VL_COUNTONES_E VL_COUNTONES_E692,27883
+static inline IData VL_COUNTONES_W(int words, WDataInP const lwp) VL_PURE {VL_COUNTONES_W693,27921
+static inline IData VL_COUNTBITS_I(int lbits, IData lhs, IData ctrl0, IData ctrl1,VL_COUNTBITS_I700,28154
+static inline IData VL_COUNTBITS_Q(int lbits, QData lhs, IData ctrl0, IData ctrl1,VL_COUNTBITS_Q712,28633
+#define VL_COUNTBITS_E VL_COUNTBITS_E717,28945
+static inline IData VL_COUNTBITS_W(int lbits, int words, WDataInP const lwp, IData ctrl0,VL_COUNTBITS_W718,28983
+static inline IData VL_ONEHOT_I(IData lhs) VL_PURE {VL_ONEHOT_I729,29372
+static inline IData VL_ONEHOT_Q(QData lhs) VL_PURE {VL_ONEHOT_Q732,29479
+static inline IData VL_ONEHOT_W(int words, WDataInP const lwp) VL_PURE {VL_ONEHOT_W735,29586
+static inline IData VL_ONEHOT0_I(IData lhs) VL_PURE { return ((lhs & (lhs - 1)) == 0); }VL_ONEHOT0_I747,29876
+static inline IData VL_ONEHOT0_Q(QData lhs) VL_PURE { return ((lhs & (lhs - 1)) == 0); }VL_ONEHOT0_Q748,29965
+static inline IData VL_ONEHOT0_W(int words, WDataInP const lwp) VL_PURE {VL_ONEHOT0_W749,30054
+static inline IData VL_CLOG2_I(IData lhs) VL_PURE {VL_CLOG2_I761,30349
+static inline IData VL_CLOG2_Q(QData lhs) VL_PURE {VL_CLOG2_Q770,30665
+static inline IData VL_CLOG2_W(int words, WDataInP const lwp) VL_PURE {VL_CLOG2_W777,30856
+static inline IData VL_MOSTSETBITP1_W(int words, WDataInP const lwp) VL_PURE {VL_MOSTSETBITP1_W792,31422
+static inline WDataOutP VL_AND_W(int words, WDataOutP owp, WDataInP const lwp,VL_AND_W809,32116
+static inline WDataOutP VL_OR_W(int words, WDataOutP owp, WDataInP const lwp,VL_OR_W815,32418
+static inline IData VL_CHANGEXOR_W(int words, WDataInP const lwp, WDataInP const rwp) VL_PURE {VL_CHANGEXOR_W821,32708
+static inline WDataOutP VL_XOR_W(int words, WDataOutP owp, WDataInP const lwp,VL_XOR_W827,32975
+static inline WDataOutP VL_NOT_W(int words, WDataOutP owp, WDataInP const lwp) VL_MT_SAFE {VL_NOT_W833,33254
+#define VL_NEQ_W(VL_NEQ_W847,34055
+#define VL_LT_W(VL_LT_W848,34117
+#define VL_LTE_W(VL_LTE_W849,34183
+#define VL_GT_W(VL_GT_W850,34251
+#define VL_GTE_W(VL_GTE_W851,34317
+static inline IData VL_EQ_W(int words, WDataInP const lwp, WDataInP const rwp) VL_PURE {VL_EQ_W854,34433
+static inline int _vl_cmp_w(int words, WDataInP const lwp, WDataInP const rwp) VL_PURE {_vl_cmp_w861,34658
+#define VL_LTS_IWW(VL_LTS_IWW869,34899
+#define VL_LTES_IWW(VL_LTES_IWW870,34969
+#define VL_GTS_IWW(VL_GTS_IWW871,35041
+#define VL_GTES_IWW(VL_GTES_IWW872,35111
+static inline IData VL_GTS_III(int lbits, IData lhs, IData rhs) VL_PURE {VL_GTS_III874,35184
+static inline IData VL_GTS_IQQ(int lbits, QData lhs, QData rhs) VL_PURE {VL_GTS_IQQ881,35610
+static inline IData VL_GTES_III(int lbits, IData lhs, IData rhs) VL_PURE {VL_GTES_III887,35847
+static inline IData VL_GTES_IQQ(int lbits, QData lhs, QData rhs) VL_PURE {VL_GTES_IQQ892,36113
+static inline IData VL_LTS_III(int lbits, IData lhs, IData rhs) VL_PURE {VL_LTS_III898,36352
+static inline IData VL_LTS_IQQ(int lbits, QData lhs, QData rhs) VL_PURE {VL_LTS_IQQ903,36616
+static inline IData VL_LTES_III(int lbits, IData lhs, IData rhs) VL_PURE {VL_LTES_III909,36853
+static inline IData VL_LTES_IQQ(int lbits, QData lhs, QData rhs) VL_PURE {VL_LTES_IQQ914,37119
+static inline int _vl_cmps_w(int lbits, WDataInP const lwp, WDataInP const rwp) VL_PURE {_vl_cmps_w920,37358
+static inline WDataOutP VL_NEGATE_W(int words, WDataOutP owp, WDataInP const lwp) VL_MT_SAFE {VL_NEGATE_W939,38002
+static inline void VL_NEGATE_INPLACE_W(int words, WDataOutP owp_lwp) VL_MT_SAFE {VL_NEGATE_INPLACE_W947,38250
+static inline IData VL_DIV_III(int lbits, IData lhs, IData rhs) {VL_DIV_III959,38720
+static inline QData VL_DIV_QQQ(int lbits, QData lhs, QData rhs) {VL_DIV_QQQ962,38827
+#define VL_DIV_WWW(VL_DIV_WWW965,38934
+static inline IData VL_MODDIV_III(int lbits, IData lhs, IData rhs) {VL_MODDIV_III966,39015
+static inline QData VL_MODDIV_QQQ(int lbits, QData lhs, QData rhs) {VL_MODDIV_QQQ969,39125
+#define VL_MODDIV_WWW(VL_MODDIV_WWW972,39235
+static inline WDataOutP VL_ADD_W(int words, WDataOutP owp, WDataInP const lwp,VL_ADD_W974,39320
+static inline WDataOutP VL_SUB_W(int words, WDataOutP owp, WDataInP const lwp,VL_SUB_W986,39755
+static inline WDataOutP VL_MUL_W(int words, WDataOutP owp, WDataInP const lwp,VL_MUL_W1000,40279
+static inline IData VL_MULS_III(int lbits, IData lhs, IData rhs) VL_PURE {VL_MULS_III1017,40978
+static inline QData VL_MULS_QQQ(int lbits, QData lhs, QData rhs) VL_PURE {VL_MULS_QQQ1022,41215
+static inline WDataOutP VL_MULS_WWW(int lbits, WDataOutP owp, WDataInP const lwp,VL_MULS_WWW1028,41453
+static inline IData VL_DIVS_III(int lbits, IData lhs, IData rhs) VL_PURE {VL_DIVS_III1068,43140
+static inline QData VL_DIVS_QQQ(int lbits, QData lhs, QData rhs) VL_PURE {VL_DIVS_QQQ1076,43590
+static inline IData VL_MODDIVS_III(int lbits, IData lhs, IData rhs) VL_PURE {VL_MODDIVS_III1084,44060
+static inline QData VL_MODDIVS_QQQ(int lbits, QData lhs, QData rhs) VL_PURE {VL_MODDIVS_QQQ1091,44432
+static inline WDataOutP VL_DIVS_WWW(int lbits, WDataOutP owp, WDataInP const lwp,VL_DIVS_WWW1099,44825
+static inline WDataOutP VL_MODDIVS_WWW(int lbits, WDataOutP owp, WDataInP const lwp,VL_MODDIVS_WWW1121,45896
+#define VL_POW_IIQ(VL_POW_IIQ1144,46990
+#define VL_POW_IIW(VL_POW_IIW1145,47082
+#define VL_POW_QQI(VL_POW_QQI1146,47174
+#define VL_POW_WWI(VL_POW_WWI1147,47266
+static inline IData VL_POW_III(int, int, int rbits, IData lhs, IData rhs) VL_PURE {VL_POW_III1150,47375
+static inline QData VL_POW_QQQ(int, int, int rbits, QData lhs, QData rhs) VL_PURE {VL_POW_QQQ1161,47732
+WDataOutP VL_POW_WWW(int obits, int, int rbits, WDataOutP owp, WDataInP const lwp,VL_POW_WWW1172,48092
+WDataOutP VL_POW_WWQ(int obits, int, int rbits, WDataOutP owp, WDataInP const lwp,VL_POW_WWQ1174,48228
+QData VL_POW_QQW(int obits, int, int rbits, QData lhs, WDataInP const rwp) VL_MT_SAFE;VL_POW_QQW1176,48355
+#define VL_POWSS_IIQ(VL_POWSS_IIQ1178,48443
+#define VL_POWSS_IIQ(VL_POWSS_IIQ1180,48573
+#define VL_POWSS_IIW(VL_POWSS_IIW1182,48703
+#define VL_POWSS_QQI(VL_POWSS_QQI1184,48833
+#define VL_POWSS_WWI(VL_POWSS_WWI1186,48963
+static inline IData VL_POWSS_III(int obits, int, int rbits, IData lhs, IData rhs, bool lsign,VL_POWSS_III1189,49104
+static inline QData VL_POWSS_QQQ(int obits, int, int rbits, QData lhs, QData rhs, bool lsign,VL_POWSS_QQQ1208,49755
+WDataOutP VL_POWSS_WWW(int obits, int, int rbits, WDataOutP owp, WDataInP const lwp,VL_POWSS_WWW1227,50406
+WDataOutP VL_POWSS_WWQ(int obits, int, int rbits, WDataOutP owp, WDataInP const lwp, QData rhs,VL_POWSS_WWQ1229,50570
+QData VL_POWSS_QQW(int obits, int, int rbits, QData lhs, WDataInP const rwp, bool lsign,VL_POWSS_QQW1231,50725
+static inline void _vl_insert_II(CData& lhsr, IData ld, int hbit, int lbit, int rbits) VL_PURE {_vl_insert_II1239,51052
+static inline void _vl_insert_II(SData& lhsr, IData ld, int hbit, int lbit, int rbits) VL_PURE {_vl_insert_II1244,51332
+static inline void _vl_insert_II(IData& lhsr, IData ld, int hbit, int lbit, int rbits) VL_PURE {_vl_insert_II1249,51612
+static inline void _vl_insert_QQ(QData& lhsr, QData ld, int hbit, int lbit, int rbits) VL_PURE {_vl_insert_QQ1254,51892
+static inline void _vl_insert_WI(WDataOutP iowp, IData ld, int hbit, int lbit,_vl_insert_WI1259,52172
+static inline void _vl_insert_WW(WDataOutP iowp, WDataInP const lwp, int hbit, int lbit,_vl_insert_WW1292,53845
+static inline void _vl_insert_WQ(WDataOutP iowp, QData ld, int hbit, int lbit,_vl_insert_WQ1348,56468
+#define VL_REPLICATE_IOI(VL_REPLICATE_IOI1357,56842
+#define VL_REPLICATE_QOI(VL_REPLICATE_QOI1358,56908
+static inline IData VL_REPLICATE_III(int lbits, IData ld, IData rep) VL_PURE {VL_REPLICATE_III1360,56995
+static inline QData VL_REPLICATE_QII(int lbits, IData ld, IData rep) VL_PURE {VL_REPLICATE_QII1368,57241
+static inline WDataOutP VL_REPLICATE_WII(int lbits, WDataOutP owp, IData ld,VL_REPLICATE_WII1376,57507
+static inline WDataOutP VL_REPLICATE_WQI(int lbits, WDataOutP owp, QData ld,VL_REPLICATE_WQI1387,58036
+static inline WDataOutP VL_REPLICATE_WWI(int lbits, WDataOutP owp, WDataInP const lwp,VL_REPLICATE_WWI1398,58572
+static inline IData VL_STREAML_FAST_III(int lbits, IData ld, IData rd_log2) VL_PURE {VL_STREAML_FAST_III1416,59536
+static inline QData VL_STREAML_FAST_QQI(int lbits, QData ld, IData rd_log2) VL_PURE {VL_STREAML_FAST_QQI1454,61320
+static inline IData VL_STREAML_III(int lbits, IData ld, IData rd) VL_PURE {VL_STREAML_III1486,62684
+static inline QData VL_STREAML_QQI(int lbits, QData ld, IData rd) VL_PURE {VL_STREAML_QQI1498,63085
+static inline WDataOutP VL_STREAML_WWI(int lbits, WDataOutP owp, WDataInP const lwp,VL_STREAML_WWI1510,63486
+static inline void VL_ASSIGN_DYN_Q(VlQueue<T>& q, int elem_size, int lbits, QData from) {VL_ASSIGN_DYN_Q1530,64370
+static inline IData VL_DYN_TO_I(const VlQueue<T>& q, int elem_size) {VL_DYN_TO_I1538,64691
+static inline QData VL_DYN_TO_Q(const VlQueue<T>& q, int elem_size) {VL_DYN_TO_Q1545,64895
+#define VL_CONCAT_III(VL_CONCAT_III1555,65416
+#define VL_CONCAT_QII(VL_CONCAT_QII1557,65534
+#define VL_CONCAT_QIQ(VL_CONCAT_QIQ1559,65652
+#define VL_CONCAT_QQI(VL_CONCAT_QQI1561,65770
+#define VL_CONCAT_QQQ(VL_CONCAT_QQQ1563,65888
+static inline WDataOutP VL_CONCAT_WII(int obits, int lbits, int rbits, WDataOutP owp, IData ld,VL_CONCAT_WII1566,66007
+static inline WDataOutP VL_CONCAT_WWI(int obits, int lbits, int rbits, WDataOutP owp,VL_CONCAT_WWI1573,66313
+static inline WDataOutP VL_CONCAT_WIW(int obits, int lbits, int rbits, WDataOutP owp, IData ld,VL_CONCAT_WIW1580,66630
+static inline WDataOutP VL_CONCAT_WIQ(int obits, int lbits, int rbits, WDataOutP owp, IData ld,VL_CONCAT_WIQ1587,67010
+static inline WDataOutP VL_CONCAT_WQI(int obits, int lbits, int rbits, WDataOutP owp, QData ld,VL_CONCAT_WQI1594,67335
+static inline WDataOutP VL_CONCAT_WQQ(int obits, int lbits, int rbits, WDataOutP owp, QData ld,VL_CONCAT_WQQ1601,67641
+static inline WDataOutP VL_CONCAT_WWQ(int obits, int lbits, int rbits, WDataOutP owp,VL_CONCAT_WWQ1608,67966
+static inline WDataOutP VL_CONCAT_WQW(int obits, int lbits, int rbits, WDataOutP owp, QData ld,VL_CONCAT_WQW1615,68302
+static inline WDataOutP VL_CONCAT_WWW(int obits, int lbits, int rbits, WDataOutP owp,VL_CONCAT_WWW1622,68682
+static inline void _vl_shiftl_inplace_w(int obits, WDataOutP iowp,_vl_shiftl_inplace_w1635,69253
+static inline WDataOutP VL_SHIFTL_WWI(int obits, int, int, WDataOutP owp, WDataInP const lwp,VL_SHIFTL_WWI1650,69951
+static inline WDataOutP VL_SHIFTL_WWW(int obits, int lbits, int rbits, WDataOutP owp,VL_SHIFTL_WWW1665,70706
+static inline WDataOutP VL_SHIFTL_WWQ(int obits, int lbits, int rbits, WDataOutP owp,VL_SHIFTL_WWQ1674,71119
+static inline IData VL_SHIFTL_IIW(int obits, int, int rbits, IData lhs,VL_SHIFTL_IIW1680,71405
+static inline IData VL_SHIFTL_IIQ(int obits, int, int, IData lhs, QData rhs) VL_MT_SAFE {VL_SHIFTL_IIQ1689,71751
+static inline QData VL_SHIFTL_QQW(int obits, int, int rbits, QData lhs,VL_SHIFTL_QQW1693,71945
+static inline QData VL_SHIFTL_QQQ(int obits, int, int, QData lhs, QData rhs) VL_MT_SAFE {VL_SHIFTL_QQQ1703,72372
+static inline WDataOutP VL_SHIFTR_WWI(int obits, int, int, WDataOutP owp, WDataInP const lwp,VL_SHIFTR_WWI1711,72777
+static inline WDataOutP VL_SHIFTR_WWW(int obits, int lbits, int rbits, WDataOutP owp,VL_SHIFTR_WWW1735,74090
+static inline WDataOutP VL_SHIFTR_WWQ(int obits, int lbits, int rbits, WDataOutP owp,VL_SHIFTR_WWQ1744,74503
+static inline IData VL_SHIFTR_IIW(int obits, int, int rbits, IData lhs,VL_SHIFTR_IIW1751,74790
+static inline QData VL_SHIFTR_QQW(int obits, int, int rbits, QData lhs,VL_SHIFTR_QQW1760,75133
+static inline IData VL_SHIFTR_IIQ(int obits, int, int, IData lhs, QData rhs) VL_PURE {VL_SHIFTR_IIQ1770,75557
+static inline QData VL_SHIFTR_QQQ(int obits, int, int, QData lhs, QData rhs) VL_PURE {VL_SHIFTR_QQQ1774,75748
+static inline IData VL_SHIFTRS_III(int obits, int lbits, int, IData lhs, IData rhs) VL_PURE {VL_SHIFTRS_III1780,76009
+static inline QData VL_SHIFTRS_QQI(int obits, int lbits, int, QData lhs, IData rhs) VL_PURE {VL_SHIFTRS_QQI1789,76646
+static inline IData VL_SHIFTRS_IQI(int obits, int lbits, int rbits, QData lhs, IData rhs) VL_PURVL_SHIFTRS_IQI1794,76913
+static inline WDataOutP VL_SHIFTRS_WWI(int obits, int lbits, int, WDataOutP owp,VL_SHIFTRS_WWI1797,77093
+static inline WDataOutP VL_SHIFTRS_WWW(int obits, int lbits, int rbits, WDataOutP owp,VL_SHIFTRS_WWW1829,78741
+static inline WDataOutP VL_SHIFTRS_WWQ(int obits, int lbits, int rbits, WDataOutP owp,VL_SHIFTRS_WWQ1842,79409
+static inline IData VL_SHIFTRS_IIW(int obits, int lbits, int rbits, IData lhs,VL_SHIFTRS_IIW1848,79698
+static inline QData VL_SHIFTRS_QQW(int obits, int lbits, int rbits, QData lhs,VL_SHIFTRS_QQW1858,80228
+static inline IData VL_SHIFTRS_IIQ(int obits, int lbits, int rbits, IData lhs, QData rhs) VL_PURVL_SHIFTRS_IIQ1868,80758
+static inline QData VL_SHIFTRS_QQQ(int obits, int lbits, int rbits, QData lhs, QData rhs) VL_PURVL_SHIFTRS_QQQ1873,80974
+#define VL_BITSEL_IIII(VL_BITSEL_IIII1883,81334
+#define VL_BITSEL_QIII(VL_BITSEL_QIII1884,81391
+#define VL_BITSEL_QQII(VL_BITSEL_QQII1885,81448
+#define VL_BITSEL_IQII(VL_BITSEL_IQII1886,81505
+static inline IData VL_BITSEL_IWII(int lbits, WDataInP const lwp, IData rd) VL_MT_SAFE {VL_BITSEL_IWII1888,81583
+#define VL_SEL_IIII(VL_SEL_IIII1900,82113
+#define VL_SEL_QQII(VL_SEL_QQII1901,82174
+#define VL_SEL_IQII(VL_SEL_IQII1902,82235
+static inline IData VL_SEL_IWII(int lbits, WDataInP const lwp, IData lsb, IData width) VL_MT_SAFVL_SEL_IWII1904,82317
+static inline QData VL_SEL_QWII(int lbits, WDataInP const lwp, IData lsb, IData width) VL_MT_SAFVL_SEL_QWII1917,82959
+static inline WDataOutP VL_SEL_WWII(int obits, int lbits, WDataOutP owp, WDataInP const lwp,VL_SEL_WWII1938,84013
+static inline QData VL_RTOIROUND_Q_D(double lhs) VL_PURE {VL_RTOIROUND_Q_D1971,85581
+static inline IData VL_RTOIROUND_I_D(double lhs) VL_PURE {VL_RTOIROUND_I_D1988,86198
+static inline WDataOutP VL_RTOIROUND_W_D(int obits, WDataOutP owp, double lhs) VL_MT_SAFE {VL_RTOIROUND_W_D1991,86313
+static inline void VL_ASSIGNSEL_II(int rbits, int obits, int lsb, CData& lhsr, IData rhs) VL_PURVL_ASSIGNSEL_II2013,87179
+static inline void VL_ASSIGNSEL_II(int rbits, int obits, int lsb, SData& lhsr, IData rhs) VL_PURVL_ASSIGNSEL_II2016,87340
+static inline void VL_ASSIGNSEL_II(int rbits, int obits, int lsb, IData& lhsr, IData rhs) VL_PURVL_ASSIGNSEL_II2019,87501
+static inline void VL_ASSIGNSEL_QI(int rbits, int obits, int lsb, QData& lhsr, IData rhs) VL_PURVL_ASSIGNSEL_QI2022,87662
+static inline void VL_ASSIGNSEL_QQ(int rbits, int obits, int lsb, QData& lhsr, QData rhs) VL_PURVL_ASSIGNSEL_QQ2025,87823
+static inline void VL_ASSIGNSEL_WI(int rbits, int obits, int lsb, WDataOutP iowp,VL_ASSIGNSEL_WI2030,88128
+static inline void VL_ASSIGNSEL_WQ(int rbits, int obits, int lsb, WDataOutP iowp,VL_ASSIGNSEL_WQ2034,88330
+static inline void VL_ASSIGNSEL_WW(int rbits, int obits, int lsb, WDataOutP iowp,VL_ASSIGNSEL_WW2038,88532
+static inline WDataOutP VL_COND_WIWW(int obits, WDataOutP owp, int cond, WDataInP const w1p,VL_COND_WIWW2046,88828
+#define VL_C_END_(VL_C_END_2062,89556
+static inline WDataOutP VL_CONST_W_1X(int obits, WDataOutP o, EData d0) VL_MT_SAFE {VL_CONST_W_1X2067,89696
+static inline WDataOutP VL_CONST_W_2X(int obits, WDataOutP o, EData d1, EData d0) VL_MT_SAFE {VL_CONST_W_2X2071,89823
+static inline WDataOutP VL_CONST_W_3X(int obits, WDataOutP o, EData d2, EData d1,VL_CONST_W_3X2075,89972
+static inline WDataOutP VL_CONST_W_4X(int obits, WDataOutP o,VL_CONST_W_4X2080,90181
+static inline WDataOutP VL_CONST_W_5X(int obits, WDataOutP o,VL_CONST_W_5X2085,90412
+static inline WDataOutP VL_CONST_W_6X(int obits, WDataOutP o,VL_CONST_W_6X2092,90706
+static inline WDataOutP VL_CONST_W_7X(int obits, WDataOutP o,VL_CONST_W_7X2099,91022
+static inline WDataOutP VL_CONST_W_8X(int obits, WDataOutP o,VL_CONST_W_8X2106,91360
+static inline WDataOutP VL_CONSTHI_W_1X(int obits, int lsb, WDataOutP obase,VL_CONSTHI_W_1X2114,91723
+static inline WDataOutP VL_CONSTHI_W_2X(int obits, int lsb, WDataOutP obase,VL_CONSTHI_W_2X2120,91966
+static inline WDataOutP VL_CONSTHI_W_3X(int obits, int lsb, WDataOutP obase,VL_CONSTHI_W_3X2126,92231
+static inline WDataOutP VL_CONSTHI_W_4X(int obits, int lsb, WDataOutP obase,VL_CONSTHI_W_4X2132,92518
+static inline WDataOutP VL_CONSTHI_W_5X(int obits, int lsb, WDataOutP obase,VL_CONSTHI_W_5X2138,92827
+static inline WDataOutP VL_CONSTHI_W_6X(int obits, int lsb, WDataOutP obase,VL_CONSTHI_W_6X2146,93201
+static inline WDataOutP VL_CONSTHI_W_7X(int obits, int lsb, WDataOutP obase,VL_CONSTHI_W_7X2154,93597
+static inline WDataOutP VL_CONSTHI_W_8X(int obits, int lsb, WDataOutP obase,VL_CONSTHI_W_8X2162,94015
+static inline void VL_CONSTLO_W_8X(int lsb, WDataOutP obase,VL_CONSTLO_W_8X2174,94561
+extern std::string VL_PUTC_N(const std::string& lhs, IData rhs, CData ths) VL_PURE;VL_PUTC_N2185,95027
+extern CData VL_GETC_N(const std::string& lhs, IData rhs) VL_PURE;VL_GETC_N2186,95111
+extern std::string VL_SUBSTR_N(const std::string& lhs, IData rhs, IData ths) VL_PURE;VL_SUBSTR_N2187,95178
+inline IData VL_CMP_NN(const std::string& lhs, const std::string& rhs, bool ignoreCase) VL_PURE VL_CMP_NN2189,95265
+extern IData VL_ATOI_N(const std::string& str, int base) VL_PURE;VL_ATOI_N2199,95658
+extern IData VL_NTOI_I(int obits, const std::string& str) VL_PURE;VL_NTOI_I2200,95724
+extern QData VL_NTOI_Q(int obits, const std::string& str) VL_PURE;VL_NTOI_Q2201,95791
+extern void VL_NTOI_W(int obits, WDataOutP owp, const std::string& str) VL_PURE;VL_NTOI_W2202,95858
+extern IData VL_FGETS_NI(std::string& dest, IData fpi) VL_MT_SAFE;VL_FGETS_NI2204,95940
+extern IData VL_DIST_CHI_SQUARE(IData& seedr, IData udeg_of_free) VL_MT_SAFE;VL_DIST_CHI_SQUARE2209,96100
+extern IData VL_DIST_ERLANG(IData& seedr, IData uk, IData umean) VL_MT_SAFE;VL_DIST_ERLANG2210,96178
+extern IData VL_DIST_EXPONENTIAL(IData& seedr, IData umean) VL_MT_SAFE;VL_DIST_EXPONENTIAL2211,96255
+extern IData VL_DIST_NORMAL(IData& seedr, IData umean, IData udeviation) VL_MT_SAFE;VL_DIST_NORMAL2212,96327
+extern IData VL_DIST_POISSON(IData& seedr, IData umean) VL_MT_SAFE;VL_DIST_POISSON2213,96412
+extern IData VL_DIST_T(IData& seedr, IData udeg_of_free) VL_MT_SAFE;VL_DIST_T2214,96480
+extern IData VL_DIST_UNIFORM(IData& seedr, IData ustart, IData uend) VL_MT_SAFE;VL_DIST_UNIFORM2215,96549
+extern std::string VL_CVT_PACK_STR_NW(int lwords, const WDataInP lwp) VL_PURE;VL_CVT_PACK_STR_NW2220,96729
+extern std::string VL_CVT_PACK_STR_ND(const VlQueue<std::string>& q) VL_PURE;VL_CVT_PACK_STR_ND2221,96808
+inline std::string VL_CVT_PACK_STR_NQ(QData lhs) VL_PURE {VL_CVT_PACK_STR_NQ2222,96886
+inline std::string VL_CVT_PACK_STR_NN(const std::string& lhs) VL_PURE { return lhs; }VL_CVT_PACK_STR_NN2227,97051
+inline std::string& VL_CVT_PACK_STR_NN(std::string& lhs) VL_PURE { return lhs; }VL_CVT_PACK_STR_NN2228,97137
+inline std::string VL_CVT_PACK_STR_NI(IData lhs) VL_PURE {VL_CVT_PACK_STR_NI2229,97218
+inline std::string VL_CONCATN_NNN(const std::string& lhs, const std::string& rhs) VL_PURE {VL_CONCATN_NNN2234,97371
+inline std::string VL_REPLICATEN_NNQ(const std::string& lhs, IData rep) VL_PURE {VL_REPLICATEN_NNQ2237,97487
+inline std::string VL_REPLICATEN_NNI(const std::string& lhs, IData rep) VL_PURE {VL_REPLICATEN_NNI2243,97720
+inline IData VL_LEN_IN(const std::string& ld) { return static_cast<IData>(ld.length()); }VL_LEN_IN2247,97845
+extern std::string VL_TOLOWER_NN(const std::string& ld) VL_PURE;VL_TOLOWER_NN2248,97935
+extern std::string VL_TOUPPER_NN(const std::string& ld) VL_PURE;VL_TOUPPER_NN2249,98000
+extern IData VL_FERROR_IN(IData fpi, std::string& outputr) VL_MT_SAFE;VL_FERROR_IN2251,98066
+extern IData VL_FERROR_IW(IData fpi, int obits, WDataOutP outwp) VL_MT_SAFE;VL_FERROR_IW2252,98137
+extern IData VL_FOPEN_NN(const std::string& filename, const std::string& mode) VL_MT_SAFE;VL_FOPEN_NN2253,98214
+extern IData VL_FOPEN_MCD_N(const std::string& filename) VL_MT_SAFE;VL_FOPEN_MCD_N2254,98305
+extern void VL_READMEM_N(bool hex, int bits, QData depth, int array_lsb,VL_READMEM_N2255,98374
+extern void VL_WRITEMEM_N(bool hex, int bits, QData depth, int array_lsb,VL_WRITEMEM_N2258,98574
+extern IData VL_SSCANF_INX(int lbits, const std::string& ld, const char* formatp, ...) VL_MT_SAFVL_SSCANF_INX2261,98783
+extern void VL_SFORMAT_X(int obits_ignored, std::string& output, const char* formatp,VL_SFORMAT_X2262,98882
+extern std::string VL_SFORMATF_NX(const char* formatp, ...) VL_MT_SAFE;VL_SFORMATF_NX2264,99010
+extern void VL_TIMEFORMAT_IINI(int units, int precision, const std::string& suffix, int width,VL_TIMEFORMAT_IINI2265,99082
+extern IData VL_VALUEPLUSARGS_INW(int rbits, const std::string& ld, WDataOutP rwp) VL_MT_SAFE;VL_VALUEPLUSARGS_INW2267,99248
+inline IData VL_VALUEPLUSARGS_INI(int rbits, const std::string& ld, CData& rdr) VL_MT_SAFE {VL_VALUEPLUSARGS_INI2268,99343
+inline IData VL_VALUEPLUSARGS_INI(int rbits, const std::string& ld, SData& rdr) VL_MT_SAFE {VL_VALUEPLUSARGS_INI2274,99560
+inline IData VL_VALUEPLUSARGS_INI(int rbits, const std::string& ld, IData& rdr) VL_MT_SAFE {VL_VALUEPLUSARGS_INI2280,99777
+inline IData VL_VALUEPLUSARGS_INQ(int rbits, const std::string& ld, QData& rdr) VL_MT_SAFE {VL_VALUEPLUSARGS_INQ2286,99994
+inline IData VL_VALUEPLUSARGS_INQ(int rbits, const std::string& ld, double& rdr) VL_MT_SAFE {VL_VALUEPLUSARGS_INQ2292,100219
+extern IData VL_VALUEPLUSARGS_INN(int, const std::string& ld, std::string& rdr) VL_MT_SAFE;VL_VALUEPLUSARGS_INN2298,100457
+
+/usr/share/verilator/include/verilated.h,25860
+#define VERILATOR_VERILATED_H_VERILATOR_VERILATED_H_31,1268
+#define VERILATOR_VERILATED_H_INTERNAL_VERILATOR_VERILATED_H_INTERNAL_32,1299
+# define WAVES WAVES81,2548
+using CData = uint8_t;    ///< Data representing 'bit' of 1-8 packed bitsCData114,3385
+using SData = uint16_t;   ///< Data representing 'bit' of 9-16 packed bitsSData115,3459
+using IData = uint32_t;   ///< Data representing 'bit' of 17-32 packed bitsIData116,3534
+using QData = uint64_t;   ///< Data representing 'bit' of 33-64 packed bitsQData117,3610
+using EData = uint32_t;   ///< Data representing one element of WData arrayEData118,3686
+using WData = EData;        ///< Data representing >64 packed bits (used as pointer)WData119,3762
+using WDataInP = const WData*;  ///< 'bit' of >64 packed bits as array input to a functionWDataInP125,4082
+using WDataOutP = WData*;  ///< 'bit' of >64 packed bits as array output from a functionWDataOutP126,4173
+enum VerilatedVarType : uint8_t {VerilatedVarType128,4263
+    VLVT_UNKNOWN = 0,VLVT_UNKNOWN129,4297
+    VLVT_PTR,  // Pointer to somethingVLVT_PTR130,4319
+    VLVT_UINT8,  // AKA CDataVLVT_UINT8131,4358
+    VLVT_UINT16,  // AKA SDataVLVT_UINT16132,4388
+    VLVT_UINT32,  // AKA IDataVLVT_UINT32133,4419
+    VLVT_UINT64,  // AKA QDataVLVT_UINT64134,4450
+    VLVT_WDATA,  // AKA WDataVLVT_WDATA135,4481
+    VLVT_STRING  // C++ stringVLVT_STRING136,4511
+enum VerilatedVarFlags {VerilatedVarFlags139,4546
+    VLVD_0 = 0,  // NoneVLVD_0140,4571
+    VLVD_IN = 1,  // == vpiInputVLVD_IN141,4596
+    VLVD_OUT = 2,  // == vpiOutputVLVD_OUT142,4629
+    VLVD_INOUT = 3,  // == vpiInOutVLVD_INOUT143,4664
+    VLVD_NODIR = 5,  // == vpiNoDirectionVLVD_NODIR144,4700
+    VLVF_MASK_DIR = 7,  // Bit mask for above directionsVLVF_MASK_DIR145,4742
+    VLVF_PUB_RD = (1 << 8),  // Public readableVLVF_PUB_RD147,4812
+    VLVF_PUB_RW = (1 << 9),  // Public writableVLVF_PUB_RW148,4860
+    VLVF_DPI_CLAY = (1 << 10)  // DPI compatible C standard layoutVLVF_DPI_CLAY149,4908
+inline constexpr size_t roundUpToMultipleOf(size_t value) {roundUpToMultipleOf156,5101
+extern uint32_t VL_THREAD_ID() VL_MT_SAFE;VL_THREAD_ID165,5446
+#define VL_LOCK_SPINS VL_LOCK_SPINS167,5490
+class VL_CAPABILITY("mutex") VerilatedMutex final {VerilatedMutex170,5627
+    std::mutex m_mutex;  // Mutexm_mutex172,5688
+    VerilatedMutex() = default;VerilatedMutex176,5776
+    ~VerilatedMutex() = default;~VerilatedMutex177,5808
+    VL_UNCOPYABLE(VerilatedMutex);VL_UNCOPYABLE178,5841
+    const VerilatedMutex& operator!() const { return *this; }  // For -fthread_safetyoperator !179,5876
+    void lock() VL_ACQUIRE() VL_MT_SAFE {lock181,5989
+    void unlock() VL_RELEASE() VL_MT_SAFE { m_mutex.unlock(); }unlock193,6486
+    bool try_lock() VL_TRY_ACQUIRE(true) VL_MT_SAFE { return m_mutex.try_lock(); }try_lock195,6628
+    void lockCheckStopRequest(std::function<void()> checkStopRequestFunction)lockCheckStopRequest201,7030
+class VL_SCOPED_CAPABILITY VerilatedLockGuard final {VerilatedLockGuard212,7386
+    VL_UNCOPYABLE(VerilatedLockGuard);VL_UNCOPYABLE213,7440
+    VerilatedMutex& m_mutexr;m_mutexr216,7489
+    explicit VerilatedLockGuard(VerilatedMutex& mutexr) VL_ACQUIRE(mutexr) VL_MT_SAFEVL_ACQUIRE220,7602
+    ~VerilatedLockGuard() VL_RELEASE() { m_mutexr.unlock(); }VL_RELEASE225,7821
+class VerilatedAssertOneThread final {VerilatedAssertOneThread231,7997
+    uint32_t m_threadid;  // Thread that is legalm_threadid234,8067
+    VerilatedAssertOneThread()VerilatedAssertOneThread239,8293
+    ~VerilatedAssertOneThread() { check(); }~VerilatedAssertOneThread241,8364
+    void check() VL_MT_UNSAFE_ONE {check244,8506
+    static void fatal_different() VL_MT_SAFE;fatal_different253,8787
+class VerilatedModel VL_NOT_FINAL {VL_NOT_FINAL266,9128
+    VL_UNCOPYABLE(VerilatedModel);VL_UNCOPYABLE267,9164
+    VerilatedContext& m_context;  // The VerilatedContext this model is instantiated underm_context269,9200
+    explicit VerilatedModel(VerilatedContext& context);VerilatedModel272,9303
+    virtual ~VerilatedModel() = default;~VerilatedModel273,9359
+    VerilatedContext* contextp() const VL_MT_SAFE { return &m_context; }contextp278,9546
+    virtual const char* hierName() const = 0;hierName280,9682
+    virtual const char* modelName() const = 0;modelName282,9808
+    virtual unsigned threads() const = 0;threads284,9952
+    virtual std::unique_ptr<VerilatedTraceConfig> traceConfig() const;traceConfig291,10186
+class VerilatedModule VL_NOT_FINAL {VL_NOT_FINAL297,10387
+    VL_UNCOPYABLE(VerilatedModule);VL_UNCOPYABLE298,10424
+    const char* m_namep;  // Module namem_namep301,10470
+    explicit VerilatedModule(const char* namep);  // Create module with given hierarchy nameVerilatedModule303,10519
+    ~VerilatedModule();~VerilatedModule304,10612
+    const char* name() const VL_MT_SAFE_POSTINIT { return m_namep; }  ///< Return name of modulename305,10636
+# define VL_PRINTF VL_PRINTF314,10958
+# define VL_VPRINTF VL_VPRINTF317,11079
+class VerilatedVirtualBase VL_NOT_FINAL {VL_NOT_FINAL324,11336
+    VerilatedVirtualBase() = default;VerilatedVirtualBase326,11386
+    virtual ~VerilatedVirtualBase() = default;~VerilatedVirtualBase327,11424
+class VerilatedContext VL_NOT_FINAL {VL_NOT_FINAL341,11980
+    mutable VerilatedMutex m_mutex;  // Mutex for most s_s/s_ns membersm_mutex347,12110
+    struct Serialized {  // All these members serialized/deserializedSerialized349,12183
+        bool m_assertOn = true;  // Assertions are enabledm_assertOn352,12338
+        bool m_calcUnusedSigs = false;  // Waves file on, need all signals calculatedm_calcUnusedSigs353,12397
+        bool m_fatalOnError = true;  // Fatal on $stop/non-fatal errorm_fatalOnError354,12483
+        bool m_fatalOnVpiError = true;  // Fatal on vpi error/unsupportedm_fatalOnVpiError355,12554
+        bool m_gotError = false;  // A $finish statement executedm_gotError356,12628
+        bool m_gotFinish = false;  // A $finish or $stop statement executedm_gotFinish357,12694
+        uint64_t m_time = 0;  // Current $time (unscaled), 0=at zero, or legacym_time358,12770
+        int8_t m_timeunit;  // Time unit as 0..15m_timeunit360,12871
+        int8_t m_timeprecision;  // Time precision as 0..15m_timeprecision361,12921
+        int m_errorCount = 0;  // Number of errorsm_errorCount362,12981
+        int m_errorLimit = 1;  // Stop on error numberm_errorLimit363,13032
+        int m_randReset = 0;  // Random reset: 0=all 0s, 1=all 1s, 2=randomm_randReset364,13087
+        int m_randSeed = 0;  // Random seed: 0=randomm_randSeed365,13163
+        enum { UNITS_NONE = 99 };  // Default based on precision__anonfb35b8ef0103366,13217
+        enum { UNITS_NONE = 99 };  // Default based on precisionUNITS_NONE366,13217
+        int m_timeFormatUnits = UNITS_NONE;  // $timeformat unitsm_timeFormatUnits367,13282
+        int m_timeFormatPrecision = 0;  // $timeformat number of decimal placesm_timeFormatPrecision368,13348
+        int m_timeFormatWidth = 20;  // $timeformat character widthm_timeFormatWidth369,13428
+        Serialized();Serialized371,13520
+        ~Serialized() = default;~Serialized372,13542
+    } m_s;m_s373,13575
+    mutable VerilatedMutex m_timeDumpMutex;  // Protect misc slow stringsm_timeDumpMutex375,13587
+    std::string m_timeFormatSuffix VL_GUARDED_BY(m_timeDumpMutex);  // $timeformat printf formatVL_GUARDED_BY376,13661
+    std::string m_dumpfile VL_GUARDED_BY(m_timeDumpMutex);  // $dumpfile settingVL_GUARDED_BY377,13758
+    struct NonSerialized {  // Non-serialized informationNonSerialized379,13840
+        uint64_t m_profExecStart = 1;  // +prof+exec+start timem_profExecStart382,14006
+        uint32_t m_profExecWindow = 2;  // +prof+exec+window sizem_profExecWindow383,14070
+        std::string m_profExecFilename;  // +prof+exec+file filenamem_profExecFilename385,14157
+        std::string m_profVltFilename;  // +prof+vlt filenamem_profVltFilename386,14226
+    } m_ns;m_ns387,14288
+    mutable VerilatedMutex m_argMutex;  // Protect m_argVec, m_argVecLoadedm_argMutex389,14301
+    struct NonSerializedCommandArgs {NonSerializedCommandArgs392,14506
+        std::vector<std::string> m_argVec;  // Argument listm_argVec394,14568
+        bool m_argVecLoaded = false;  // Ever loaded argument listm_argVecLoaded395,14629
+    const std::unique_ptr<VerilatedContextImpData> m_impdatap;m_impdatap399,14767
+    unsigned m_threads = std::thread::hardware_concurrency();m_threads401,14920
+    std::unique_ptr<VerilatedVirtualBase> m_threadPool;m_threadPool403,15048
+    std::unique_ptr<VerilatedVirtualBase> m_executionProfiler;m_executionProfiler405,15177
+    std::unique_ptr<VerilatedVirtualBase> m_coveragep;  // Pointer for coveragep()m_coveragep407,15263
+    mutable VerilatedMutex m_fdMutex;  // Protect m_fdps, m_fdFreem_fdMutex411,15385
+    std::vector<FILE*> m_fdps VL_GUARDED_BY(m_fdMutex);  // File descriptorsVL_GUARDED_BY412,15452
+    std::vector<IData> m_fdFree VL_GUARDED_BY(m_fdMutex);VL_GUARDED_BY414,15587
+    std::vector<IData> m_fdFreeMct VL_GUARDED_BY(m_fdMutex);VL_GUARDED_BY416,15703
+    static constexpr uint64_t MAGIC = 0xC35F9A6E5298EE6EULL;  // SHA256 "VerilatedContext"MAGIC419,15808
+    uint64_t m_magic = MAGIC;m_magic420,15899
+    VL_UNCOPYABLE(VerilatedContext);VL_UNCOPYABLE424,15959
+    VerilatedContext();VerilatedContext428,16092
+    ~VerilatedContext();~VerilatedContext429,16116
+    void assertOn(bool flag) VL_MT_SAFE;assertOn434,16198
+    bool assertOn() const VL_MT_SAFE { return m_s.m_assertOn; }assertOn436,16276
+    void calcUnusedSigs(bool flag) VL_MT_SAFE;calcUnusedSigs438,16398
+    bool calcUnusedSigs() const VL_MT_SAFE { return m_s.m_calcUnusedSigs; }calcUnusedSigs440,16506
+    void commandArgs(int argc, const char** argv) VL_MT_SAFE_EXCLUDES(m_argMutex);commandArgs444,16791
+    void commandArgs(int argc, char** argv) VL_MT_SAFE {commandArgs445,16874
+    void commandArgsAdd(int argc, const char** argv) VL_MT_SAFE_EXCLUDES(m_argMutex);commandArgsAdd449,17054
+    const char* commandArgsPlusMatch(const char* prefixp) VL_MT_SAFE_EXCLUDES(m_argMutex);commandArgsPlusMatch451,17234
+    VerilatedCovContext* coveragep() VL_MT_SAFE;coveragep454,17466
+    static inline void debug(int val) VL_MT_SAFE;debug457,17630
+    static inline int debug() VL_MT_SAFE;debug459,17707
+    void errorCount(int val) VL_MT_SAFE;errorCount461,17797
+    void errorCountInc() VL_MT_SAFE;errorCountInc463,17892
+    int errorCount() const VL_MT_SAFE { return m_s.m_errorCount; }errorCount465,17980
+    void errorLimit(int val) VL_MT_SAFE;errorLimit467,18099
+    int errorLimit() const VL_MT_SAFE { return m_s.m_errorLimit; }errorLimit469,18195
+    void fatalOnError(bool flag) VL_MT_SAFE;fatalOnError471,18320
+    bool fatalOnError() const VL_MT_SAFE { return m_s.m_fatalOnError; }fatalOnError473,18423
+    void fatalOnVpiError(bool flag) VL_MT_SAFE;fatalOnVpiError475,18542
+    bool fatalOnVpiError() const VL_MT_SAFE { return m_s.m_fatalOnVpiError; }fatalOnVpiError477,18643
+    void gotError(bool flag) VL_MT_SAFE;gotError479,18767
+    bool gotError() const VL_MT_SAFE { return m_s.m_gotError; }gotError481,18857
+    void gotFinish(bool flag) VL_MT_SAFE;gotFinish483,18965
+    bool gotFinish() const VL_MT_SAFE { return m_s.m_gotFinish; }gotFinish485,19054
+    void randReset(int val) VL_MT_SAFE;randReset490,19273
+    int randReset() VL_MT_SAFE { return m_s.m_randReset; }randReset492,19344
+    void randSeed(int val) VL_MT_SAFE;randSeed494,19438
+    int randSeed() const VL_MT_SAFE { return m_s.m_randSeed; }randSeed496,19536
+    inline uint64_t time() const VL_MT_SAFE;time521,20743
+    void time(uint64_t value) VL_MT_SAFE { m_s.m_time = value; }time523,20860
+    void timeInc(uint64_t add) VL_MT_UNSAFE { m_s.m_time += add; }timeInc525,21001
+    int timeunit() const VL_MT_SAFE { return -m_s.m_timeunit; }timeunit527,21110
+    void timeunit(int value) VL_MT_SAFE;timeunit529,21213
+    const char* timeunitString() const VL_MT_SAFE;timeunitString531,21302
+    int timeprecision() const VL_MT_SAFE { return -m_s.m_timeprecision; }timeprecision533,21396
+    inline void timeprecision(int value) VL_MT_SAFE;timeprecision535,21516
+    const char* timeprecisionString() const VL_MT_SAFE;timeprecisionString537,21618
+    unsigned threads() const { return m_threads; }threads540,21753
+    void threads(unsigned n);threads543,21974
+    void traceEverOn(bool flag) VL_MT_SAFE {traceEverOn546,22084
+    void internalsDump() const VL_MT_SAFE;internalsDump553,22362
+    void scopesDump() const VL_MT_SAFE;scopesDump558,22601
+    VerilatedContextImp* impp() VL_MT_SAFE { return reinterpret_cast<VerilatedContextImp*>(this)impp563,22741
+    const VerilatedContextImp* impp() const VL_MT_SAFE {impp564,22841
+    void addModel(VerilatedModel*);addModel568,22972
+    VerilatedVirtualBase* threadPoolp();threadPoolp570,23009
+    void prepareClone();prepareClone571,23050
+    VerilatedVirtualBase* threadPoolpOnClone();threadPoolpOnClone572,23075
+    enableExecutionProfiler(VerilatedVirtualBase* (*construct)(VerilatedContext&));enableExecutionProfiler574,23149
+    void dumpfile(const std::string& flag) VL_MT_SAFE_EXCLUDES(m_timeDumpMutex);dumpfile577,23261
+    std::string dumpfile() const VL_MT_SAFE_EXCLUDES(m_timeDumpMutex);dumpfile578,23342
+    std::string dumpfileCheck() const VL_MT_SAFE_EXCLUDES(m_timeDumpMutex);dumpfileCheck579,23413
+    void profExecStart(uint64_t flag) VL_MT_SAFE;profExecStart582,23536
+    uint64_t profExecStart() const VL_MT_SAFE { return m_ns.m_profExecStart; }profExecStart583,23586
+    void profExecWindow(uint64_t flag) VL_MT_SAFE;profExecWindow584,23665
+    uint32_t profExecWindow() const VL_MT_SAFE { return m_ns.m_profExecWindow; }profExecWindow585,23716
+    void profExecFilename(const std::string& flag) VL_MT_SAFE;profExecFilename586,23797
+    std::string profExecFilename() const VL_MT_SAFE;profExecFilename587,23860
+    void profVltFilename(const std::string& flag) VL_MT_SAFE;profVltFilename588,23913
+    std::string profVltFilename() const VL_MT_SAFE;profVltFilename589,23975
+    const VerilatedScope* scopeFind(const char* namep) const VL_MT_SAFE;scopeFind592,24056
+    const VerilatedScopeNameMap* scopeNameMap() VL_MT_SAFE;scopeNameMap593,24129
+    static constexpr size_t serialized1Size() VL_PURE { return sizeof(m_s); }serialized1Size596,24227
+    void* serialized1Ptr() VL_MT_UNSAFE { return &m_s; }serialized1Ptr597,24305
+    static void checkMagic(const VerilatedContext* contextp);checkMagic600,24399
+    void selfTestClearMagic() { m_magic = 0x2; }selfTestClearMagic601,24461
+class VerilatedSyms VL_NOT_FINAL {VL_NOT_FINAL608,24701
+    VerilatedContext* const _vm_contextp__;  // Context for current model_vm_contextp__612,24845
+    VerilatedEvalMsgQueue* __Vm_evalMsgQp;__Vm_evalMsgQp613,24919
+    explicit VerilatedSyms(VerilatedContext* contextp);  // Pass null for default contextVerilatedSyms614,24962
+    ~VerilatedSyms();~VerilatedSyms615,25052
+    VL_UNCOPYABLE(VerilatedSyms);VL_UNCOPYABLE616,25074
+class VerilatedScope final {VerilatedScope623,25299
+    enum Type : uint8_t {Type625,25336
+        SCOPE_MODULE,SCOPE_MODULE626,25362
+        SCOPE_OTHERSCOPE_OTHER627,25384
+    VerilatedSyms* m_symsp = nullptr;  // Symbol tablem_symsp631,25495
+    void** m_callbacksp = nullptr;  // Callback table pointer (Fastpath)m_callbacksp632,25550
+    int m_funcnumMax = 0;  // Maximum function number stored (Fastpath)m_funcnumMax633,25623
+    VerilatedVarNameMap* m_varsp = nullptr;  // Variable mapm_varsp635,25739
+    const char* m_namep = nullptr;  // Scope name (Slowpath)m_namep636,25800
+    const char* m_identifierp = nullptr;  // Identifier of scope (with escapes removed)m_identifierp637,25861
+    int8_t m_timeunit = 0;  // Timeunit in negative power-of-10m_timeunit638,25949
+    Type m_type = SCOPE_OTHER;  // Type of the scopem_type639,26013
+    VerilatedScope() = default;VerilatedScope642,26130
+    ~VerilatedScope();~VerilatedScope643,26162
+    void configure(VerilatedSyms* symsp, const char* prefixp, const char* suffixp,configure644,26185
+    void exportInsert(int finalize, const char* namep, void* cb) VL_MT_UNSAFE;exportInsert646,26360
+    void varInsert(int finalize, const char* namep, void* datap, bool isParam,varInsert647,26439
+    const char* name() const VL_MT_SAFE_POSTINIT { return m_namep; }name650,26621
+    const char* identifier() const VL_MT_SAFE_POSTINIT { return m_identifierp; }identifier651,26690
+    int8_t timeunit() const VL_MT_SAFE_POSTINIT { return m_timeunit; }timeunit652,26771
+    VerilatedSyms* symsp() const VL_MT_SAFE_POSTINIT { return m_symsp; }symsp653,26842
+    VerilatedVar* varFind(const char* namep) const VL_MT_SAFE_POSTINIT;varFind654,26915
+    VerilatedVarNameMap* varsp() const VL_MT_SAFE_POSTINIT { return m_varsp; }varsp655,26987
+    void scopeDump() const;scopeDump656,27066
+    void* exportFindError(int funcnum) const VL_MT_SAFE;exportFindError657,27094
+    static void* exportFindNullError(int funcnum) VL_MT_SAFE;exportFindNullError658,27151
+    static void* exportFind(const VerilatedScope* scopep, int funcnum) VL_MT_SAFE {exportFind659,27213
+    Type type() const { return m_type; }type668,27663
+class VerilatedHierarchy final {VerilatedHierarchy671,27708
+    static void add(VerilatedScope* fromp, VerilatedScope* top);add673,27749
+    static void remove(VerilatedScope* fromp, VerilatedScope* top);remove674,27814
+class Verilated final {Verilated680,28011
+    static int s_debug;  // See accessors... only when VL_DEBUG sets_debug690,28407
+    static VerilatedContext* s_lastContextp;  // Last context constructed/attacheds_lastContextp692,28476
+    static thread_local struct ThreadLocal {ThreadLocal695,28603
+        VerilatedContext* t_contextp = nullptr;  // Thread's contextt_contextp700,28796
+        uint32_t t_mtaskId = 0;  // mtask# executing on this threadt_mtaskId701,28865
+        uint32_t t_endOfEvalReqd = 0;t_endOfEvalReqd703,29002
+        const VerilatedScope* t_dpiScopep = nullptr;  // DPI context scopet_dpiScopep704,29040
+        const char* t_dpiFilename = nullptr;  // DPI context filenamet_dpiFilename705,29115
+        int t_dpiLineno = 0;  // DPI context line numbert_dpiLineno706,29185
+        ThreadLocal() = default;ThreadLocal708,29243
+        ~ThreadLocal() = default;~ThreadLocal709,29276
+    } t_s;t_s710,29310
+    VL_UNCOPYABLE(Verilated);VL_UNCOPYABLE715,29383
+    static void debug(int level) VL_MT_SAFE;debug721,29500
+    static int debug() VL_MT_SAFE { return s_debug; }debug726,29702
+    static constexpr int debug() VL_PURE { return 0; }debug729,29828
+    static void lastContextp(VerilatedContext* contextp) VL_MT_SAFE { s_lastContextp = contextp;lastContextp734,30003
+    static VerilatedContext* lastContextp() VL_MT_SAFE {lastContextp737,30212
+    static void threadContextp(VerilatedContext* contextp) VL_MT_SAFE {threadContextp746,30622
+    static VerilatedContext* threadContextp() VL_MT_SAFE {threadContextp751,30826
+    static VerilatedContext* defaultContextp() VL_MT_SAFE {defaultContextp756,31070
+    static void assertOn(bool flag) VL_MT_SAFE { Verilated::threadContextp()->assertOn(flag); }assertOn763,31296
+    static bool assertOn() VL_MT_SAFE { return Verilated::threadContextp()->assertOn(); }assertOn765,31476
+    static void calcUnusedSigs(bool flag) VL_MT_SAFE {calcUnusedSigs767,31652
+    static bool calcUnusedSigs() VL_MT_SAFE {calcUnusedSigs771,31860
+    static void commandArgs(int argc, const char** argv) VL_MT_SAFE {commandArgs775,32057
+    static void commandArgs(int argc, char** argv) VL_MT_SAFE {commandArgs778,32195
+    static void commandArgsAdd(int argc, const char** argv) {commandArgsAdd782,32410
+    static const char* commandArgsPlusMatch(const char* prefixp) VL_MT_SAFE {commandArgsPlusMatch786,32637
+    static void errorLimit(int val) VL_MT_SAFE { Verilated::threadContextp()->errorLimit(val); }errorLimit790,32878
+    static int errorLimit() VL_MT_SAFE { return Verilated::threadContextp()->errorLimit(); }errorLimit792,33059
+    static void fatalOnError(bool flag) VL_MT_SAFE {fatalOnError794,33236
+    static bool fatalOnError() VL_MT_SAFE { return Verilated::threadContextp()->fatalOnError(); fatalOnError798,33438
+    static void fatalOnVpiError(bool flag) VL_MT_SAFE {fatalOnVpiError800,33623
+    static bool fatalOnVpiError() VL_MT_SAFE {fatalOnVpiError804,33834
+    static void gotError(bool flag) VL_MT_SAFE { Verilated::threadContextp()->gotError(flag); }gotError808,34030
+    static bool gotError() VL_MT_SAFE { return Verilated::threadContextp()->gotError(); }gotError810,34208
+    static void gotFinish(bool flag) VL_MT_SAFE { Verilated::threadContextp()->gotFinish(flag); gotFinish812,34379
+    static bool gotFinish() VL_MT_SAFE { return Verilated::threadContextp()->gotFinish(); }gotFinish814,34560
+    static void randReset(int val) VL_MT_SAFE { Verilated::threadContextp()->randReset(val); }randReset816,34733
+    static int randReset() VL_MT_SAFE { return Verilated::threadContextp()->randReset(); }randReset818,34911
+    static void randSeed(int val) VL_MT_SAFE { Verilated::threadContextp()->randSeed(val); }randSeed820,35082
+    static int randSeed() VL_MT_SAFE { return Verilated::threadContextp()->randSeed(); }randSeed822,35257
+    static void time(uint64_t val) VL_MT_SAFE { Verilated::threadContextp()->time(val); }time824,35422
+    static uint64_t time() VL_MT_SAFE { return Verilated::threadContextp()->time(); }time826,35590
+    static void timeInc(uint64_t add) VL_MT_UNSAFE { Verilated::threadContextp()->timeInc(add); timeInc828,35755
+    static int timeunit() VL_MT_SAFE { return Verilated::threadContextp()->timeunit(); }timeunit830,35871
+    static int timeprecision() VL_MT_SAFE { return Verilated::threadContextp()->timeprecision();timeprecision831,35960
+    static void traceEverOn(bool flag) VL_MT_SAFE {traceEverOn833,36143
+    using VoidPCb = void (*)(void*);VoidPCb839,36316
+    static void addFlushCb(VoidPCb cb, void* datap) VL_MT_SAFE;addFlushCb841,36397
+    static void removeFlushCb(VoidPCb cb, void* datap) VL_MT_SAFE;removeFlushCb843,36508
+    static void runFlushCallbacks() VL_MT_SAFE;runFlushCallbacks845,36630
+    static void flushCall() VL_MT_SAFE { runFlushCallbacks(); }  // DeprecatedflushCall847,36699
+    static void addExitCb(VoidPCb cb, void* datap) VL_MT_SAFE;addExitCb850,36839
+    static void removeExitCb(VoidPCb cb, void* datap) VL_MT_SAFE;removeExitCb852,36959
+    static void runExitCallbacks() VL_MT_SAFE;runExitCallbacks854,37078
+    static const char* productName() VL_PURE;productName857,37173
+    static const char* productVersion() VL_PURE;productVersion859,37269
+    static void mkdir(const char* dirname) VL_MT_UNSAFE;mkdir862,37355
+    static void quiesce() VL_MT_SAFE;quiesce866,37551
+    static void internalsDump() VL_MT_SAFE { Verilated::threadContextp()->internalsDump(); }internalsDump872,37797
+    static void scopesDump() VL_MT_SAFE { Verilated::threadContextp()->scopesDump(); }scopesDump876,38085
+    static const VerilatedScope* scopeFind(const char* namep) VL_MT_SAFE {scopeFind878,38200
+    static const VerilatedScopeNameMap* scopeNameMap() VL_MT_SAFE {scopeNameMap881,38343
+    static const char* catName(const char* n1, const char* n2,catName889,38702
+    static void nullPointerError(const char* filename, int linenum) VL_ATTR_NORETURN VL_MT_SAFE;nullPointerError893,38878
+    static void overWidthError(const char* signame) VL_ATTR_NORETURN VL_MT_SAFE;overWidthError894,38975
+    static void scTimePrecisionError(int sc_prec, int vl_prec) VL_ATTR_NORETURN VL_MT_SAFE;scTimePrecisionError895,39056
+    static void scTraceBeforeElaborationError() VL_ATTR_NORETURN VL_MT_SAFE;scTraceBeforeElaborationError896,39148
+    static const VerilatedScope* dpiScope() VL_MT_SAFE { return t_s.t_dpiScopep; }dpiScope899,39267
+    static void dpiScope(const VerilatedScope* scopep) VL_MT_SAFE { t_s.t_dpiScopep = scopep; }dpiScope900,39350
+    static void dpiContext(const VerilatedScope* scopep, const char* filenamep,dpiContext901,39446
+    static void dpiClearContext() VL_MT_SAFE { t_s.t_dpiScopep = nullptr; }dpiClearContext907,39691
+    static bool dpiInContext() VL_MT_SAFE { return t_s.t_dpiScopep != nullptr; }dpiInContext908,39767
+    static const char* dpiFilenamep() VL_MT_SAFE { return t_s.t_dpiFilename; }dpiFilenamep909,39848
+    static int dpiLineno() VL_MT_SAFE { return t_s.t_dpiLineno; }dpiLineno910,39927
+    static int exportFuncNum(const char* namep) VL_MT_SAFE;exportFuncNum911,39993
+    static void mtaskId(uint32_t id) VL_MT_SAFE { t_s.t_mtaskId = id; }mtaskId915,40172
+    static uint32_t mtaskId() VL_MT_SAFE { return t_s.t_mtaskId; }mtaskId916,40244
+    static void endOfEvalReqdInc() VL_MT_SAFE { ++t_s.t_endOfEvalReqd; }endOfEvalReqdInc917,40311
+    static void endOfEvalReqdDec() VL_MT_SAFE { --t_s.t_endOfEvalReqd; }endOfEvalReqdDec918,40384
+    static void endOfThreadMTask(VerilatedEvalMsgQueue* evalMsgQp) VL_MT_SAFE {endOfThreadMTask921,40533
+    static void endOfEval(VerilatedEvalMsgQueue* evalMsgQp) VL_MT_SAFE;endOfEval925,40742
+    static void endOfThreadMTaskGuts(VerilatedEvalMsgQueue* evalMsgQp) VL_MT_SAFE;endOfThreadMTaskGuts928,40824
+void VerilatedContext::debug(int val) VL_MT_SAFE { Verilated::debug(val); }debug931,40911
+int VerilatedContext::debug() VL_MT_SAFE { return Verilated::debug(); }debug932,40987
+void VerilatedContext::timeprecision(int value) VL_MT_SAFE {timeprecision946,41375
+
+/usr/share/verilator/include/verilated_imp.h,8851
+#define VERILATOR_VERILATED_IMP_H_VERILATOR_VERILATED_IMP_H_23,883
+class VerilatedMsg final {VerilatedMsg54,1685
+    struct Cmp {Cmp57,1733
+        bool operator()(const VerilatedMsg& a, const VerilatedMsg& b) const {operator ()58,1750
+    uint32_t m_mtaskId;  // MTask that did enqueuem_mtaskId65,1916
+    std::function<void()> m_cb;  // Lambda to execute when message receivedm_cb66,1967
+    explicit VerilatedMsg(const std::function<void()>& cb)VerilatedMsg69,2071
+    ~VerilatedMsg() = default;~VerilatedMsg72,2194
+    VerilatedMsg(const VerilatedMsg&) = default;VerilatedMsg73,2225
+    VerilatedMsg(VerilatedMsg&&) = default;VerilatedMsg74,2274
+    VerilatedMsg& operator=(const VerilatedMsg&) = default;operator =75,2318
+    VerilatedMsg& operator=(VerilatedMsg&&) = default;operator =76,2378
+    uint32_t mtaskId() const { return m_mtaskId; }mtaskId78,2448
+    void run() const { m_cb(); }run80,2534
+class VerilatedEvalMsgQueue final {VerilatedEvalMsgQueue86,2777
+    using VerilatedThreadQueue = std::multiset<VerilatedMsg, VerilatedMsg::Cmp>;VerilatedThreadQueue87,2813
+    std::atomic<uint64_t> m_depth;  // Current depth of queue (see comments below)m_depth89,2895
+    mutable VerilatedMutex m_mutex;  // Mutex protecting queuem_mutex91,2979
+    VerilatedThreadQueue m_queue VL_GUARDED_BY(m_mutex);  // Message queueVL_GUARDED_BY92,3042
+    VerilatedEvalMsgQueue()VerilatedEvalMsgQueue95,3145
+    ~VerilatedEvalMsgQueue() = default;~VerilatedEvalMsgQueue99,3249
+    VL_UNCOPYABLE(VerilatedEvalMsgQueue);VL_UNCOPYABLE102,3299
+    void post(const VerilatedMsg& msg) VL_MT_SAFE_EXCLUDES(m_mutex) {post107,3414
+    void process() VL_MT_SAFE_EXCLUDES(m_mutex) {process113,3694
+class VerilatedThreadMsgQueue final {VerilatedThreadMsgQueue138,4928
+    std::queue<VerilatedMsg> m_queue;m_queue139,4966
+    VerilatedThreadMsgQueue() = default;VerilatedThreadMsgQueue143,5033
+    ~VerilatedThreadMsgQueue() = default;~VerilatedThreadMsgQueue144,5074
+    VL_UNCOPYABLE(VerilatedThreadMsgQueue);VL_UNCOPYABLE149,5296
+    static VerilatedThreadMsgQueue& threadton() VL_MT_SAFE {threadton151,5355
+    static void post(const VerilatedMsg& msg) VL_MT_SAFE {post158,5556
+    static void flush(VerilatedEvalMsgQueue* evalMsgQp) VL_MT_SAFE {flush170,6071
+class VerilatedFpList final {VerilatedFpList180,6396
+    FILE* m_fp[31] = {};m_fp181,6426
+    std::size_t m_sz = 0;m_sz182,6451
+    using const_iterator = FILE* const*;const_iterator185,6486
+    explicit VerilatedFpList() = default;VerilatedFpList186,6527
+    const_iterator begin() const { return m_fp; }begin187,6569
+    const_iterator end() const { return m_fp + m_sz; }end188,6619
+    std::size_t size() const { return m_sz; }size189,6674
+    static std::size_t capacity() { return 31; }capacity190,6720
+    void push_back(FILE* fd) {push_back191,6769
+class VerilatedContextImpData final {VerilatedContextImpData201,7097
+    mutable VerilatedMutex m_nameMutex;  // Protect m_nameMapm_nameMutex208,7326
+    VerilatedScopeNameMap m_nameMap VL_GUARDED_BY(m_nameMutex);VL_GUARDED_BY209,7388
+class VerilatedContextImp final : VerilatedContext {VerilatedContextImp216,7619
+    struct Statics {Statics224,7963
+        VerilatedMutex s_randMutex;  // Mutex protecting s_randSeedEpochs_randMutex225,7984
+        int s_randSeedEpoch = 1;  // Reads ok, wish had a VL_WRITE_GUARDED_BY(s_randMutex)s_randSeedEpoch227,8114
+    static Statics& s() VL_MT_SAFE {s229,8212
+    VerilatedContextImp() = delete;VerilatedContextImp236,8415
+    ~VerilatedContextImp() = delete;~VerilatedContextImp237,8451
+    uint64_t randSeedDefault64() const VL_MT_SAFE;randSeedDefault64242,8586
+    static uint32_t randSeedEpoch() VL_MT_SAFE { return s().s_randSeedEpoch; }randSeedEpoch243,8637
+    int timeFormatUnits() const VL_MT_SAFE {timeFormatUnits246,8745
+    void timeFormatUnits(int value) VL_MT_SAFE { m_s.m_timeFormatUnits = value; }timeFormatUnits251,8949
+    int timeFormatPrecision() const VL_MT_SAFE { return m_s.m_timeFormatPrecision; }timeFormatPrecision252,9031
+    void timeFormatPrecision(int value) VL_MT_SAFE { m_s.m_timeFormatPrecision = value; }timeFormatPrecision253,9116
+    int timeFormatWidth() const VL_MT_SAFE { return m_s.m_timeFormatWidth; }timeFormatWidth254,9206
+    void timeFormatWidth(int value) VL_MT_SAFE { m_s.m_timeFormatWidth = value; }timeFormatWidth255,9283
+    std::string timeFormatSuffix() const VL_MT_SAFE_EXCLUDES(m_timeDumpMutex) {timeFormatSuffix256,9365
+    void timeFormatSuffix(const std::string& value) VL_MT_SAFE_EXCLUDES(m_timeDumpMutex) {timeFormatSuffix260,9542
+    std::string argPlusMatch(const char* prefixp) VL_MT_SAFE_EXCLUDES(m_argMutex);argPlusMatch266,9759
+    std::pair<int, char**> argc_argv() VL_MT_SAFE_EXCLUDES(m_argMutex);argc_argv267,9842
+    void scopeInsert(const VerilatedScope* scopep) VL_MT_SAFE;scopeInsert270,9978
+    void scopeErase(const VerilatedScope* scopep) VL_MT_SAFE;scopeErase271,10041
+    IData fdNewMcd(const char* filenamep) VL_MT_SAFE_EXCLUDES(m_fdMutex) {fdNewMcd275,10165
+    IData fdNew(const char* filenamep, const char* modep) VL_MT_SAFE_EXCLUDES(m_fdMutex) {fdNew284,10543
+    void fdFlush(IData fdi) VL_MT_SAFE_EXCLUDES(m_fdMutex) {fdFlush305,11547
+    IData fdSeek(IData fdi, IData offset, IData origin) VL_MT_SAFE_EXCLUDES(m_fdMutex) {fdSeek310,11773
+    IData fdTell(IData fdi) VL_MT_SAFE_EXCLUDES(m_fdMutex) {fdTell317,12168
+    void fdWrite(IData fdi, const std::string& output) VL_MT_SAFE_EXCLUDES(m_fdMutex) {fdWrite323,12469
+    void fdClose(IData fdi) VL_MT_SAFE_EXCLUDES(m_fdMutex) {fdClose331,12824
+    FILE* fdToFp(IData fdi) VL_MT_SAFE_EXCLUDES(m_fdMutex) {fdToFp355,13757
+    VerilatedFpList fdToFpList(IData fdi) VL_REQUIRES(m_fdMutex) {fdToFpList363,14033
+    void commandArgsGuts(int argc, const char** argv) VL_MT_SAFE_EXCLUDES(m_argMutex);commandArgsGuts390,14975
+    void commandArgsAddGutsLock(int argc, const char** argv) VL_MT_SAFE_EXCLUDES(m_argMutex);commandArgsAddGutsLock391,15062
+    void commandArgsAddGuts(int argc, const char** argv) VL_REQUIRES(m_argMutex);commandArgsAddGuts392,15156
+    void commandArgVl(const std::string& arg);commandArgVl393,15238
+    bool commandArgVlString(const std::string& arg, const std::string& prefix,commandArgVlString394,15285
+    bool commandArgVlUint64(const std::string& arg, const std::string& prefix, uint64_t& valuer,commandArgVlUint64396,15414
+    void commandArgDump() const VL_MT_SAFE_EXCLUDES(m_argMutex);commandArgDump399,15674
+class VerilatedImpData final {VerilatedImpData405,15833
+    using UserMap = std::map<std::pair<const void*, void*>, void*>;UserMap413,16102
+    using ExportNameMap = std::map<const char*, int, VerilatedCStrCmp>;ExportNameMap414,16170
+    VerilatedMutex m_userMapMutex;  // Protect m_userMapm_userMapMutex419,16347
+    UserMap m_userMap VL_GUARDED_BY(m_userMapMutex);  // Map of <(scope,userkey), userData>VL_GUARDED_BY421,16487
+    VerilatedMutex m_hierMapMutex;  // Protect m_hierMapm_hierMapMutex423,16580
+    VerilatedHierarchyMap m_hierMap VL_GUARDED_BY(m_hierMapMutex);VL_GUARDED_BY426,16739
+    VerilatedMutex m_exportMutex;  // Protect m_nameMapm_exportMutex429,16838
+    ExportNameMap m_exportMap VL_GUARDED_BY(m_exportMutex);VL_GUARDED_BY433,17079
+    int m_exportNext VL_GUARDED_BY(m_exportMutex) = 0;  // Next export funcnumVL_GUARDED_BY434,17139
+    VerilatedImpData() = default;VerilatedImpData437,17239
+class VerilatedImp final {VerilatedImp440,17277
+    static VerilatedImpData& s() VL_MT_SAFE {  // Singletons446,17457
+    VerilatedImp() = default;VerilatedImp453,17641
+    ~VerilatedImp() = default;~VerilatedImp454,17671
+    VL_UNCOPYABLE(VerilatedImp);VL_UNCOPYABLE457,17712
+    static void versionDump() VL_MT_SAFE;versionDump461,17777
+    static void userInsert(const void* scopep, void* userKey, void* userData) VL_MT_SAFE {userInsert468,18173
+    static void* userFind(const void* scopep, void* userKey) VL_MT_SAFE {userFind477,18587
+    static void userEraseScope(const VerilatedScope* scopep) VL_MT_SAFE {userEraseScope487,19032
+    static void userDump() VL_MT_SAFE {userDump498,19477
+    static void hierarchyAdd(const VerilatedScope* fromp, const VerilatedScope* top) VL_MT_SAFE hierarchyAdd512,20011
+    static void hierarchyRemove(const VerilatedScope* fromp,hierarchyRemove517,20291
+    static const VerilatedHierarchyMap* hierarchyMap() VL_MT_SAFE_POSTINIT {hierarchyMap527,20812
+    static int exportInsert(const char* namep) VL_MT_SAFE {exportInsert540,21527
+    static int exportFind(const char* namep) VL_MT_SAFE {exportFind551,21962
+    static const char* exportName(int funcnum) VL_MT_SAFE {exportName560,22461
+    static void exportsDump() VL_MT_SAFE {exportsDump568,22813
+
+/usr/share/verilator/include/verilated_intrinsics.h,174
+#define VERILATOR_VERILATED_INTRINSICS_H_VERILATOR_VERILATED_INTRINSICS_H_27,1110
+#  define VL_HAVE_SSE2 VL_HAVE_SSE234,1320
+#  define VL_HAVE_AVX2 VL_HAVE_AVX238,1455
+
+/usr/share/verilator/include/verilatedos.h,9138
+#define VERILATOR_VERILATEDOS_H_VERILATOR_VERILATEDOS_H_33,1288
+# define VL_CLANG_ATTR(VL_CLANG_ATTR41,1533
+# define VL_CLANG_ATTR(VL_CLANG_ATTR43,1592
+# define VL_ATTR_ALWINLINE VL_ATTR_ALWINLINE47,1645
+# define VL_ATTR_NOINLINE VL_ATTR_NOINLINE48,1710
+# define VL_ATTR_COLD VL_ATTR_COLD49,1762
+# define VL_ATTR_HOT VL_ATTR_HOT50,1806
+# define VL_ATTR_NORETURN VL_ATTR_NORETURN51,1848
+#  define VL_ATTR_NO_SANITIZE_ALIGN VL_ATTR_NO_SANITIZE_ALIGN54,2011
+#  define VL_ATTR_NO_SANITIZE_ALIGN VL_ATTR_NO_SANITIZE_ALIGN56,2163
+# define VL_ATTR_PRINTF(VL_ATTR_PRINTF58,2245
+# define VL_ATTR_PURE VL_ATTR_PURE59,2342
+# define VL_ATTR_UNUSED VL_ATTR_UNUSED60,2386
+#  define VL_ATTR_WEAK VL_ATTR_WEAK63,2573
+# define VL_LIKELY(VL_LIKELY65,2626
+# define VL_UNLIKELY(VL_UNLIKELY66,2708
+# define VL_UNREACHABLE VL_UNREACHABLE67,2794
+# define VL_PREFETCH_RD(VL_PREFETCH_RD68,2871
+# define VL_PREFETCH_RW(VL_PREFETCH_RW69,2925
+#define VL_ACQUIRE(VL_ACQUIRE73,3044
+#define VL_ACQUIRE_SHARED(VL_ACQUIRE_SHARED77,3234
+#define VL_RELEASE(VL_RELEASE81,3438
+#define VL_RELEASE_SHARED(VL_RELEASE_SHARED85,3628
+#define VL_TRY_ACQUIRE(VL_TRY_ACQUIRE89,3843
+#define VL_TRY_ACQUIRE_SHARED(VL_TRY_ACQUIRE_SHARED92,3994
+#define VL_CAPABILITY(VL_CAPABILITY95,4157
+#define VL_EXCLUDES(VL_EXCLUDES98,4281
+#define VL_SCOPED_CAPABILITY VL_SCOPED_CAPABILITY102,4446
+#define VL_RETURN_CAPABILITY(VL_RETURN_CAPABILITY106,4632
+#define VL_ASSERT_CAPABILITY(VL_ASSERT_CAPABILITY110,4800
+# define VL_REQUIRES(VL_REQUIRES116,5072
+# define VL_GUARDED_BY(VL_GUARDED_BY120,5235
+# define VL_PT_GUARDED_BY(VL_PT_GUARDED_BY126,5529
+# define VL_REQUIRES(VL_REQUIRES131,5704
+# define VL_GUARDED_BY(VL_GUARDED_BY133,5774
+# define VL_PT_GUARDED_BY(VL_PT_GUARDED_BY135,5848
+# define VL_ATTR_ALWINLINE VL_ATTR_ALWINLINE141,6008
+# define VL_ATTR_NOINLINE VL_ATTR_NOINLINE144,6119
+# define VL_ATTR_COLD VL_ATTR_COLD147,6227
+# define VL_ATTR_HOT VL_ATTR_HOT150,6325
+# define VL_ATTR_NORETURN VL_ATTR_NORETURN153,6427
+# define VL_ATTR_NO_SANITIZE_ALIGN VL_ATTR_NO_SANITIZE_ALIGN156,6545
+# define VL_ATTR_PRINTF(VL_ATTR_PRINTF159,6675
+# define VL_ATTR_PURE VL_ATTR_PURE162,6795
+# define VL_ATTR_UNUSED VL_ATTR_UNUSED165,6912
+# define VL_ATTR_WEAK VL_ATTR_WEAK168,7017
+# define VL_LIKELY(VL_LIKELY171,7130
+# define VL_UNLIKELY(VL_UNLIKELY172,7216
+# define VL_UNCOVERABLE(VL_UNCOVERABLE175,7381
+# define VL_UNREACHABLE VL_UNREACHABLE177,7446
+# define VL_PREFETCH_RD(VL_PREFETCH_RD180,7561
+# define VL_PREFETCH_RW(VL_PREFETCH_RW183,7667
+# define VL_ATTR_ALIGNED(VL_ATTR_ALIGNED188,7779
+# define VL_FUNC VL_FUNC189,7830
+# define VL_THREAD VL_THREAD190,7871
+# define VL_THREAD_LOCAL VL_THREAD_LOCAL191,7905
+# define VL_STATIC_OR_THREAD VL_STATIC_OR_THREAD192,7958
+#define VL_PURE VL_PURE196,8081
+#define VL_MT_SAFE VL_MT_SAFE198,8172
+#define VL_MT_STABLE VL_MT_STABLE201,8324
+#define VL_MT_SAFE_POSTINIT VL_MT_SAFE_POSTINIT204,8470
+#define VL_MT_SAFE_EXCLUDES(VL_MT_SAFE_EXCLUDES206,8610
+#define VL_MT_UNSAFE VL_MT_UNSAFE208,8755
+#define VL_MT_UNSAFE_ONE VL_MT_UNSAFE_ONE211,8900
+#define VL_MT_START VL_MT_START213,9029
+# define VL_ULL(VL_ULL216,9107
+#define VL_UL(VL_UL221,9317
+# define VL_DANGLING(VL_DANGLING224,9444
+# define VL_DANGLING(VL_DANGLING227,9554
+#define VL_DO_DANGLING(VL_DO_DANGLING235,9879
+#define VL_DO_CLEAR(VL_DO_CLEAR244,10111
+# define VL_EQ_DELETE VL_EQ_DELETE270,10809
+# define vl_unique_ptr vl_unique_ptr271,10840
+# define vl_unordered_map vl_unordered_map272,10879
+# define vl_unordered_set vl_unordered_set273,10924
+# define VL_INCLUDE_UNORDERED_MAP VL_INCLUDE_UNORDERED_MAP274,10969
+# define VL_INCLUDE_UNORDERED_SET VL_INCLUDE_UNORDERED_SET275,11019
+# define VL_FINAL VL_FINAL276,11069
+# define VL_MUTABLE VL_MUTABLE277,11093
+# define VL_OVERRIDE VL_OVERRIDE278,11121
+# define VL_CONSTEXPR_CXX17 VL_CONSTEXPR_CXX17285,11275
+# define VL_CONSTEXPR_CXX17VL_CONSTEXPR_CXX17287,11319
+# define VL_INLINE_OPT VL_INLINE_OPT295,11471
+extern "C" void __gcov_dump();__gcov_dump302,11678
+# define VL_GCOV_DUMP(VL_GCOV_DUMP304,11770
+# define VL_GCOV_DUMP(VL_GCOV_DUMP306,11814
+# define __USE_MINGW_ANSI_STDIO __USE_MINGW_ANSI_STDIO329,12886
+#define __STDC_FORMAT_MACROS__STDC_FORMAT_MACROS334,13139
+using vluint8_t = uint8_t;  ///< 8-bit unsigned type (backward compatibility)vluint8_t342,13322
+using vluint16_t = uint16_t;  ///< 16-bit unsigned type (backward compatibility)vluint16_t343,13400
+using vluint32_t = uint32_t;  ///< 32-bit unsigned type (backward compatibility)vluint32_t344,13481
+using vluint64_t = uint64_t;  ///< 64-bit unsigned type (backward compatibility)vluint64_t345,13562
+using vlsint8_t = int8_t;  ///< 8-bit signed type (backward compatibility)vlsint8_t346,13643
+using vlsint16_t = int16_t;  ///< 16-bit signed type (backward compatibility)vlsint16_t347,13718
+using vlsint32_t = int32_t;  ///< 32-bit signed type (backward compatibility)vlsint32_t348,13796
+using vlsint64_t = int64_t;  ///< 64-bit signed type (backward compatibility)vlsint64_t349,13874
+using ssize_t = uint64_t;  ///< signed size_t; returned from read()ssize_t361,14144
+using ssize_t = uint32_t;  ///< signed size_t; returned from read()ssize_t363,14220
+#  define VL_PRI64 VL_PRI64381,14742
+#   define VL_PRI64 VL_PRI64384,14909
+#   define VL_PRI64 VL_PRI64386,14989
+#  define VL_SNPRINTF VL_SNPRINTF393,15151
+#  define VL_SNPRINTF VL_SNPRINTF395,15190
+# define VL_VSNPRINTF VL_VSNPRINTF397,15229
+# define VL_SNPRINTF VL_SNPRINTF399,15267
+# define VL_VSNPRINTF VL_VSNPRINTF400,15297
+# define VL_DEV_NULL VL_DEV_NULL407,15453
+# define VL_DEV_NULL VL_DEV_NULL409,15522
+#define VL_BYTESIZE VL_BYTESIZE415,15663
+#define VL_SHORTSIZE VL_SHORTSIZE416,15714
+#define VL_IDATASIZE VL_IDATASIZE417,15768
+#define VL_QUADSIZE VL_QUADSIZE418,15822
+#define VL_EDATASIZE VL_EDATASIZE419,15878
+#define VL_EDATASIZE_LOG2 VL_EDATASIZE_LOG2420,15939
+#define VL_CACHE_LINE_BYTES VL_CACHE_LINE_BYTES421,15992
+# define VL_WORDSIZE VL_WORDSIZE424,16089
+#define VL_BYTES_I(VL_BYTES_I428,16221
+#define VL_WORDS_I(VL_WORDS_I430,16365
+#define VL_WQ_WORDS_E VL_WQ_WORDS_E432,16481
+#define VL_NOT_FINALVL_NOT_FINAL438,16706
+#define VL_UNCOPYABLE(VL_UNCOPYABLE441,16783
+#define VL_UNMOVABLE(VL_UNMOVABLE446,16950
+#define VL_MULS_MAX_WORDS VL_MULS_MAX_WORDS453,17163
+    #define VL_VALUE_STRING_MAX_WORDS VL_VALUE_STRING_MAX_WORDS456,17269
+#define VL_VALUE_STRING_MAX_CHARS VL_VALUE_STRING_MAX_CHARS459,17373
+#define VL_SIZEBITS_I VL_SIZEBITS_I464,17557
+#define VL_SIZEBITS_Q VL_SIZEBITS_Q465,17632
+#define VL_SIZEBITS_E VL_SIZEBITS_E466,17706
+#define VL_MASK_I(VL_MASK_I470,17895
+#define VL_MASK_Q(VL_MASK_Q473,18108
+#define VL_MASK_E(VL_MASK_E477,18335
+#define VL_EUL(VL_EUL479,18378
+#define VL_BITWORD_I(VL_BITWORD_I481,18443
+#define VL_BITWORD_E(VL_BITWORD_E482,18529
+#define VL_BITBIT_I(VL_BITBIT_I483,18622
+#define VL_BITBIT_Q(VL_BITBIT_Q484,18708
+#define VL_BITBIT_E(VL_BITBIT_E485,18794
+#define VL_BITISSET_I(VL_BITISSET_I488,18955
+#define VL_BITISSET_Q(VL_BITISSET_Q489,19030
+#define VL_BITISSET_E(VL_BITISSET_E490,19101
+#define VL_BITISSET_W(VL_BITISSET_W491,19177
+static inline double VL_TRUNC(double n) {VL_TRUNC498,19443
+static inline double VL_ROUND(double n) {VL_ROUND501,19538
+# define VL_TRUNC(VL_TRUNC505,19649
+# define VL_ROUND(VL_ROUND506,19684
+#define VL_GET_CPU_TICK(VL_GET_CPU_TICK515,20000
+# define VL_GET_CPU_TICK(VL_GET_CPU_TICK524,20315
+# define VL_GET_CPU_TICK(VL_GET_CPU_TICK531,20555
+# define WIN32_LEAN_AND_MEANWIN32_LEAN_AND_MEAN538,20738
+#  define NOMINMAXNOMINMAX540,20785
+# define VL_CPU_RELAX(VL_CPU_RELAX543,20834
+# define VL_CPU_RELAX(VL_CPU_RELAX547,21072
+# define VL_CPU_RELAX(VL_CPU_RELAX549,21158
+# define VL_CPU_RELAX(VL_CPU_RELAX551,21314
+# define VL_CPU_RELAX(VL_CPU_RELAX553,21419
+# define VL_CPU_RELAX(VL_CPU_RELAX555,21547
+# define VL_CPU_RELAX(VL_CPU_RELAX557,21683
+# define VL_CPU_RELAX(VL_CPU_RELAX559,21833
+# define VL_CPU_RELAX(VL_CPU_RELAX561,21921
+# define VL_CPU_RELAX(VL_CPU_RELAX563,22088
+# define VL_CPU_RELAX(VL_CPU_RELAX565,22170
+# define VL_CPU_RELAX(VL_CPU_RELAX567,22255
+# define VL_CPU_RELAX(VL_CPU_RELAX569,22361
+# define VL_STRCASECMP VL_STRCASECMP578,22582
+# define VL_STRCASECMP VL_STRCASECMP580,22620
+#  define VL_X86_64 VL_X86_64589,22907
+#define VL_STRINGIFY(...) VL_STRINGIFY2VL_STRINGIFY597,23082
+#define VL_STRINGIFY2(VL_STRINGIFY2598,23135
+#define VL_OFFSETOF(VL_OFFSETOF604,23324
+namespace vlstd {vlstd612,23563
+struct reverse_wrapper {reverse_wrapper615,23604
+    const T& m_v;m_v616,23629
+    explicit reverse_wrapper(const T& a_v)reverse_wrapper618,23648
+    auto begin() -> decltype(m_v.rbegin()) { return m_v.rbegin(); }begin620,23713
+    auto end() -> decltype(m_v.rend()) { return m_v.rend(); }end621,23781
+reverse_wrapper<T> reverse_view(const T& v) {reverse_view626,23906
+T const& as_const(T& v) VL_MT_SAFE {as_const636,24239
+T exchange(T& obj, U&& new_value) {exchange642,24350
+
+/usr/share/verilator/include/verilated_profiler.h,4754
+#define VERILATOR_VERILATED_PROFILER_H_VERILATOR_VERILATED_PROFILER_H_23,872
+#define VL_EXEC_TRACE_ADD_RECORD(VL_EXEC_TRACE_ADD_RECORD42,1243
+VL_ATTR_ALWINLINE QData VL_CPU_TICK() {VL_CPU_TICK48,1562
+#define _VL_FOREACH_APPLY(_VL_FOREACH_APPLY57,1791
+#define FOREACH_VlExecutionRecord_TYPE(FOREACH_VlExecutionRecord_TYPE60,1867
+class VlExecutionRecord final {VlExecutionRecord69,2197
+    enum class Type : uint8_t {Type73,2281
+#define VL_FOREACH_MACRO(VL_FOREACH_MACRO74,2313
+        FOREACH_VlExecutionRecord_TYPE(VL_FOREACH_MACRO)FOREACH_VlExecutionRecord_TYPE75,2352
+#define VL_FOREACH_MACRO(VL_FOREACH_MACRO80,2494
+    static constexpr const char* const s_ascii[] = {s_ascii79,2441
+    union Payload {Payload85,2624
+        struct {__anon64889331010886,2644
+            uint32_t m_id;  // MTask idm_id87,2661
+            uint32_t m_predictStart;  // Time scheduler predicted would startm_predictStart88,2701
+            uint32_t m_cpu;  // Executing CPU idm_cpu89,2779
+        } mtaskBegin;mtaskBegin90,2828
+        struct {__anon64889331020891,2850
+            uint32_t m_id;  // MTask idm_id92,2867
+            uint32_t m_predictCost;  // How long scheduler predicted would takem_predictCost93,2907
+        } mtaskEnd;mtaskEnd94,2987
+    const uint64_t m_tick = VL_CPU_TICK();  // Tick at constructionm_tick99,3074
+    Payload m_payload;  // The record payloadm_payload100,3142
+    Type m_type;  // The record typem_type101,3188
+    static uint16_t getcpu();  // Return currently executing CPU idgetcpu105,3384
+    VlExecutionRecord() = default;VlExecutionRecord109,3480
+    void evalBegin() { m_type = Type::EVAL_BEGIN; }evalBegin112,3531
+    void evalEnd() { m_type = Type::EVAL_END; }evalEnd113,3583
+    void evalLoopBegin() { m_type = Type::EVAL_LOOP_BEGIN; }evalLoopBegin114,3631
+    void evalLoopEnd() { m_type = Type::EVAL_LOOP_END; }evalLoopEnd115,3692
+    void mtaskBegin(uint32_t id, uint32_t predictStart) {mtaskBegin116,3749
+    void mtaskEnd(uint32_t id, uint32_t predictCost) {mtaskEnd122,3996
+class VlExecutionProfiler final : public VerilatedVirtualBase {VlExecutionProfiler135,4515
+    static constexpr size_t RESERVED_TRACE_CAPACITY = 4096;RESERVED_TRACE_CAPACITY140,4784
+    using ExecutionTrace = std::vector<VlExecutionRecord>;ExecutionTrace150,5374
+    VerilatedContext& m_context;  // The context this profiler is underm_context153,5447
+    static thread_local ExecutionTrace t_trace;  // thread-local trace bufferst_trace154,5519
+    mutable VerilatedMutex m_mutex;m_mutex155,5598
+    std::map<uint32_t, ExecutionTrace*> m_traceps VL_GUARDED_BY(m_mutex);VL_GUARDED_BY157,5688
+    bool m_enabled = false;  // Is profiling currently enabledm_enabled159,5763
+    uint64_t m_tickBegin = 0;  // Sample time (rdtsc() on x86) at beginning of collectionm_tickBegin161,5827
+    uint64_t m_lastStartReq = 0;  // Last requested profiling start (in simulation time)m_lastStartReq162,5917
+    uint32_t m_windowCount = 0;  // Track our position in the cache warmup and profile windowm_windowCount163,6006
+    explicit VlExecutionProfiler(VerilatedContext& context);VlExecutionProfiler167,6128
+    ~VlExecutionProfiler() override = default;~VlExecutionProfiler168,6189
+    bool enabled() const { return m_enabled; }enabled173,6281
+    static VlExecutionRecord& addRecord() {addRecord175,6399
+    void configure();configure180,6570
+    void setupThread(uint32_t threadId);setupThread182,6639
+    void clear() VL_MT_SAFE_EXCLUDES(m_mutex);clear184,6712
+    void dump(const char* filenamep, uint64_t tickEnd) VL_MT_SAFE_EXCLUDES(m_mutex);dump186,6797
+    static VerilatedVirtualBase* construct(VerilatedContext& context);construct189,6969
+class VlPgoProfiler final {VlPgoProfiler196,7216
+    struct Record final {Record198,7257
+        const std::string m_name;  // Hashed name of mtask/etcm_name199,7283
+        const size_t m_counterNumber = 0;  // Which counter has datam_counterNumber200,7346
+    std::array<uint64_t, T_Entries> m_counters;  // Time spent on this recordm_counters204,7495
+    std::vector<Record> m_records;  // Record informationm_records205,7573
+    VlPgoProfiler() = default;VlPgoProfiler209,7655
+    ~VlPgoProfiler() = default;~VlPgoProfiler210,7686
+    void write(const char* modelp, const std::string& filename) VL_MT_SAFE;write211,7718
+    void addCounter(size_t counter, const std::string& name) {addCounter212,7794
+    void startCounter(size_t counter) {startCounter216,7969
+    void stopCounter(size_t counter) { m_counters[counter] += VL_CPU_TICK(); }stopCounter221,8208
+void VlPgoProfiler<T_Entries>::write(const char* modelp, const std::string& filename) VL_MT_SAFEwrite225,8324
+
+/usr/share/verilator/include/verilated_save.h,6915
+#define VERILATOR_VERILATED_SAVE_C_H_VERILATOR_VERILATED_SAVE_C_H_23,836
+class VerilatedSerialize VL_NOT_FINAL {VL_NOT_FINAL40,1316
+    uint8_t* m_cp;  // Current pointer into m_bufp bufferm_cp44,1448
+    uint8_t* m_bufp;  // Output bufferm_bufp45,1506
+    bool m_isOpen = false;  // True indicates open file/streamm_isOpen46,1545
+    std::string m_filename;  // Filename, for error messagesm_filename47,1608
+    VerilatedAssertOneThread m_assertOne;  // Assert only called from single threadm_assertOne48,1669
+    static constexpr size_t bufferSize() { return 256 * 1024; }  // See below for slack calculatbufferSize50,1754
+    static constexpr size_t bufferInsertSize() { return 16 * 1024; }bufferInsertSize51,1854
+    void header() VL_MT_UNSAFE_ONE;header53,1924
+    void trailer() VL_MT_UNSAFE_ONE;trailer54,1960
+    VL_UNCOPYABLE(VerilatedSerialize);VL_UNCOPYABLE57,2018
+    VerilatedSerialize() {VerilatedSerialize61,2084
+    virtual ~VerilatedSerialize() {~VerilatedSerialize66,2219
+    bool isOpen() const { return m_isOpen; }isOpen72,2459
+    std::string filename() const { return m_filename; }filename74,2536
+    virtual void close() VL_MT_UNSAFE_ONE { flush(); }close76,2617
+    virtual void flush() VL_MT_UNSAFE_ONE {}flush78,2709
+    VerilatedSerialize& write(const void* __restrict datap, size_t size) VL_MT_UNSAFE_ONE {write80,2783
+    VerilatedSerialize& bufferCheck() VL_MT_UNSAFE_ONE {bufferCheck94,3314
+class VerilatedDeserialize VL_NOT_FINAL {VL_NOT_FINAL111,4070
+    uint8_t* m_cp;  // Current pointer into m_bufp bufferm_cp115,4204
+    uint8_t* m_bufp;  // Output bufferm_bufp116,4262
+    uint8_t* m_endp = nullptr;  // Last valid byte in m_bufp bufferm_endp117,4301
+    bool m_isOpen = false;  // True indicates open file/streamm_isOpen118,4369
+    std::string m_filename;  // Filename, for error messagesm_filename119,4432
+    VerilatedAssertOneThread m_assertOne;  // Assert only called from single threadm_assertOne120,4493
+    static constexpr size_t bufferSize() { return 256 * 1024; }  // See below for slack calculatbufferSize122,4578
+    static constexpr size_t bufferInsertSize() { return 16 * 1024; }bufferInsertSize123,4678
+    virtual void fill() = 0;fill125,4748
+    void header() VL_MT_UNSAFE_ONE;header126,4777
+    void trailer() VL_MT_UNSAFE_ONE;trailer127,4813
+    VL_UNCOPYABLE(VerilatedDeserialize);VL_UNCOPYABLE130,4871
+    VerilatedDeserialize() {VerilatedDeserialize134,4939
+    virtual ~VerilatedDeserialize() {~VerilatedDeserialize139,5058
+    bool isOpen() const { return m_isOpen; }isOpen145,5300
+    std::string filename() const { return m_filename; }filename147,5377
+    virtual void close() VL_MT_UNSAFE_ONE { flush(); }close149,5458
+    virtual void flush() VL_MT_UNSAFE_ONE {}flush151,5550
+    VerilatedDeserialize& read(void* __restrict datap, size_t size) VL_MT_UNSAFE_ONE {read153,5625
+    VerilatedDeserialize& readAssert(const void* __restrict datap, size_t size) VL_MT_UNSAFE_ONEreadAssert168,6203
+    VerilatedDeserialize& readAssert(uint64_t data) VL_MT_UNSAFE_ONE {readAssert169,6301
+    bool readDiffers(const void* __restrict datap, size_t size) VL_MT_UNSAFE_ONE;readDiffers174,6436
+    VerilatedDeserialize& bufferCheck() VL_MT_UNSAFE_ONE {bufferCheck175,6518
+class VerilatedSave final : public VerilatedSerialize {VerilatedSave189,7130
+    int m_fd = -1;  // File descriptor we're writing tom_fd191,7195
+    void closeImp() VL_MT_UNSAFE_ONE;closeImp193,7252
+    void flushImp() VL_MT_UNSAFE_ONE;flushImp194,7290
+    VerilatedSave() = default;VerilatedSave199,7386
+    ~VerilatedSave() override { closeImp(); }~VerilatedSave201,7451
+    void open(const char* filenamep) VL_MT_UNSAFE_ONE;open204,7566
+    void open(const std::string& filename) VL_MT_UNSAFE_ONE { open(filename.c_str()); }open206,7675
+    void close() override VL_MT_UNSAFE_ONE { closeImp(); }close208,7796
+    void flush() override VL_MT_UNSAFE_ONE { flushImp(); }flush210,7882
+class VerilatedRestore final : public VerilatedDeserialize {VerilatedRestore219,8190
+    int m_fd = -1;  // File descriptor we're writing tom_fd221,8260
+    void closeImp() VL_MT_UNSAFE_ONE;closeImp223,8317
+    void flushImp() VL_MT_UNSAFE_ONE {}flushImp224,8355
+    VerilatedRestore() = default;VerilatedRestore229,8453
+    ~VerilatedRestore() override { closeImp(); }~VerilatedRestore231,8521
+    void open(const char* filenamep) VL_MT_UNSAFE_ONE;open235,8640
+    void open(const std::string& filename) VL_MT_UNSAFE_ONE { open(filename.c_str()); }open237,8749
+    void close() override VL_MT_UNSAFE_ONE { closeImp(); }close239,8860
+    void flush() override VL_MT_UNSAFE_ONE { flushImp(); }flush240,8919
+    void fill() override VL_MT_UNSAFE_ONE;fill241,8978
+inline VerilatedSerialize& operator<<(VerilatedSerialize& os, const uint64_t& rhs) {operator <<246,9106
+inline VerilatedDeserialize& operator>>(VerilatedDeserialize& os, uint64_t& rhs) {operator >>249,9233
+inline VerilatedSerialize& operator<<(VerilatedSerialize& os, const uint32_t& rhs) {operator <<252,9357
+inline VerilatedDeserialize& operator>>(VerilatedDeserialize& os, uint32_t& rhs) {operator >>255,9484
+inline VerilatedSerialize& operator<<(VerilatedSerialize& os, const uint16_t& rhs) {operator <<258,9608
+inline VerilatedDeserialize& operator>>(VerilatedDeserialize& os, uint16_t& rhs) {operator >>261,9735
+inline VerilatedSerialize& operator<<(VerilatedSerialize& os, const uint8_t& rhs) {operator <<264,9859
+inline VerilatedDeserialize& operator>>(VerilatedDeserialize& os, uint8_t& rhs) {operator >>267,9985
+inline VerilatedSerialize& operator<<(VerilatedSerialize& os, const bool& rhs) {operator <<270,10108
+inline VerilatedDeserialize& operator>>(VerilatedDeserialize& os, bool& rhs) {operator >>273,10231
+inline VerilatedSerialize& operator<<(VerilatedSerialize& os, const double& rhs) {operator <<276,10351
+inline VerilatedDeserialize& operator>>(VerilatedDeserialize& os, double& rhs) {operator >>279,10476
+inline VerilatedSerialize& operator<<(VerilatedSerialize& os, const float& rhs) {operator <<282,10598
+inline VerilatedDeserialize& operator>>(VerilatedDeserialize& os, float& rhs) {operator >>285,10722
+inline VerilatedSerialize& operator<<(VerilatedSerialize& os, const std::string& rhs) {operator <<288,10843
+inline VerilatedDeserialize& operator>>(VerilatedDeserialize& os, std::string& rhs) {operator >>293,11025
+VerilatedSerialize& operator<<(VerilatedSerialize& os, VerilatedContext* rhsp);operator <<300,11249
+VerilatedDeserialize& operator>>(VerilatedDeserialize& os, VerilatedContext* rhsp);operator >>301,11329
+VerilatedSerialize& operator<<(VerilatedSerialize& os, VlAssocArray<T_Key, T_Value>& rhs) {operator <<304,11452
+VerilatedDeserialize& operator>>(VerilatedDeserialize& os, VlAssocArray<T_Key, T_Value>& rhs) {operator >>316,11861
+
+/usr/share/verilator/include/verilated_sc.h,393
+#define VERILATOR_VERILATED_SC_H_VERILATOR_VERILATED_SC_H_28,1140
+#define VL_SC_BV_DATAP(VL_SC_BV_DATAP38,1515
+class VlScBvExposer final : public sc_dt::sc_bv_base {VlScBvExposer40,1634
+    static const uint32_t* sp_datap(const sc_dt::sc_bv_base& base) VL_MT_SAFE {sp_datap42,1697
+    const uint32_t* sp_datatp() const { return reinterpret_cast<uint32_t*>(m_data); }sp_datatp45,1853
+
+/usr/share/verilator/include/verilated_sym_props.h,6093
+#define VERILATOR_VERILATED_SYM_PROPS_H_VERILATOR_VERILATED_SYM_PROPS_H_27,1024
+class VerilatedRange final {VerilatedRange38,1322
+    int m_left = 0;m_left39,1351
+    int m_right = 0;m_right40,1371
+    VerilatedRange() = default;VerilatedRange45,1473
+    void init(int left, int right) {init46,1505
+    VerilatedRange(int left, int right)VerilatedRange52,1605
+    ~VerilatedRange() = default;~VerilatedRange55,1696
+    int left() const VL_PURE { return m_left; }left56,1729
+    int right() const VL_PURE { return m_right; }right57,1777
+    int low() const VL_PURE { return (m_left < m_right) ? m_left : m_right; }low58,1827
+    int high() const VL_PURE { return (m_left > m_right) ? m_left : m_right; }high59,1905
+    int elements() const VL_PURE {elements60,1984
+    int increment() const VL_PURE { return (m_left >= m_right) ? 1 : -1; }increment63,2122
+class VerilatedVarProps VL_NOT_FINAL {VL_NOT_FINAL70,2386
+    static constexpr uint32_t MAGIC = 0xddc4f829UL;MAGIC72,2438
+    const uint32_t m_magic;  // Magic numberm_magic74,2505
+    const VerilatedVarType m_vltype;  // Data typem_vltype75,2550
+    const VerilatedVarFlags m_vlflags;  // Directionm_vlflags76,2601
+    const int m_pdims;  // Packed dimensions, 0 = nonem_pdims77,2654
+    const int m_udims;  // Unpacked dimensions, 0 = nonem_udims78,2709
+    VerilatedRange m_packed;  // Packed array rangem_packed79,2766
+    std::vector<VerilatedRange> m_unpacked;  // Unpacked array rangesm_unpacked80,2818
+    void initUnpacked(const int* ulims) {initUnpacked81,2888
+    VerilatedVarProps(VerilatedVarType vltype, VerilatedVarFlags vlflags, int pdims, int udims)VerilatedVarProps91,3227
+    class Unpacked {};Unpacked101,3502
+    VerilatedVarProps(VerilatedVarType vltype, int vlflags)VerilatedVarProps103,3547
+    VerilatedVarProps(VerilatedVarType vltype, int vlflags, Unpacked, int udims, const int* ulimVerilatedVarProps109,3789
+    class Packed {};Packed118,4127
+    VerilatedVarProps(VerilatedVarType vltype, int vlflags, Packed, int pl, int pr)VerilatedVarProps119,4148
+    VerilatedVarProps(VerilatedVarType vltype, int vlflags, Packed, int pl, int pr, Unpacked,VerilatedVarProps126,4441
+    ~VerilatedVarProps() = default;~VerilatedVarProps137,4834
+    bool magicOk() const { return m_magic == MAGIC; }magicOk139,4885
+    VerilatedVarType vltype() const VL_MT_SAFE { return m_vltype; }vltype140,4939
+    VerilatedVarFlags vldir() const {vldir141,5007
+    uint32_t entSize() const VL_MT_SAFE;entSize144,5143
+    bool isPublicRW() const { return ((m_vlflags & VLVF_PUB_RW) != 0); }isPublicRW145,5184
+    bool isDpiCLayout() const { return ((m_vlflags & VLVF_DPI_CLAY) != 0); }isDpiCLayout147,5297
+    int udims() const VL_MT_SAFE { return m_udims; }udims148,5374
+    int dims() const { return m_pdims + m_udims; }dims149,5427
+    const VerilatedRange& packed() const VL_MT_SAFE { return m_packed; }packed150,5478
+    const VerilatedRange& unpacked() const { return m_unpacked[0]; }unpacked151,5551
+    int left(int dim) const VL_MT_SAFE {left153,5641
+    int right(int dim) const VL_MT_SAFE {right158,5905
+    int low(int dim) const VL_MT_SAFE {low163,6172
+    int high(int dim) const VL_MT_SAFE {high168,6433
+    int increment(int dim) const {increment173,6697
+    int elements(int dim) const VL_MT_SAFE {elements178,6965
+    size_t totalSize() const;totalSize184,7294
+    void* datapAdjustIndex(void* datap, int dim, int indx) const VL_MT_SAFE;datapAdjustIndex186,7413
+class VerilatedDpiOpenVar final {VerilatedDpiOpenVar192,7610
+    const VerilatedVarProps* const m_propsp;  // Variable propertiesm_propsp194,7659
+    void* const m_datap;  // Location of data (local to thread always, so safe)m_datap195,7728
+    VerilatedDpiOpenVar(const VerilatedVarProps* propsp, void* datap)VerilatedDpiOpenVar198,7836
+    VerilatedDpiOpenVar(const VerilatedVarProps* propsp, const void* datap)VerilatedDpiOpenVar201,7961
+    ~VerilatedDpiOpenVar() = default;~VerilatedDpiOpenVar204,8111
+    void* datap() const VL_MT_SAFE { return m_datap; }datap206,8164
+    bool magicOk() const { return m_propsp->magicOk(); }magicOk208,8259
+    VerilatedVarType vltype() const { return m_propsp->vltype(); }vltype209,8316
+    bool isDpiStdLayout() const { return m_propsp->isDpiCLayout(); }isDpiStdLayout210,8383
+    const VerilatedRange& packed() const { return m_propsp->packed(); }packed211,8452
+    const VerilatedRange& unpacked() const { return m_propsp->unpacked(); }unpacked212,8524
+    int udims() const VL_MT_SAFE { return m_propsp->udims(); }udims213,8600
+    int left(int dim) const VL_MT_SAFE { return m_propsp->left(dim); }left214,8663
+    int right(int dim) const VL_MT_SAFE { return m_propsp->right(dim); }right215,8734
+    int low(int dim) const { return m_propsp->low(dim); }low216,8807
+    int high(int dim) const { return m_propsp->high(dim); }high217,8865
+    int increment(int dim) const { return m_propsp->increment(dim); }increment218,8925
+    int elements(int dim) const { return m_propsp->elements(dim); }elements219,8995
+    size_t totalSize() const { return m_propsp->totalSize(); }totalSize220,9063
+    void* datapAdjustIndex(void* datap, int dim, int indx) const VL_MT_SAFE {datapAdjustIndex221,9126
+class VerilatedVar final : public VerilatedVarProps {VerilatedVar230,9460
+    void* const m_datap;  // Location of datam_datap232,9529
+    const char* const m_namep;  // Name - slowpathm_namep233,9575
+    const bool m_isParam;m_isParam235,9637
+    VerilatedVar(const char* namep, void* datap, VerilatedVarType vltype,VerilatedVar238,9716
+    ~VerilatedVar() = default;~VerilatedVar246,10043
+    void* datap() const { return m_datap; }datap248,10091
+    const VerilatedRange& range() const { return packed(); }  // Deprecatedrange249,10135
+    const VerilatedRange& array() const { return unpacked(); }  // Deprecatedarray250,10211
+    const char* name() const { return m_namep; }name251,10289
+    bool isParam() const { return m_isParam; }isParam252,10338
+
+/usr/share/verilator/include/verilated_syms.h,898
+#define VERILATOR_VERILATED_SYMS_H_VERILATOR_VERILATED_SYMS_H_30,1199
+struct VerilatedCStrCmp {VerilatedCStrCmp45,1506
+    bool operator()(const char* a, const char* b) const { return std::strcmp(a, b) < 0; }operator ()46,1532
+class VerilatedScopeNameMap finalVerilatedScopeNameMap51,1774
+    VerilatedScopeNameMap() = default;VerilatedScopeNameMap54,1894
+    ~VerilatedScopeNameMap() = default;~VerilatedScopeNameMap55,1933
+class VerilatedVarNameMap final : public std::map<const char*, VerilatedVar, VerilatedCStrCmp> {VerilatedVarNameMap60,2131
+    VerilatedVarNameMap() = default;VerilatedVarNameMap62,2236
+    ~VerilatedVarNameMap() = default;~VerilatedVarNameMap63,2273
+class VerilatedHierarchyMap finalVerilatedHierarchyMap68,2455
+    VerilatedHierarchyMap() = default;VerilatedHierarchyMap71,2590
+    ~VerilatedHierarchyMap() = default;~VerilatedHierarchyMap72,2629
+
+/usr/share/verilator/include/verilated_threads.h,2913
+#define VERILATOR_VERILATED_THREADS_H_VERILATOR_VERILATED_THREADS_H_24,896
+using VlSelfP = void*;VlSelfP51,1560
+using VlExecFnp = void (*)(VlSelfP, bool);VlExecFnp53,1584
+class VlMTaskVertex final {VlMTaskVertex56,1670
+    static std::atomic<uint64_t> s_yields;  // Statisticss_yields58,1713
+    std::atomic<uint32_t> m_upstreamDepsDone;m_upstreamDepsDone76,2546
+    const uint32_t m_upstreamDepCount;m_upstreamDepCount77,2592
+    explicit VlMTaskVertex(uint32_t upstreamDepCount);VlMTaskVertex85,2811
+    ~VlMTaskVertex() = default;~VlMTaskVertex86,2866
+    static uint64_t yields() { return s_yields; }yields88,2899
+    static void yieldThread() {yieldThread89,2949
+    bool signalUpstreamDone(bool evenCycle) {signalUpstreamDone97,3251
+    bool areUpstreamDepsDone(bool evenCycle) const {areUpstreamDepsDone110,3825
+    void waitUntilUpstreamDone(bool evenCycle) const {waitUntilUpstreamDone114,4029
+class VlWorkerThread final {VlWorkerThread127,4358
+    struct ExecRec {ExecRec130,4409
+        VlExecFnp m_fnp = nullptr;  // Function to executem_fnp131,4430
+        VlSelfP m_selfp = nullptr;  // Symbol table to executem_selfp132,4489
+        bool m_evenCycle = false;  // Even/odd for flag alternationm_evenCycle133,4552
+        ExecRec() = default;ExecRec134,4620
+        ExecRec(VlExecFnp fnp, VlSelfP selfp, bool evenCycle)ExecRec135,4649
+    mutable VerilatedMutex m_mutex;m_mutex142,4828
+    std::condition_variable_any m_cv;m_cv143,4864
+    bool m_waiting VL_GUARDED_BY(m_mutex) = false;VL_GUARDED_BY145,4969
+    std::vector<ExecRec> m_ready VL_GUARDED_BY(m_mutex);VL_GUARDED_BY150,5215
+    std::atomic<size_t> m_ready_size;m_ready_size152,5326
+    std::thread m_cthread;  // Underlying C++ thread recordm_cthread154,5365
+    VL_UNCOPYABLE(VlWorkerThread);VL_UNCOPYABLE156,5426
+    explicit VlWorkerThread(VerilatedContext* contextp);VlWorkerThread160,5490
+    ~VlWorkerThread();~VlWorkerThread161,5547
+    void dequeWork(ExecRec* workp) VL_MT_SAFE_EXCLUDES(m_mutex) {dequeWork165,5615
+    void addTask(VlExecFnp fnp, VlSelfP selfp, bool evenCycle = false)addTask185,6400
+    void shutdown();  // Finish current tasks, then terminate threadshutdown197,6804
+    void wait();  // Blocks calling thread until all tasks complete in this threadwait198,6873
+    void workerLoop();workerLoop200,6957
+    static void startWorker(VlWorkerThread* workerp, VerilatedContext* contextp);startWorker201,6980
+class VlThreadPool final : public VerilatedVirtualBase {VlThreadPool204,7066
+    std::vector<VlWorkerThread*> m_workers;  // our workersm_workers206,7138
+    VlThreadPool(VerilatedContext* contextp, unsigned nThreads);VlThreadPool213,7429
+    int numThreads() const { return m_workers.size(); }numThreads217,7540
+    VlWorkerThread* workerp(int index) {workerp218,7596
+    VL_UNCOPYABLE(VlThreadPool);VL_UNCOPYABLE225,7777
+
+/usr/share/verilator/include/verilated_timing.h,9375
+#define VERILATOR_VERILATED_TIMING_H_VERILATOR_VERILATED_TIMING_H_26,1007
+  namespace std {std38,1480
+#  define __cpp_impl_coroutine __cpp_impl_coroutine43,1640
+   namespace std { // Bring coroutine library into std::experimental, as Clang < 14 expects it tstd47,1790
+       namespace experimental {experimental48,1897
+#define VL_UNKNOWN VL_UNKNOWN57,2058
+class VlFileLineDebug final {VlFileLineDebug63,2288
+    const char* m_filename = nullptr;m_filename66,2349
+    int m_lineno = 0;m_lineno67,2387
+    VlFileLineDebug() = default;VlFileLineDebug73,2462
+    VlFileLineDebug(const char* filename, int lineno)VlFileLineDebug74,2495
+    const char* filename() const { return m_filename; }filename84,2674
+    int lineno() const { return m_lineno; }lineno85,2730
+class VlCoroutineHandle final {VlCoroutineHandle94,3126
+    VL_UNCOPYABLE(VlCoroutineHandle);VL_UNCOPYABLE95,3158
+    std::coroutine_handle<> m_coro;  // The wrapped coroutine handlem_coro98,3212
+    VlProcessRef m_process;  // Data of the suspended process, null if not neededm_process99,3281
+    VlFileLineDebug m_fileline;m_fileline100,3363
+    VlCoroutineHandle(VlProcessRef process)VlCoroutineHandle107,3509
+    VlCoroutineHandle(std::coroutine_handle<> coro, VlProcessRef process, VlFileLineDebug fileliVlCoroutineHandle112,3677
+    VlCoroutineHandle(VlCoroutineHandle&& moved)VlCoroutineHandle121,4039
+    ~VlCoroutineHandle() {~VlCoroutineHandle126,4286
+    auto& operator=(VlCoroutineHandle&& moved) {operator =138,4741
+    void resume();resume145,5055
+    void dump() const;dump147,5090
+class VlDelayScheduler final {VlDelayScheduler155,5377
+    struct VlDelayedCoroutine {VlDelayedCoroutine157,5421
+        uint64_t m_timestep;  // Simulation time when the coroutine should be resumedm_timestep158,5453
+        VlCoroutineHandle m_handle;  // The suspended coroutine to be resumedm_handle159,5539
+        bool operator<(const VlDelayedCoroutine& other) const {operator <162,5687
+        void dump() const;dump166,5827
+    using VlDelayedCoroutineQueue = std::vector<VlDelayedCoroutine>;VlDelayedCoroutineQueue169,5868
+    VerilatedContext& m_context;m_context172,5953
+    VlDelayedCoroutineQueue m_queue;  // Coroutines to be restored at a certain simulation timem_queue173,5986
+    explicit VlDelayScheduler(VerilatedContext& context)VlDelayScheduler177,6111
+    void resume();resume181,6280
+    uint64_t nextTimeSlot() const;nextTimeSlot184,6407
+    bool empty() const { return m_queue.empty(); }empty186,6491
+    bool awaitingCurrentTime() const {awaitingCurrentTime188,6612
+    void dump() const;dump192,6748
+    auto delay(uint64_t delay, VlProcessRef process, const char* filename = VL_UNKNOWN,delay195,6846
+        struct Awaitable {Awaitable197,6967
+            VlProcessRef process;  // Data of the suspended process, null if not neededprocess198,6994
+            VlDelayedCoroutineQueue& queue;queue199,7082
+            uint64_t delay;delay200,7126
+            VlFileLineDebug fileline;fileline201,7154
+            bool await_ready() const { return false; }  // Always suspendawait_ready203,7193
+            void await_suspend(std::coroutine_handle<> coro) {await_suspend204,7267
+            void await_resume() const {}await_resume209,7563
+class VlTriggerScheduler final {VlTriggerScheduler223,8322
+    using VlCoroutineVec = std::vector<VlCoroutineHandle>;VlCoroutineVec225,8368
+    VlCoroutineVec m_uncommitted;  // Coroutines suspended before commit() was calledm_uncommitted228,8443
+    VlCoroutineVec m_ready;  // Coroutines that can be resumed (all coros from m_uncommitted arem_ready230,8583
+    VlCoroutineVec m_resumeQueue;  // Coroutines being resumed by resume(); kept as a field tom_resumeQueue232,8736
+    void resume(const char* eventDescription = VL_UNKNOWN);resume240,9187
+    void commit(const char* eventDescription = VL_UNKNOWN);commit242,9305
+    bool empty() const { return m_ready.empty() && m_uncommitted.empty(); }empty244,9406
+    void dump(const char* eventDescription) const;dump246,9498
+    auto trigger(bool commit, VlProcessRef process, const char* eventDescription = VL_UNKNOWN,trigger249,9616
+        struct Awaitable {Awaitable253,9941
+            VlCoroutineVec& suspended;  // Coros waiting on triggersuspended254,9968
+            VlProcessRef process;  // Data of the suspended process, null if not neededprocess255,10036
+            VlFileLineDebug fileline;fileline256,10124
+            bool await_ready() const { return false; }  // Always suspendawait_ready258,10163
+            void await_suspend(std::coroutine_handle<> coro) {await_suspend259,10237
+            void await_resume() const {}await_resume262,10379
+class VlDynamicTriggerScheduler final {VlDynamicTriggerScheduler286,11403
+    using VlCoroutineVec = std::vector<VlCoroutineHandle>;VlCoroutineVec288,11456
+    VlCoroutineVec m_suspended;  // Suspended coroutines awaiting trigger evaluationm_suspended291,11531
+    VlCoroutineVec m_evaluated;  // Coroutines currently being evaluated (for evaluate())m_evaluated292,11616
+    VlCoroutineVec m_triggered;  // Coroutines whose triggers were set, and are awaiting resumptm_triggered293,11706
+    VlCoroutineVec m_post;  // Coroutines awaiting the post update step (only relevant for triggm_post294,11806
+    auto awaitable(VlProcessRef process, VlCoroutineVec& queue, const char* filename, int linenoawaitable298,12003
+        struct Awaitable {Awaitable299,12103
+            VlProcessRef process;  // Data of the suspended process, null if not neededprocess300,12130
+            VlCoroutineVec& suspended;  // Coros waiting on triggersuspended301,12218
+            VlFileLineDebug fileline;fileline302,12286
+            bool await_ready() const { return false; }  // Always suspendawait_ready304,12325
+            void await_suspend(std::coroutine_handle<> coro) {await_suspend305,12399
+            void await_resume() const {}await_resume308,12541
+    bool evaluate();evaluate315,12771
+    void doPostUpdates();doPostUpdates317,12890
+    void resume();resume319,13004
+    void dump() const;dump321,13039
+    auto evaluation(VlProcessRef process, const char* eventDescription, const char* filename,evaluation324,13130
+    auto postUpdate(VlProcessRef process, const char* eventDescription, const char* filename,postUpdate331,13561
+    auto resumption(VlProcessRef process, const char* eventDescription, const char* filename,resumption339,14018
+struct VlForever {VlForever351,14585
+    bool await_ready() const { return false; }  // Always suspendawait_ready352,14604
+    void await_suspend(std::coroutine_handle<> coro) const { coro.destroy(); }await_suspend353,14670
+    void await_resume() const {}await_resume354,14749
+class VlForkSync final {VlForkSync360,14941
+    struct VlJoin {VlJoin363,15139
+        size_t m_counter = 0;  // When reaches 0, resume suspended coroutinem_counter364,15159
+        VlCoroutineHandle m_susp;  // Coroutine to resumem_susp365,15236
+    std::shared_ptr<VlJoin> m_join;m_join369,15360
+    void init(size_t count, VlProcessRef process) { m_join.reset(new VlJoin{count, {process}}); init373,15479
+    void done(const char* filename = VL_UNKNOWN, int lineno = 0);done376,15706
+    auto join(VlProcessRef process, const char* filename = VL_UNKNOWN, int lineno = 0) {join378,15821
+        struct Awaitable {Awaitable382,16050
+            VlProcessRef process;  // Data of the suspended process, null if not neededprocess383,16077
+            const std::shared_ptr<VlJoin> join;  // Join to await onjoin384,16165
+            VlFileLineDebug fileline;fileline385,16234
+            bool await_ready() { return join->m_counter == 0; }  // Suspend if join still existsawait_ready387,16273
+            void await_suspend(std::coroutine_handle<> coro) {await_suspend388,16370
+            void await_resume() const {}await_resume391,16505
+class VlCoroutine final {VlCoroutine401,16824
+    struct VlPromise {VlPromise404,16872
+        std::coroutine_handle<> m_continuation;  // Coroutine to resume after this one finishesm_continuation405,16895
+        VlCoroutine* m_corop = nullptr;  // Pointer to the coroutine return objectm_corop406,16991
+        ~VlPromise();~VlPromise408,17075
+        VlCoroutine get_return_object() { return {this}; }get_return_object410,17098
+        std::suspend_never initial_suspend() const { return {}; }initial_suspend413,17213
+        std::suspend_never final_suspend() noexcept;final_suspend417,17403
+        void unhandled_exception() const { std::abort(); }unhandled_exception419,17457
+        void return_void() const {}return_void420,17516
+    VlPromise* m_promisep;  // The promise created for this coroutinem_promisep424,17575
+    using promise_type = VlPromise;  // promise_type has to be publicpromise_type428,17667
+    VlCoroutine(VlPromise* promisep)VlCoroutine433,17822
+    VlCoroutine(VlCoroutine&& other)VlCoroutine439,18051
+    ~VlCoroutine() {~VlCoroutine443,18211
+    bool await_ready() const noexcept { return !m_promisep; }await_ready450,18453
+    void await_suspend(std::coroutine_handle<> coro) { m_promisep->m_continuation = coro; }await_suspend452,18594
+    void await_resume() const noexcept {}await_resume453,18686
+
+/usr/share/verilator/include/verilated_trace_defs.h,887
+#define VERILATOR_VERILATED_TRACE_DEFS_H_VERILATOR_VERILATED_TRACE_DEFS_H_22,861
+enum VltTraceScope {VltTraceScope27,1075
+    VLT_TRACE_SCOPE_MODULE = 0,VLT_TRACE_SCOPE_MODULE28,1096
+    VLT_TRACE_SCOPE_TASK = 1,VLT_TRACE_SCOPE_TASK29,1128
+    VLT_TRACE_SCOPE_FUNCTION = 2,VLT_TRACE_SCOPE_FUNCTION30,1158
+    VLT_TRACE_SCOPE_BEGIN = 3,VLT_TRACE_SCOPE_BEGIN31,1192
+    VLT_TRACE_SCOPE_FORK = 4,VLT_TRACE_SCOPE_FORK32,1223
+    VLT_TRACE_SCOPE_GENERATE = 5,VLT_TRACE_SCOPE_GENERATE33,1253
+    VLT_TRACE_SCOPE_STRUCT = 6,VLT_TRACE_SCOPE_STRUCT34,1287
+    VLT_TRACE_SCOPE_UNION = 7,VLT_TRACE_SCOPE_UNION35,1319
+    VLT_TRACE_SCOPE_CLASS = 8,VLT_TRACE_SCOPE_CLASS36,1350
+    VLT_TRACE_SCOPE_INTERFACE = 9,VLT_TRACE_SCOPE_INTERFACE37,1381
+    VLT_TRACE_SCOPE_PACKAGE = 10,VLT_TRACE_SCOPE_PACKAGE38,1416
+    VLT_TRACE_SCOPE_PROGRAM = 11VLT_TRACE_SCOPE_PROGRAM39,1450
+
+/usr/share/verilator/include/verilated_trace.h,14032
+#define VERILATOR_VERILATED_TRACE_H_VERILATOR_VERILATED_TRACE_H_23,874
+class VerilatedThreadQueue final {  // LCOV_EXCL_LINE  // lcov bugVerilatedThreadQueue54,1507
+    mutable VerilatedMutex m_mutex;  // Protects m_queuem_mutex56,1583
+    std::condition_variable_any m_cv;m_cv57,1640
+    std::deque<T> m_queue VL_GUARDED_BY(m_mutex);VL_GUARDED_BY58,1678
+    void put(T value) VL_MT_SAFE_EXCLUDES(m_mutex) {put62,1784
+    void put_front(T value) VL_MT_SAFE_EXCLUDES(m_mutex) {put_front69,2001
+    T get() VL_MT_SAFE_EXCLUDES(m_mutex) {get76,2253
+    bool tryGet(T& result) VL_MT_SAFE_EXCLUDES(m_mutex) {tryGet86,2577
+class VerilatedTraceOffloadCommand final {VerilatedTraceOffloadCommand97,2971
+    enum : uint8_t {__anon6d92665d0103101,3136
+        CHG_BIT_0 = 0x0,CHG_BIT_0102,3157
+        CHG_BIT_1 = 0x1,CHG_BIT_1103,3182
+        CHG_CDATA = 0x2,CHG_CDATA104,3207
+        CHG_SDATA = 0x3,CHG_SDATA105,3232
+        CHG_IDATA = 0x4,CHG_IDATA106,3257
+        CHG_QDATA = 0x5,CHG_QDATA107,3282
+        CHG_WDATA = 0x6,CHG_WDATA108,3307
+        CHG_DOUBLE = 0x8,CHG_DOUBLE109,3332
+        CHG_EVENT = 0x9,CHG_EVENT110,3358
+        TIME_CHANGE = 0xc,TIME_CHANGE112,3407
+        TRACE_BUFFER = 0xd,TRACE_BUFFER113,3434
+        END = 0xe,  // End of bufferEND114,3462
+        SHUTDOWN = 0xf  // Shutdown worker thread, also marks end of bufferSHUTDOWN115,3499
+class VerilatedTraceConfig final {VerilatedTraceConfig123,3769
+    const bool m_useParallel;  // Use parallel tracingm_useParallel125,3812
+    const bool m_useOffloading;  // Offloading trace renderingm_useOffloading126,3867
+    const bool m_useFstWriterThread;  // Use the separate FST writer threadm_useFstWriterThread127,3930
+    VerilatedTraceConfig(bool useParallel, bool useOffloading, bool useFstWriterThread)VerilatedTraceConfig129,4007
+class VerilatedTrace VL_NOT_FINAL {VL_NOT_FINAL141,4504
+    using Buffer = VerilatedTraceBuffer<T_Buffer>;Buffer143,4548
+    using OffloadBuffer = VerilatedTraceOffloadBuffer<T_Buffer>;OffloadBuffer144,4599
+    using initCb_t = void (*)(void*, T_Trace*, uint32_t);  // Type of init callbacksinitCb_t149,4779
+    using dumpCb_t = void (*)(void*, Buffer*);  // Type of dump callbacksdumpCb_t150,4864
+    using dumpOffloadCb_t = void (*)(void*, OffloadBuffer*);  // Type of offload dump callbacksdumpOffloadCb_t151,4938
+    using cleanupCb_t = void (*)(void*, T_Trace*);  // Type of cleanup callbackscleanupCb_t152,5034
+    struct CallbackRecord {CallbackRecord160,5266
+        union {  // The callback__anon6d92665d020a165,5562
+            initCb_t m_initCb;m_initCb166,5595
+            dumpCb_t m_dumpCb;m_dumpCb167,5626
+            dumpOffloadCb_t m_dumpOffloadCb;m_dumpOffloadCb168,5657
+            cleanupCb_t m_cleanupCb;m_cleanupCb169,5702
+        void* m_userp;  // The user pointer to pass to the callback (the symbol table)m_userp171,5750
+        CallbackRecord(initCb_t cb, void* userp)CallbackRecord172,5837
+        CallbackRecord(dumpCb_t cb, void* userp)CallbackRecord175,5945
+        CallbackRecord(dumpOffloadCb_t cb, void* userp)CallbackRecord178,6053
+        CallbackRecord(cleanupCb_t cb, void* userp)CallbackRecord181,6175
+    bool m_offload = false;  // Use the offload threadm_offload186,6297
+    bool m_parallel = false;  // Use parallel tracingm_parallel187,6352
+    struct ParallelWorkerData {ParallelWorkerData189,6407
+        const dumpCb_t m_cb;  // The callbackm_cb190,6439
+        void* const m_userp;  // The use pointer to pass to the callbackm_userp191,6485
+        Buffer* const m_bufp;  // The buffer pointer to pass to the callbackm_bufp192,6558
+        std::atomic<bool> m_ready{false};  // The ready flagm_ready193,6635
+        mutable VerilatedMutex m_mutex;  // Mutex for suspension until readym_mutex194,6696
+        std::condition_variable_any m_cv;  // Condition variable for suspensionm_cv195,6773
+        bool m_waiting VL_GUARDED_BY(m_mutex) = false;  // Whether a thread is suspended in waitVL_GUARDED_BY196,6853
+        void wait();wait198,6953
+        ParallelWorkerData(dumpCb_t cb, void* userp, Buffer* bufp)ParallelWorkerData200,6975
+    static void parallelWorkerTask(void*, bool);parallelWorkerTask207,7196
+    uint32_t* m_sigs_oldvalp = nullptr;  // Previous value storem_sigs_oldvalp210,7257
+    EData* m_sigs_enabledp = nullptr;  // Bit vector of enabled codes (nullptr = all on)m_sigs_enabledp211,7322
+    std::vector<bool> m_sigs_enabledVec;  // Staging for m_sigs_enabledpm_sigs_enabledVec213,7420
+    std::vector<CallbackRecord> m_initCbs;  // Routines to initialize tracingm_initCbs214,7493
+    std::vector<CallbackRecord> m_fullCbs;  // Routines to perform full dumpm_fullCbs215,7571
+    std::vector<CallbackRecord> m_fullOffloadCbs;  // Routines to perform offloaded full dumpm_fullOffloadCbs216,7648
+    std::vector<CallbackRecord> m_chgCbs;  // Routines to perform incremental dumpm_chgCbs217,7742
+    std::vector<CallbackRecord> m_chgOffloadCbs;  // Routines to perform offloaded incremental dm_chgOffloadCbs218,7825
+    std::vector<CallbackRecord> m_cleanupCbs;  // Routines to call at the end of dumpm_cleanupCbs219,7925
+    bool m_fullDump = true;  // Whether a full dump is required on the next call to 'dump'm_fullDump220,8011
+    uint32_t m_nextCode = 0;  // Next code number to assignm_nextCode221,8102
+    uint32_t m_numSignals = 0;  // Number of distinct signalsm_numSignals222,8162
+    uint32_t m_maxBits = 0;  // Number of bits in the widest signalm_maxBits223,8224
+    std::vector<std::string> m_namePrefixStack{""};  // Path prefixes to add to signal namesm_namePrefixStack224,8292
+    std::vector<std::pair<int, std::string>> m_dumpvars;  // dumpvar() entriesm_dumpvars225,8385
+    char m_scopeEscape = '.';m_scopeEscape226,8464
+    double m_timeRes = 1e-9;  // Time resolution (ns/ms etc)m_timeRes227,8494
+    double m_timeUnit = 1e-0;  // Time units (ns/ms etc)m_timeUnit228,8555
+    uint64_t m_timeLastDump = 0;  // Last time we did a dumpm_timeLastDump229,8612
+    bool m_didSomeDump = false;  // Did at least one dump (i.e.: m_timeLastDump is valid)m_didSomeDump230,8673
+    VerilatedContext* m_contextp = nullptr;  // The context used by the traced modelsm_contextp231,8763
+    std::unordered_set<const VerilatedModel*> m_models;  // The collection of models being tracem_models232,8849
+    void addCallbackRecord(std::vector<CallbackRecord>& cbVec, CallbackRecord&& cbRec)addCallbackRecord234,8948
+    T_Trace* self() { return static_cast<T_Trace*>(this); }self239,9224
+    void runCallbacks(const std::vector<CallbackRecord>& cbVec);runCallbacks241,9285
+    void runOffloadedCallbacks(const std::vector<CallbackRecord>& cbVec);runOffloadedCallbacks242,9350
+    static void onFlush(void* selfp) VL_MT_UNSAFE_ONE;onFlush245,9471
+    static void onExit(void* selfp) VL_MT_UNSAFE_ONE;onExit247,9563
+    uint32_t m_numOffloadBuffers = 0;m_numOffloadBuffers250,9682
+    size_t m_offloadBufferSize = 0;m_offloadBufferSize252,9751
+    VerilatedThreadQueue<uint32_t*> m_offloadBuffersToWorker;m_offloadBuffersToWorker254,9834
+    VerilatedThreadQueue<uint32_t*> m_offloadBuffersFromWorker;m_offloadBuffersFromWorker256,9949
+    uint32_t* m_offloadBufferWritep = nullptr;m_offloadBufferWritep260,10066
+    uint32_t* m_offloadBufferEndp = nullptr;m_offloadBufferEndp262,10142
+    std::unique_ptr<std::thread> m_workerThread;m_workerThread266,10237
+    uint32_t* getOffloadBuffer();getOffloadBuffer269,10370
+    void offloadWorkerThreadMain();offloadWorkerThreadMain272,10463
+    void waitForOffloadBuffer(const uint32_t* bufferp);waitForOffloadBuffer275,10579
+    void shutdownOffloadWorker();shutdownOffloadWorker278,10708
+    VL_UNCOPYABLE(VerilatedTrace);VL_UNCOPYABLE281,10763
+    mutable VerilatedMutex m_mutex;  // Ensure dump() etc only called from single threadm_mutex287,10953
+    uint32_t nextCode() const { return m_nextCode; }nextCode289,11043
+    uint32_t numSignals() const { return m_numSignals; }numSignals290,11096
+    uint32_t maxBits() const { return m_maxBits; }maxBits291,11153
+    void fullDump(bool value) { m_fullDump = value; }fullDump292,11204
+    double timeRes() const { return m_timeRes; }timeRes294,11259
+    double timeUnit() const { return m_timeUnit; }timeUnit295,11308
+    std::string timeResStr() const;timeResStr296,11359
+    void traceInit() VL_MT_UNSAFE;traceInit298,11396
+    bool declCode(uint32_t code, const char* namep, uint32_t bits, bool tri);declCode301,11485
+    bool isScopeEscape(char c) { return std::isspace(c) || c == m_scopeEscape; }isScopeEscape304,11590
+    char scopeEscape() { return m_scopeEscape; }scopeEscape306,11745
+    const std::string& namePrefix() const { return m_namePrefixStack.back(); }namePrefix308,11841
+    void closeBase();closeBase310,11921
+    void flushBase();flushBase311,11943
+    bool offload() const { return m_offload; }offload313,11966
+    bool parallel() const { return m_parallel; }parallel314,12013
+    virtual void emitTimeChange(uint64_t timeui) = 0;emitTimeChange320,12285
+    virtual bool preFullDump() = 0;preFullDump324,12486
+    virtual bool preChangeDump() = 0;preChangeDump325,12522
+    virtual Buffer* getTraceBuffer() = 0;getTraceBuffer328,12592
+    virtual void commitTraceBuffer(Buffer*) = 0;commitTraceBuffer329,12634
+    virtual void configure(const VerilatedTraceConfig&) = 0;configure332,12711
+    explicit VerilatedTrace();VerilatedTrace338,12903
+    ~VerilatedTrace();~VerilatedTrace339,12934
+    void set_time_unit(const char* unitp) VL_MT_SAFE;set_time_unit342,13003
+    void set_time_unit(const std::string& unit) VL_MT_SAFE;set_time_unit343,13057
+    void set_time_resolution(const char* unitp) VL_MT_SAFE;set_time_resolution345,13167
+    void set_time_resolution(const std::string& unit) VL_MT_SAFE;set_time_resolution346,13227
+    void dumpvars(int level, const std::string& hier) VL_MT_SAFE;dumpvars349,13408
+    void dump(uint64_t timeui) VL_MT_SAFE_EXCLUDES(m_mutex);dump352,13487
+    void addModel(VerilatedModel*) VL_MT_SAFE_EXCLUDES(m_mutex);addModel360,13832
+    void addInitCb(initCb_t cb, void* userp) VL_MT_SAFE;addInitCb361,13897
+    void addFullCb(dumpCb_t cb, void* userp) VL_MT_SAFE;addFullCb362,13954
+    void addFullCb(dumpOffloadCb_t cb, void* userp) VL_MT_SAFE;addFullCb363,14011
+    void addChgCb(dumpCb_t cb, void* userp) VL_MT_SAFE;addChgCb364,14075
+    void addChgCb(dumpOffloadCb_t cb, void* userp) VL_MT_SAFE;addChgCb365,14131
+    void addCleanupCb(cleanupCb_t cb, void* userp) VL_MT_SAFE;addCleanupCb366,14194
+    void scopeEscape(char flag) { m_scopeEscape = flag; }scopeEscape368,14258
+    void pushNamePrefix(const std::string&);pushNamePrefix370,14317
+    void popNamePrefix(unsigned count = 1);popNamePrefix371,14362
+class VerilatedTraceBuffer VL_NOT_FINAL : public T_Buffer {VL_NOT_FINAL380,14698
+    using Trace = typename std::remove_cv<Trace383,14805
+    uint32_t* const m_sigs_oldvalp;  // Previous value storem_sigs_oldvalp392,15222
+    EData* const m_sigs_enabledp;  // Bit vector of enabled codes (nullptr = all on)m_sigs_enabledp393,15283
+    explicit VerilatedTraceBuffer(Trace& owner);VerilatedTraceBuffer395,15369
+    ~VerilatedTraceBuffer() override = default;~VerilatedTraceBuffer396,15418
+    VL_ATTR_ALWINLINE uint32_t* oldp(uint32_t code) { return m_sigs_oldvalp + code; }oldp416,16507
+    void fullBit(uint32_t* oldp, CData newval);fullBit419,16660
+    void fullCData(uint32_t* oldp, CData newval, int bits);fullCData420,16708
+    void fullSData(uint32_t* oldp, SData newval, int bits);fullSData421,16768
+    void fullIData(uint32_t* oldp, IData newval, int bits);fullIData422,16828
+    void fullQData(uint32_t* oldp, QData newval, int bits);fullQData423,16888
+    void fullWData(uint32_t* oldp, const WData* newvalp, int bits);fullWData424,16948
+    void fullDouble(uint32_t* oldp, double newval);fullDouble425,17016
+    void fullEvent(uint32_t* oldp, VlEvent newval);fullEvent426,17068
+    VL_ATTR_ALWINLINE void chgBit(uint32_t* oldp, CData newval) {chgBit433,17393
+    VL_ATTR_ALWINLINE void chgCData(uint32_t* oldp, CData newval, int bits) {chgCData437,17565
+    VL_ATTR_ALWINLINE void chgSData(uint32_t* oldp, SData newval, int bits) {chgSData441,17757
+    VL_ATTR_ALWINLINE void chgIData(uint32_t* oldp, IData newval, int bits) {chgIData445,17949
+    VL_ATTR_ALWINLINE void chgQData(uint32_t* oldp, QData newval, int bits) {chgQData449,18141
+    VL_ATTR_ALWINLINE void chgWData(uint32_t* oldp, const WData* newvalp, int bits) {chgWData455,18396
+    VL_ATTR_ALWINLINE void chgEvent(uint32_t* oldp, VlEvent newval) { fullEvent(oldp, newval); }chgEvent463,18690
+    VL_ATTR_ALWINLINE void chgDouble(uint32_t* oldp, double newval) {chgDouble464,18787
+class VerilatedTraceOffloadBuffer final : public VerilatedTraceBuffer<T_Buffer> {VerilatedTraceOffloadBuffer477,19294
+    uint32_t* m_offloadBufferWritep;  // Write pointer into current bufferm_offloadBufferWritep482,19505
+    uint32_t* const m_offloadBufferEndp;  // End of offload bufferm_offloadBufferEndp483,19580
+    explicit VerilatedTraceOffloadBuffer(Trace& owner);VerilatedTraceOffloadBuffer485,19648
+    ~VerilatedTraceOffloadBuffer() override = default;~VerilatedTraceOffloadBuffer486,19704
+    void chgBit(uint32_t code, CData newval) {chgBit493,19981
+    void chgCData(uint32_t code, CData newval, int bits) {chgCData499,20272
+    void chgSData(uint32_t code, SData newval, int bits) {chgSData506,20623
+    void chgIData(uint32_t code, IData newval, int bits) {chgIData513,20974
+    void chgQData(uint32_t code, QData newval, int bits) {chgQData520,21325
+    void chgWData(uint32_t code, const WData* newvalp, int bits) {chgWData527,21704
+    void chgDouble(uint32_t code, double newval) {chgDouble534,22114
+    void chgEvent(uint32_t code, VlEvent newval) {chgEvent542,22521
+
+/usr/share/verilator/include/verilated_trace_imp.h,5283
+# define VL_TRACE_OFFLOAD_DEBUG(VL_TRACE_OFFLOAD_DEBUG36,1222
+static double timescaleToDouble(const char* unitp) VL_PURE {timescaleToDouble44,1396
+static std::string doubleToTimescale(double value) VL_PURE {doubleToTimescale63,2009
+uint32_t* VerilatedTrace<VL_SUB_T, VL_BUF_T>::getOffloadBuffer() {getOffloadBuffer83,2857
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::waitForOffloadBuffer(const uint32_t* buffp) {waitForOffloadBuffer103,3629
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::offloadWorkerThreadMain() {offloadWorkerThreadMain119,4294
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::shutdownOffloadWorker() {shutdownOffloadWorker239,9299
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::closeBase() {closeBase258,9942
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::flushBase() {flushBase269,10210
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::onFlush(void* selfp) {onFlush285,10808
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::onExit(void* selfp) {onExit291,11015
+VerilatedTrace<VL_SUB_T, VL_BUF_T>::VerilatedTrace() {VerilatedTrace300,11320
+VerilatedTrace<VL_SUB_T, VL_BUF_T>::~VerilatedTrace() {~VerilatedTrace306,11533
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::traceInit() VL_MT_UNSAFE {traceInit318,12110
+bool VerilatedTrace<VL_SUB_T, VL_BUF_T>::declCode(uint32_t code, const char* namep, uint32_t bitdeclCode381,14797
+std::string VerilatedTrace<VL_SUB_T, VL_BUF_T>::timeResStr() const {timeResStr427,16632
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::set_time_unit(const char* unitp) VL_MT_SAFE {set_time_unit435,16871
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::set_time_unit(const std::string& unit) VL_MT_SAFE {set_time_unit439,17015
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::set_time_resolution(const char* unitp) VL_MT_SAFE {set_time_resolution443,17155
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::set_time_resolution(const std::string& unit) VL_MT_SAFEset_time_resolution447,17304
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::dumpvars(int level, const std::string& hier) VL_MT_SAFEdumpvars451,17456
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::parallelWorkerTask(void* datap, bool) {parallelWorkerTask465,17917
+VL_ATTR_NOINLINE void VerilatedTrace<VL_SUB_T, VL_BUF_T>::ParallelWorkerData::wait() {wait476,18312
+    m_cv.wait(m_mutex, [this] { return m_ready.load(std::memory_order_relaxed); });__anon9584d4420102485,18733
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::runCallbacks(const std::vector<CallbackRecord>& cbVec) runCallbacks490,18855
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::runOffloadedCallbacks(runOffloadedCallbacks540,20960
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::dump(uint64_t timeui) VL_MT_SAFE_EXCLUDES(m_mutex) {dump551,21355
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::addModel(VerilatedModel* modelp)addModel638,24373
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::addCallbackRecord(std::vector<CallbackRecord>& cbVec,addCallbackRecord686,26185
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::addInitCb(initCb_t cb, void* userp) VL_MT_SAFE {addInitCb694,26485
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::addFullCb(dumpCb_t cb, void* userp) VL_MT_SAFE {addFullCb698,26650
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::addFullCb(dumpOffloadCb_t cb, void* userp) VL_MT_SAFE {addFullCb702,26815
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::addChgCb(dumpCb_t cb, void* userp) VL_MT_SAFE {addChgCb706,26994
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::addChgCb(dumpOffloadCb_t cb, void* userp) VL_MT_SAFE {addChgCb710,27157
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::addCleanupCb(cleanupCb_t cb, void* userp) VL_MT_SAFE {addCleanupCb714,27334
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::pushNamePrefix(const std::string& prefix) {pushNamePrefix719,27509
+void VerilatedTrace<VL_SUB_T, VL_BUF_T>::popNamePrefix(unsigned count) {popNamePrefix724,27677
+static inline void cvtCDataToStr(char* dstp, CData value) {cvtCDataToStr735,28125
+static inline void cvtSDataToStr(char* dstp, SData value) {cvtSDataToStr757,29137
+static inline void cvtIDataToStr(char* dstp, IData value) {cvtIDataToStr793,30814
+static inline void cvtQDataToStr(char* dstp, QData value) {cvtQDataToStr812,31720
+#define cvtEDataToStr cvtEDataToStr817,31858
+VerilatedTraceBuffer<VL_BUF_T>::VerilatedTraceBuffer(Trace& owner)VerilatedTraceBuffer823,32008
+void VerilatedTraceBuffer<VL_BUF_T>::fullBit(uint32_t* oldp, CData newval) {fullBit834,32482
+void VerilatedTraceBuffer<VL_BUF_T>::fullEvent(uint32_t* oldp, VlEvent newval) {fullEvent842,32819
+void VerilatedTraceBuffer<VL_BUF_T>::fullCData(uint32_t* oldp, CData newval, int bits) {fullCData849,33044
+void VerilatedTraceBuffer<VL_BUF_T>::fullSData(uint32_t* oldp, SData newval, int bits) {fullSData857,33401
+void VerilatedTraceBuffer<VL_BUF_T>::fullIData(uint32_t* oldp, IData newval, int bits) {fullIData865,33758
+void VerilatedTraceBuffer<VL_BUF_T>::fullQData(uint32_t* oldp, QData newval, int bits) {fullQData873,34115
+void VerilatedTraceBuffer<VL_BUF_T>::fullWData(uint32_t* oldp, const WData* newvalp, int bits) {fullWData881,34440
+void VerilatedTraceBuffer<VL_BUF_T>::fullDouble(uint32_t* oldp, double newval) {fullDouble889,34795
+VerilatedTraceOffloadBuffer<VL_BUF_T>::VerilatedTraceOffloadBuffer(VL_SUB_T& owner)VerilatedTraceOffloadBuffer901,35259
+        using This = VerilatedTraceBuffer<VL_BUF_T>*;This906,35532
+
+/usr/share/verilator/include/verilated_types.h,24951
+#define VERILATOR_VERILATED_TYPES_H_VERILATOR_VERILATED_TYPES_H_25,937
+extern std::string VL_TO_STRING(CData lhs);VL_TO_STRING44,1378
+extern std::string VL_TO_STRING(SData lhs);VL_TO_STRING45,1422
+extern std::string VL_TO_STRING(IData lhs);VL_TO_STRING46,1466
+extern std::string VL_TO_STRING(QData lhs);VL_TO_STRING47,1510
+extern std::string VL_TO_STRING(double lhs);VL_TO_STRING48,1554
+inline std::string VL_TO_STRING(const std::string& obj) { return "\"" + obj + "\""; }VL_TO_STRING49,1599
+extern std::string VL_TO_STRING_W(int words, const WDataInP obj);VL_TO_STRING_W50,1685
+#define VL_SIG8(VL_SIG855,1855
+#define VL_SIG16(VL_SIG1656,1929
+#define VL_SIG64(VL_SIG6457,2005
+#define VL_SIG(VL_SIG58,2082
+#define VL_SIGW(VL_SIGW59,2157
+#define VL_IN8(VL_IN860,2246
+#define VL_IN16(VL_IN1661,2325
+#define VL_IN64(VL_IN6462,2406
+#define VL_IN(VL_IN63,2488
+#define VL_INW(VL_INW64,2568
+#define VL_INOUT8(VL_INOUT865,2662
+#define VL_INOUT16(VL_INOUT1666,2744
+#define VL_INOUT64(VL_INOUT6467,2828
+#define VL_INOUT(VL_INOUT68,2913
+#define VL_INOUTW(VL_INOUTW69,2996
+#define VL_OUT8(VL_OUT870,3093
+#define VL_OUT16(VL_OUT1671,3174
+#define VL_OUT64(VL_OUT6472,3257
+#define VL_OUT(VL_OUT73,3340
+#define VL_OUTW(VL_OUTW74,3422
+class VlProcess final {VlProcess79,3640
+    int m_state;  // Current state of the processm_state81,3679
+    enum : int {  // Type int for compatibility with $c__anon7ef746a3010385,3751
+        FINISHED = 0,FINISHED86,3807
+        RUNNING = 1,RUNNING87,3829
+        WAITING = 2,WAITING88,3850
+        SUSPENDED = 3,SUSPENDED89,3871
+        KILLED = 4,KILLED90,3894
+    VlProcess()VlProcess94,3942
+    int state() { return m_state; }state98,4004
+    void state(int s) { m_state = s; }state99,4040
+using VlProcessRef = std::shared_ptr<VlProcess>;VlProcessRef102,4083
+inline std::string VL_TO_STRING(const VlProcessRef& p) { return std::string("process"); }VL_TO_STRING104,4133
+class VlTriggerVec final {VlTriggerVec110,4356
+    VlTriggerVec() { clear(); }VlTriggerVec118,4594
+    ~VlTriggerVec() = default;~VlTriggerVec119,4626
+    void clear() { m_flags.fill(0); }clear124,4707
+    uint64_t word(size_t wordIndex) const { return m_flags[wordIndex]; }word127,4779
+    void set(size_t index, bool value) {set130,4894
+    bool any() const {any138,5171
+    void thisOr(const VlTriggerVec<T_size>& other) {thisOr145,5379
+    void andNot(const VlTriggerVec<T_size>& a, const VlTriggerVec<T_size>& b) {andNot150,5578
+class VlEvent final {VlEvent158,5862
+    bool m_fired = false;  // Fired on this scheduling iterationm_fired160,5899
+    bool m_triggered = false;  // Triggered state of event persisting until next time stepm_triggered161,5964
+    VlEvent() = default;VlEvent165,6083
+    ~VlEvent() = default;~VlEvent166,6108
+    void fire() { m_fired = m_triggered = true; }fire169,6150
+    bool isFired() const { return m_fired; }isFired170,6200
+    bool isTriggered() const { return m_triggered; }isTriggered171,6245
+    void clearFired() { m_fired = false; }clearFired172,6298
+    void clearTriggered() { m_triggered = false; }clearTriggered173,6341
+inline std::string VL_TO_STRING(const VlEvent& e) {VL_TO_STRING176,6396
+class VlRNG final {VlRNG184,6656
+    std::array<uint64_t, 2> m_state;m_state185,6676
+    explicit VlRNG(uint64_t seed0) VL_MT_SAFE : m_state{0x12341234UL, seed0} {}VlRNG192,6932
+    void srandom(uint64_t n) VL_MT_UNSAFE;srandom193,7012
+    std::string get_randstate() const VL_MT_UNSAFE;get_randstate194,7055
+    void set_randstate(const std::string& state) VL_MT_UNSAFE;set_randstate195,7107
+    uint64_t rand64() VL_MT_UNSAFE;rand64196,7170
+    static uint64_t vl_thread_rng_rand64() VL_MT_SAFE;vl_thread_rng_rand64198,7259
+    static VlRNG& vl_thread_rng() VL_MT_SAFE;vl_thread_rng199,7314
+inline uint64_t vl_rand64() VL_MT_SAFE { return VlRNG::vl_thread_rng_rand64(); }vl_rand64202,7364
+class VlURNG final {VlURNG205,7467
+    using result_type = size_t;result_type207,7496
+    static constexpr size_t min() { return 0; }min208,7528
+    static constexpr size_t max() { return 1ULL << 31; }max209,7576
+    size_t operator()() { return VL_MASK_I(31) & vl_rand64(); }operator ()210,7633
+inline IData VL_RANDOM_RNG_I(VlRNG& rngr) VL_MT_UNSAFE { return rngr.rand64(); }VL_RANDOM_RNG_I214,7766
+inline QData VL_RANDOM_RNG_Q(VlRNG& rngr) VL_MT_UNSAFE { return rngr.rand64(); }VL_RANDOM_RNG_Q215,7847
+extern WDataOutP VL_RANDOM_RNG_W(VlRNG& rngr, int obits, WDataOutP outwp) VL_MT_UNSAFE;VL_RANDOM_RNG_W216,7928
+class VlReadMem final {VlReadMem221,8126
+    const bool m_hex;  // Hex formatm_hex222,8150
+    const int m_bits;  // Bit width of valuesm_bits223,8187
+    const std::string& m_filename;  // Filenamem_filename224,8233
+    const QData m_end;  // End address (as specified by user)m_end225,8281
+    FILE* m_fp = nullptr;  // File handle for filenamem_fp226,8343
+    QData m_addr = 0;  // Next address to readm_addr227,8398
+    int m_linenum = 0;  // Line number last read from filem_linenum228,8445
+    bool m_anyAddr = false;  // Had address directive in the filem_anyAddr229,8504
+    VlReadMem(bool hex, int bits, const std::string& filename, QData start, QData end);VlReadMem231,8578
+    ~VlReadMem();~VlReadMem232,8666
+    bool isOpen() const { return m_fp != nullptr; }isOpen233,8684
+    int linenum() const { return m_linenum; }linenum234,8736
+    bool get(QData& addrr, std::string& valuer);get235,8782
+    void setData(void* valuep, const std::string& rhs);setData236,8831
+class VlWriteMem final {VlWriteMem239,8891
+    const bool m_hex;  // Hex formatm_hex240,8916
+    const int m_bits;  // Bit width of valuesm_bits241,8953
+    FILE* m_fp = nullptr;  // File handle for filenamem_fp242,8999
+    QData m_addr = 0;  // Next address to writem_addr243,9054
+    VlWriteMem(bool hex, int bits, const std::string& filename, QData start, QData end);VlWriteMem245,9110
+    ~VlWriteMem();~VlWriteMem246,9199
+    bool isOpen() const { return m_fp != nullptr; }isOpen247,9218
+    void print(QData addr, bool addrstamp, const void* valuep);print248,9270
+static int _vl_cmp_w(int words, WDataInP const lwp, WDataInP const rwp) VL_PURE;_vl_cmp_w264,9961
+struct VlWide final {VlWide267,10074
+    EData m_storage[T_Words];  // Contents of the packed arraym_storage270,10209
+    operator WDataOutP() VL_PURE { return &m_storage[0]; }  // This also allows []operator WDataOutP279,10569
+    operator WDataInP() const VL_PURE { return &m_storage[0]; }  // This also allows []operator WDataInP280,10652
+    bool operator!=(const VlWide<T_Words>& that) const VL_PURE {operator !=281,10740
+    const EData& at(size_t index) const { return m_storage[index]; }at289,10970
+    EData& at(size_t index) { return m_storage[index]; }at290,11039
+    WData* data() { return &m_storage[0]; }data291,11096
+    const WData* data() const { return &m_storage[0]; }data292,11140
+    bool operator<(const VlWide<T_Words>& rhs) const {operator <293,11196
+VlWide<T_Words>& VL_CVT_W_A(const WDataInP inp, const VlWide<T_Words>&) {VL_CVT_W_A301,11515
+std::string VL_TO_STRING(const VlWide<T_Words>& obj) {VL_TO_STRING306,11660
+class VlQueue final {VlQueue318,12144
+    using Deque = std::deque<T_Value>;Deque321,12188
+    using const_iterator = typename Deque::const_iterator;const_iterator324,12236
+    Deque m_deque;  // State of the assoc arraym_deque328,12320
+    T_Value m_defaultValue;  // Default valuem_defaultValue329,12368
+    VlQueue() = default;VlQueue334,12515
+    ~VlQueue() = default;~VlQueue335,12540
+    VlQueue(const VlQueue&) = default;VlQueue336,12566
+    VlQueue(VlQueue&&) = default;VlQueue337,12605
+    VlQueue& operator=(const VlQueue&) = default;operator =338,12639
+    VlQueue& operator=(VlQueue&&) = default;operator =339,12689
+    bool operator==(const VlQueue& rhs) const { return m_deque == rhs.m_deque; }operator ==340,12734
+    bool operator!=(const VlQueue& rhs) const { return m_deque != rhs.m_deque; }operator !=341,12815
+    VlQueue operator=(const VlQueue<T_Value, U_MaxSize>& rhs) {operator =346,13065
+    static VlQueue cons(const T_Value& lhs) {cons352,13293
+    static VlQueue cons(const T_Value& lhs, const T_Value& rhs) {cons357,13414
+    static VlQueue cons(const VlQueue& lhs, const T_Value& rhs) {cons363,13583
+    static VlQueue cons(const T_Value& lhs, const VlQueue& rhs) {cons368,13731
+    static VlQueue cons(const VlQueue& lhs, const VlQueue& rhs) {cons373,13878
+    T_Value& atDefault() { return m_defaultValue; }atDefault380,14073
+    const T_Value& atDefault() const { return m_defaultValue; }atDefault381,14125
+    const Deque& privateDeque() const { return m_deque; }privateDeque382,14189
+    int size() const { return m_deque.size(); }size385,14304
+    void clear() { m_deque.clear(); }clear387,14417
+    void erase(int32_t index) {erase388,14455
+    void renew(size_t size) {renew394,14652
+    void renew_copy(size_t size, const VlQueue<T_Value, T_MaxSize>& rhs) {renew_copy399,14800
+    void push_front(const T_Value& value) {push_front409,15068
+    void push_back(const T_Value& value) {push_back414,15284
+    T_Value pop_front() {pop_front418,15467
+    T_Value pop_back() {pop_back425,15673
+    T_Value& at(int32_t index) {at435,16026
+    const T_Value& at(int32_t index) const {at446,16427
+    T_Value& atBack(int32_t index) { return at(m_deque.size() - 1 - index); }atBack455,16765
+    const T_Value& atBack(int32_t index) const { return at(m_deque.size() - 1 - index); }atBack456,16843
+    void insert(int32_t index, const T_Value& value) {insert459,16979
+    VlQueue slice(int32_t lsb, int32_t msb) const {slice465,17199
+    VlQueue sliceFrontBack(int32_t lsb, int32_t msb) const {sliceFrontBack473,17561
+    VlQueue sliceBackBack(int32_t lsb, int32_t msb) const {sliceBackBack476,17681
+    const_iterator begin() const { return m_deque.begin(); }begin481,17846
+    const_iterator end() const { return m_deque.end(); }end482,17907
+    void sort() { std::sort(m_deque.begin(), m_deque.end()); }sort485,17980
+    void sort(Func with_func) {sort487,18072
+        std::sort(m_deque.begin(), m_deque.end(), [=](const T_Value& a, const T_Value& b) {__anon7ef746a30202489,18179
+    void rsort() { std::sort(m_deque.rbegin(), m_deque.rend()); }rsort494,18411
+    void rsort(Func with_func) {rsort496,18506
+        std::sort(m_deque.rbegin(), m_deque.rend(), [=](const T_Value& a, const T_Value& b) {__anon7ef746a30302498,18614
+    void reverse() { std::reverse(m_deque.begin(), m_deque.end()); }reverse503,18848
+    void shuffle() { std::shuffle(m_deque.begin(), m_deque.end(), VlURNG{}); }shuffle504,18917
+    VlQueue unique() const {unique505,18996
+    VlQueue unique(Func with_func) const {unique518,19341
+    VlQueue<IData> unique_index() const {unique_index531,19763
+    VlQueue<IData> unique_index(Func with_func) const {unique_index546,20178
+    VlQueue find(Func with_func) const {find562,20697
+    VlQueue<IData> find_index(Func with_func) const {find_index572,20965
+    VlQueue find_first(Func with_func) const {find_first582,21257
+    VlQueue<IData> find_first_index(Func with_func) const {find_first_index592,21578
+    VlQueue find_last(Func with_func) const {find_last601,21875
+    VlQueue<IData> find_last_index(Func with_func) const {find_last_index610,22181
+    VlQueue min() const {min620,22514
+    VlQueue min(Func with_func) const {min626,22731
+                                         [&with_func](const IData& a, const IData& b) {__anon7ef746a30402629,22891
+    VlQueue max() const {max634,23152
+    VlQueue max(Func with_func) const {max640,23369
+                                         [&with_func](const IData& a, const IData& b) {__anon7ef746a30502643,23529
+    T_Value r_sum() const {r_sum649,23791
+    T_Value r_sum(Func with_func) const {r_sum655,23985
+    T_Value r_product() const {r_product661,24209
+    T_Value r_product(Func with_func) const {r_product670,24473
+    T_Value r_and() const {r_and680,24802
+    T_Value r_and(Func with_func) const {r_and689,25062
+    T_Value r_or() const {r_or699,25385
+    T_Value r_or(Func with_func) const {r_or705,25578
+    T_Value r_xor() const {r_xor711,25801
+    T_Value r_xor(Func with_func) const {r_xor717,25995
+    std::string to_string() const {to_string725,26274
+std::string VL_TO_STRING(const VlQueue<T_Value>& obj) {VL_TO_STRING738,26616
+class VlAssocArray final {VlAssocArray748,26952
+    using Map = std::map<T_Key, T_Value>;Map751,27001
+    using const_iterator = typename Map::const_iterator;const_iterator754,27052
+    Map m_map;  // State of the assoc arraym_map758,27134
+    T_Value m_defaultValue;  // Default valuem_defaultValue759,27178
+    VlAssocArray() = default;VlAssocArray764,27325
+    ~VlAssocArray() = default;~VlAssocArray765,27355
+    VlAssocArray(const VlAssocArray&) = default;VlAssocArray766,27386
+    VlAssocArray(VlAssocArray&&) = default;VlAssocArray767,27435
+    VlAssocArray& operator=(const VlAssocArray&) = default;operator =768,27479
+    VlAssocArray& operator=(VlAssocArray&&) = default;operator =769,27539
+    bool operator==(const VlAssocArray& rhs) const { return m_map == rhs.m_map; }operator ==770,27594
+    bool operator!=(const VlAssocArray& rhs) const { return m_map != rhs.m_map; }operator !=771,27676
+    T_Value& atDefault() { return m_defaultValue; }atDefault774,27774
+    const T_Value& atDefault() const { return m_defaultValue; }atDefault775,27826
+    int size() const { return m_map.size(); }size778,27956
+    void clear() { m_map.clear(); }clear780,28067
+    void erase(const T_Key& index) { m_map.erase(index); }erase781,28103
+    int exists(const T_Key& index) const { return m_map.find(index) != m_map.end(); }exists783,28241
+    int first(T_Key& indexr) const {first785,28397
+    int last(T_Key& indexr) const {last792,28634
+    int next(T_Key& indexr) const {next799,28871
+    int prev(T_Key& indexr) const {prev808,29185
+    T_Value& at(const T_Key& index) {at819,29622
+    const T_Value& at(const T_Key& index) const {at828,29957
+    VlAssocArray& set(const T_Key& index, const T_Value& value) {set837,30220
+    VlAssocArray& setDefault(const T_Value& value) {setDefault841,30341
+    const_iterator begin() const { return m_map.begin(); }begin847,30476
+    const_iterator end() const { return m_map.end(); }end848,30535
+    VlQueue<T_Value> unique() const {unique851,30606
+    VlQueue<T_Value> unique(Func with_func) const {unique864,30982
+        using WithType = decltype(with_func(m_map.begin()->first, m_map.begin()->second));WithType867,31091
+    VlQueue<T_Key> unique_index() const {unique_index879,31536
+    VlQueue<T_Key> unique_index(Func with_func) const {unique_index892,31911
+        using WithType = decltype(with_func(m_map.begin()->first, m_map.begin()->second));WithType894,31995
+    VlQueue<T_Value> find(Func with_func) const {find907,32458
+    VlQueue<T_Key> find_index(Func with_func) const {find_index914,32700
+    VlQueue<T_Value> find_first(Func with_func) const {find_first921,32943
+            = std::find_if(m_map.begin(), m_map.end(), [=](const std::pair<T_Key, T_Value>& i) {__anon7ef746a30602923,33021
+    VlQueue<T_Key> find_first_index(Func with_func) const {find_first_index930,33335
+            = std::find_if(m_map.begin(), m_map.end(), [=](const std::pair<T_Key, T_Value>& i) {__anon7ef746a30702932,33417
+    VlQueue<T_Value> find_last(Func with_func) const {find_last939,33728
+            = std::find_if(m_map.rbegin(), m_map.rend(), [=](const std::pair<T_Key, T_Value>& i)__anon7ef746a30802941,33805
+    VlQueue<T_Key> find_last_index(Func with_func) const {find_last_index948,34122
+            = std::find_if(m_map.rbegin(), m_map.rend(), [=](const std::pair<T_Key, T_Value>& i)__anon7ef746a30902950,34203
+    VlQueue<T_Value> min() const {min958,34516
+            [](const std::pair<T_Key, T_Value>& a, const std::pair<T_Key, T_Value>& b) {__anon7ef746a30a02962,34687
+    VlQueue<T_Value> min(Func with_func) const {min968,34922
+            [&with_func](const std::pair<T_Key, T_Value>& a, const std::pair<T_Key, T_Value>& b)__anon7ef746a30b02972,35107
+    VlQueue<T_Value> max() const {max977,35363
+            [](const std::pair<T_Key, T_Value>& a, const std::pair<T_Key, T_Value>& b) {__anon7ef746a30c02981,35534
+    VlQueue<T_Value> max(Func with_func) const {max987,35769
+            [&with_func](const std::pair<T_Key, T_Value>& a, const std::pair<T_Key, T_Value>& b)__anon7ef746a30d02991,35954
+    T_Value r_sum() const {r_sum997,36211
+    T_Value r_sum(Func with_func) const {r_sum1003,36410
+    T_Value r_product() const {r_product1008,36614
+    T_Value r_product(Func with_func) const {r_product1017,36886
+    T_Value r_and() const {r_and1025,37187
+    T_Value r_and(Func with_func) const {r_and1034,37455
+    T_Value r_or() const {r_or1042,37752
+    T_Value r_or(Func with_func) const {r_or1048,37950
+    T_Value r_xor() const {r_xor1053,38153
+    T_Value r_xor(Func with_func) const {r_xor1059,38352
+    std::string to_string() const {to_string1066,38611
+std::string VL_TO_STRING(const VlAssocArray<T_Key, T_Value>& obj) {VL_TO_STRING1080,39055
+void VL_READMEM_N(bool hex, int bits, const std::string& filename,VL_READMEM_N1085,39192
+void VL_WRITEMEM_N(bool hex, int bits, const std::string& filename,VL_WRITEMEM_N1101,39706
+struct VlUnpacked final {VlUnpacked1123,40650
+    using T_Key = IData;  // Index type, for uniformity with other containersT_Key1126,40698
+    using Unpacked = T_Value[T_Depth];Unpacked1127,40776
+    Unpacked m_storage;  // Contents of the unpacked arraym_storage1132,40937
+    WData* data() { return &m_storage[0]; }data1145,41335
+    const WData* data() const { return &m_storage[0]; }data1146,41379
+    T_Value& operator[](size_t index) { return m_storage[index]; }operator []1148,41436
+    const T_Value& operator[](size_t index) const { return m_storage[index]; }operator []1149,41503
+    bool neq(const VlUnpacked<T_Value, T_Depth>& that) const { return neq(*this, that); }neq1153,41749
+    void assign(const VlUnpacked<T_Value, T_Depth>& that) { *this = that; }assign1155,41909
+    bool operator==(const VlUnpacked<T_Value, T_Depth>& that) const { return !neq(that); }operator ==1156,41985
+    bool operator!=(const VlUnpacked<T_Value, T_Depth>& that) { return neq(that); }operator !=1157,42076
+    void sort() { std::sort(std::begin(m_storage), std::end(m_storage)); }sort1159,42161
+    void sort(Func with_func) {sort1161,42265
+                  [=](const T_Value& a, const T_Value& b) {__anon7ef746a30e021164,42434
+    void rsort() {rsort1170,42719
+    void rsort(Func with_func) {rsort1174,42861
+                  [=](const T_Value& a, const T_Value& b) {__anon7ef746a30f021178,43108
+    void reverse() { std::reverse(std::begin(m_storage), std::end(m_storage)); }reverse1183,43338
+    void shuffle() { std::shuffle(std::begin(m_storage), std::end(m_storage), VlURNG{}); }shuffle1184,43419
+    VlQueue<T_Value> unique() const {unique1185,43510
+    VlQueue<T_Value> unique(Func with_func) const {unique1198,43875
+    VlQueue<T_Key> unique_index() const {unique_index1211,44290
+    VlQueue<T_Key> unique_index(Func with_func) const {unique_index1226,44707
+    VlQueue<T_Value> find(Func with_func) const {find1242,45211
+    VlQueue<T_Key> find_index(Func with_func) const {find_index1252,45499
+    VlQueue<T_Value> find_first(Func with_func) const {find_first1262,45793
+    VlQueue<T_Key> find_first_index(Func with_func) const {find_first_index1272,46143
+    VlQueue<T_Value> find_last(Func with_func) const {find_last1281,46442
+    VlQueue<T_Key> find_last_index(Func with_func) const {find_last_index1288,46715
+    VlQueue<T_Value> min() const {min1296,46976
+    VlQueue<T_Value> min(Func with_func) const {min1301,47176
+                                         [&with_func](const IData& a, const IData& b) {__anon7ef746a310021303,47310
+    VlQueue<T_Value> max() const {max1308,47580
+    VlQueue<T_Value> max(Func with_func) const {max1313,47780
+                                         [&with_func](const IData& a, const IData& b) {__anon7ef746a311021315,47914
+    std::string to_string() const {to_string1322,48239
+    static bool neq(const VlUnpacked<T_Val, T_Dep>& a, const VlUnpacked<T_Val, T_Dep>& b) {neq1334,48561
+    static bool neq(const T_Other& a, const T_Other& b) {neq1343,48912
+std::string VL_TO_STRING(const VlUnpacked<T_Value, T_Depth>& obj) {VL_TO_STRING1350,49121
+class VlDeletable VL_NOT_FINAL {VL_NOT_FINAL1357,49339
+    VlDeletable() = default;VlDeletable1359,49380
+    virtual ~VlDeletable() = default;~VlDeletable1360,49409
+class VlDeleter final {VlDeleter1367,49672
+    std::vector<VlDeletable*> m_newGarbage VL_GUARDED_BY(m_mutex);VL_GUARDED_BY1370,49762
+    std::vector<VlDeletable*> m_toDelete VL_GUARDED_BY(m_deleteMutex);VL_GUARDED_BY1372,49900
+    mutable VerilatedMutex m_mutex;  // Mutex protecting the 'new garbage' queuem_mutex1373,49971
+    mutable VerilatedMutex m_deleteMutex;  // Mutex protecting the delete queuem_deleteMutex1374,50052
+    VlDeleter() = default;VlDeleter1378,50160
+    ~VlDeleter() { deleteAll(); }~VlDeleter1379,50187
+    VL_UNCOPYABLE(VlDeleter);VL_UNCOPYABLE1382,50231
+    void put(VlDeletable* const objp) VL_MT_SAFE {put1387,50338
+    void deleteAll() VL_EXCLUDES(m_mutex) VL_EXCLUDES(m_deleteMutex) VL_MT_SAFE;deleteAll1393,50525
+class VlClass VL_NOT_FINAL : public VlDeletable {VL_NOT_FINAL1401,50908
+    std::atomic<size_t> m_counter{0};  // Reference count for this objectm_counter1407,51101
+    VlDeleter* m_deleterp = nullptr;  // The deleter that will delete this objectm_deleterp1408,51175
+    void refCountInc() VL_MT_SAFE { ++m_counter; }refCountInc1412,51324
+    void refCountDec() VL_MT_SAFE {refCountDec1415,51521
+    VlClass() = default;VlClass1421,51641
+    VlClass(const VlClass& copied) {}VlClass1422,51666
+    ~VlClass() override = default;~VlClass1423,51704
+struct VlNull {VlNull1430,51963
+    operator bool() const { return false; }operator bool1431,51979
+class VlClassRef final {VlClassRef1440,52262
+    T_Class* m_objp = nullptr;  // Object pointed tom_objp1447,52437
+    void refCountInc() const VL_MT_SAFE {refCountInc1451,52556
+    void refCountDec() const VL_MT_SAFE {refCountDec1455,52697
+    VlClassRef() = default;VlClassRef1461,52817
+    VlClassRef(VlNull){};VlClassRef1464,52917
+    VlClassRef(VlDeleter& deleter, T_Args&&... args)VlClassRef1466,52977
+    explicit VlClassRef(T_Class* objp)VlClassRef1474,53345
+    VlClassRef(const VlClassRef& copied)VlClassRef1479,53485
+    VlClassRef(VlClassRef&& moved)VlClassRef1484,53636
+    VlClassRef(const VlClassRef<T_OtherClass>& copied)VlClassRef1488,53815
+    VlClassRef(VlClassRef<T_OtherClass>&& moved)VlClassRef1494,54017
+    ~VlClassRef() { refCountDec(); }~VlClassRef1496,54126
+    VlClassRef& operator=(const VlClassRef& copied) {operator =1500,54212
+    VlClassRef& operator=(VlClassRef&& moved) {operator =1506,54372
+    VlClassRef& operator=(const VlClassRef<T_OtherClass>& copied) {operator =1512,54565
+    VlClassRef& operator=(VlClassRef<T_OtherClass>&& moved) {operator =1519,54776
+    VlClassRef& operator=(VlNull) {operator =1525,54973
+    VlClassRef<T_OtherClass> dynamicCast() const {dynamicCast1532,55145
+    T_Class& operator*() const { return *m_objp; }operator *1536,55309
+    T_Class* operator->() const { return m_objp; }operator ->1537,55360
+    operator bool() const { return m_objp; }operator bool1539,55436
+    bool operator==(const VlClassRef<T_OtherClass>& rhs) const {operator ==1542,55599
+    bool operator!=(const VlClassRef<T_OtherClass>& rhs) const {operator !=1546,55745
+static inline bool VL_CAST_DYNAMIC(VlClassRef<T> in, VlClassRef<U>& outr) {VL_CAST_DYNAMIC1552,55892
+class VlSampleQueue final {VlSampleQueue1567,56422
+    struct VlSample {VlSample1570,56529
+        uint64_t m_timestamp;  // Timestamp at which the value was sampledm_timestamp1571,56551
+        T_Sampled m_value;  // The sampled valuem_value1572,56626
+    std::deque<VlSample> m_queue;  // Queue of samples with timestampsm_queue1576,56698
+    void push(uint64_t time, const T_Sampled& value) { m_queue.push_back({time, value}); }push1581,56867
+    void pop(uint64_t time, uint64_t skew, T_Sampled& value) {pop1583,57043
+                                   [](const VlSample& sample, const VlSample& skewed) {__anon7ef746a312021588,57363
+#define VL_NEW(VL_NEW1600,57795
+#define VL_KEEP_THIS VL_KEEP_THIS1603,57886
+inline T VL_NULL_CHECK(T t, const char* filename, int linenum) {VL_NULL_CHECK1607,58045
+
+/usr/share/verilator/include/verilated_vcd_c.h,8799
+#define VERILATOR_VERILATED_VCD_C_H_VERILATOR_VERILATED_VCD_C_H_22,818
+class VerilatedVcd VL_NOT_FINAL : public VerilatedTrace<VerilatedVcd, VerilatedVcdBuffer> {VL_NOT_FINAL39,1245
+    using Super = VerilatedTrace<VerilatedVcd, VerilatedVcdBuffer>;Super41,1345
+    VerilatedVcdFile* m_filep;  // File we're writing tom_filep49,1613
+    bool m_fileNewed;  // m_filep needs destructionm_fileNewed50,1670
+    bool m_isOpen = false;  // True indicates open filem_isOpen51,1722
+    std::string m_filename;  // Filename we're writing to (if open)m_filename52,1778
+    uint64_t m_rolloverSize = 0;  // File size to rollover atm_rolloverSize53,1846
+    int m_modDepth = 0;  // Depth of module hierarchym_modDepth54,1908
+    char* m_wrBufp;  // Output bufferm_wrBufp56,1963
+    char* m_wrFlushp;  // Output buffer flush trigger locationm_wrFlushp57,2001
+    char* m_writep;  // Write pointer into output bufferm_writep58,2064
+    size_t m_wrChunkSize;  // Output buffer sizem_wrChunkSize59,2121
+    size_t m_maxSignalBytes = 0;  // Upper bound on number of bytes a single signal can generatem_maxSignalBytes60,2170
+    uint64_t m_wroteBytes = 0;  // Number of bytes written to this filem_wroteBytes61,2267
+    std::vector<char> m_suffixes;  // VCD line end string codes + metadatam_suffixes63,2340
+    using NameMap = std::map<const std::string, const std::string>;NameMap65,2416
+    NameMap* m_namemapp = nullptr;  // List of names for the headerm_namemapp66,2484
+    std::vector<std::pair<char*, size_t>> m_freeBuffers;m_freeBuffers69,2615
+    size_t m_numBuffers = 0;  // Number of trace buffers allocatedm_numBuffers70,2672
+    void bufferResize(size_t minsize);bufferResize72,2740
+    void bufferFlush() VL_MT_UNSAFE_ONE;bufferFlush73,2779
+    void bufferCheck() {bufferCheck74,2820
+    void openNextImp(bool incFilename);openNextImp79,3098
+    void closePrev();closePrev80,3138
+    void closeErr();closeErr81,3160
+    void makeNameMap();makeNameMap82,3181
+    void deleteNameMap();deleteNameMap83,3205
+    void printIndent(int level_change);printIndent84,3231
+    void printStr(const char* str);printStr85,3271
+    void printQuad(uint64_t n);printQuad86,3307
+    void printTime(uint64_t timeui);printTime87,3339
+    void declare(uint32_t code, const char* name, const char* wirep, bool array, int arraynum,declare88,3376
+    void dumpHeader();dumpHeader91,3531
+    static char* writeCode(char* writep, uint32_t code);writeCode93,3555
+    VL_UNCOPYABLE(VerilatedVcd);VL_UNCOPYABLE96,3633
+    void emitTimeChange(uint64_t timeui) override;emitTimeChange103,3872
+    bool preFullDump() override { return isOpen(); }preFullDump106,3964
+    bool preChangeDump() override;preChangeDump107,4017
+    Buffer* getTraceBuffer() override;getTraceBuffer110,4084
+    void commitTraceBuffer(Buffer*) override;commitTraceBuffer111,4123
+    void configure(const VerilatedTraceConfig&) override{};configure114,4197
+    explicit VerilatedVcd(VerilatedVcdFile* filep = nullptr);VerilatedVcd121,4407
+    ~VerilatedVcd();~VerilatedVcd122,4469
+    void rolloverSize(uint64_t size) VL_MT_SAFE { m_rolloverSize = size; }rolloverSize126,4573
+    void open(const char* filename) VL_MT_SAFE_EXCLUDES(m_mutex);open130,4743
+    void openNext(bool incFilename) VL_MT_SAFE_EXCLUDES(m_mutex);openNext132,4841
+    void close() VL_MT_SAFE_EXCLUDES(m_mutex);close134,4929
+    void flush() VL_MT_SAFE_EXCLUDES(m_mutex);flush136,5021
+    bool isOpen() const VL_MT_SAFE { return m_isOpen; }isOpen138,5098
+    void declEvent(uint32_t code, const char* name, bool array, int arraynum);declEvent143,5290
+    void declBit(uint32_t code, const char* name, bool array, int arraynum);declBit144,5369
+    void declBus(uint32_t code, const char* name, bool array, int arraynum, int msb, int lsb);declBus145,5446
+    void declQuad(uint32_t code, const char* name, bool array, int arraynum, int msb, int lsb);declQuad146,5541
+    void declArray(uint32_t code, const char* name, bool array, int arraynum, int msb, int lsb);declArray147,5637
+    void declDouble(uint32_t code, const char* name, bool array, int arraynum);declDouble148,5734
+void VerilatedVcd::Super::dump(uint64_t time);dump154,5918
+void VerilatedVcd::Super::set_time_unit(const char* unitp);set_time_unit156,5977
+void VerilatedVcd::Super::set_time_unit(const std::string& unit);set_time_unit158,6049
+void VerilatedVcd::Super::set_time_resolution(const char* unitp);set_time_resolution160,6127
+void VerilatedVcd::Super::set_time_resolution(const std::string& unit);set_time_resolution162,6205
+void VerilatedVcd::Super::dumpvars(int level, const std::string& hier);dumpvars164,6289
+class VerilatedVcdBuffer VL_NOT_FINAL {VL_NOT_FINAL170,6484
+    VerilatedVcd& m_owner;  // Trace file owning this buffer. Required by subclasses.m_owner177,6725
+    char* m_writep = m_owner.parallel() ? nullptr : m_owner.m_writep;m_writep180,6907
+    char* const m_wrFlushp = m_owner.parallel() ? nullptr : m_owner.m_wrFlushp;m_wrFlushp182,7051
+    const char* const m_suffixes = m_owner.m_suffixes.data();m_suffixes185,7176
+    const size_t m_maxSignalBytes = m_owner.m_maxSignalBytes;m_maxSignalBytes187,7298
+    char* m_bufp = nullptr;  // The beginning of the trace bufferm_bufp190,7410
+    size_t m_size = 0;  // The size of the buffer at m_bufpm_size191,7476
+    char* m_growp = nullptr;  // Resize limit pointerm_growp192,7536
+    void adjustGrowp() {adjustGrowp194,7591
+    void finishLine(uint32_t code, char* writep);finishLine199,7739
+    explicit VerilatedVcdBuffer(VerilatedVcd& owner)VerilatedVcdBuffer202,7809
+    virtual ~VerilatedVcdBuffer() = default;~VerilatedVcdBuffer204,7890
+    VL_ATTR_ALWINLINE void emitEvent(uint32_t code, VlEvent newval);emitEvent210,8231
+    VL_ATTR_ALWINLINE void emitBit(uint32_t code, CData newval);emitBit211,8300
+    VL_ATTR_ALWINLINE void emitCData(uint32_t code, CData newval, int bits);emitCData212,8365
+    VL_ATTR_ALWINLINE void emitSData(uint32_t code, SData newval, int bits);emitSData213,8442
+    VL_ATTR_ALWINLINE void emitIData(uint32_t code, IData newval, int bits);emitIData214,8519
+    VL_ATTR_ALWINLINE void emitQData(uint32_t code, QData newval, int bits);emitQData215,8596
+    VL_ATTR_ALWINLINE void emitWData(uint32_t code, const WData* newvalp, int bits);emitWData216,8673
+    VL_ATTR_ALWINLINE void emitDouble(uint32_t code, double newval);emitDouble217,8758
+class VerilatedVcdFile VL_NOT_FINAL {VL_NOT_FINAL225,9035
+    int m_fd = 0;  // File descriptor we're writing tom_fd227,9082
+    VerilatedVcdFile() = default;VerilatedVcdFile231,9201
+    virtual ~VerilatedVcdFile() = default;~VerilatedVcdFile233,9262
+    virtual bool open(const std::string& name) VL_MT_UNSAFE;open235,9345
+    virtual void close() VL_MT_UNSAFE;close237,9434
+    virtual ssize_t write(const char* bufp, ssize_t len) VL_MT_UNSAFE;write239,9516
+class VerilatedVcdC VL_NOT_FINAL {VL_NOT_FINAL247,9820
+    VerilatedVcd m_sptrace;  // Trace file being createdm_sptrace248,9855
+    VL_UNCOPYABLE(VerilatedVcdC);VL_UNCOPYABLE251,9933
+    explicit VerilatedVcdC(VerilatedVcdFile* filep = nullptr)VerilatedVcdC255,10048
+    virtual ~VerilatedVcdC() { close(); }~VerilatedVcdC258,10184
+    bool isOpen() const VL_MT_SAFE { return m_sptrace.isOpen(); }isOpen263,10288
+    virtual void open(const char* filename) VL_MT_SAFE { m_sptrace.open(filename); }open267,10513
+    void openNext(bool incFilename = true) VL_MT_SAFE { m_sptrace.openNext(incFilename); }openNext271,10801
+    void rolloverSize(size_t size) VL_MT_SAFE { m_sptrace.rolloverSize(size); }rolloverSize277,11245
+    void close() VL_MT_SAFE { m_sptrace.close(); }close279,11344
+    void flush() VL_MT_SAFE { m_sptrace.flush(); }flush281,11414
+    void dump(uint64_t timeui) VL_MT_SAFE { m_sptrace.dump(timeui); }dump285,11605
+    void dump(double timestamp) { dump(static_cast<uint64_t>(timestamp)); }dump288,11822
+    void dump(uint32_t timestamp) { dump(static_cast<uint64_t>(timestamp)); }dump289,11898
+    void dump(int timestamp) { dump(static_cast<uint64_t>(timestamp)); }dump290,11976
+    void set_time_unit(const char* unit) VL_MT_SAFE { m_sptrace.set_time_unit(unit); }set_time_unit298,12292
+    void set_time_unit(const std::string& unit) VL_MT_SAFE { m_sptrace.set_time_unit(unit); }set_time_unit299,12379
+    void set_time_resolution(const char* unit) VL_MT_SAFE { m_sptrace.set_time_resolution(unit);set_time_resolution303,12653
+    void set_time_resolution(const std::string& unit) VL_MT_SAFE {set_time_resolution304,12752
+    void dumpvars(int level, const std::string& hier) VL_MT_SAFE {dumpvars309,12985
+    VerilatedVcd* spTrace() { return &m_sptrace; }spTrace314,13129
+
+/usr/share/verilator/include/verilated_vcd_sc.h,969
+#define VERILATOR_VERILATED_VCD_SC_H_VERILATOR_VERILATED_VCD_SC_H_23,873
+class VerilatedVcdSc final : sc_core::sc_trace_file, public VerilatedVcdC {VerilatedVcdSc39,1277
+    VL_UNCOPYABLE(VerilatedVcdSc);VL_UNCOPYABLE41,1373
+    VerilatedVcdSc() {VerilatedVcdSc45,1491
+    ~VerilatedVcdSc() override { close(); }~VerilatedVcdSc58,2182
+    void cycle(bool delta_cycle) override {cycle62,2294
+    void open(const char* filename) override VL_MT_SAFE {open67,2494
+    void set_time_unit(int exponent10_seconds) override {}  // deprecatedset_time_unit79,2892
+    void set_time_unit(double v, sc_core::sc_time_unit tu) override {}  // LCOV_EXCL_LINEset_time_unit81,2973
+    void write_comment(const std::string&) override {}write_comment86,3144
+    void trace(const unsigned int&, const std::string&, const char**) override {}trace87,3199
+#define DECL_TRACE_METHOD_A(DECL_TRACE_METHOD_A89,3282
+#define DECL_TRACE_METHOD_B(DECL_TRACE_METHOD_B91,3386
+
+/usr/share/verilator/include/verilated_vpi.h,529
+#define VERILATOR_VERILATED_VPI_H_VERILATOR_VERILATED_VPI_H_25,896
+class VerilatedVpi final {VerilatedVpi41,1286
+    static void callTimedCbs() VL_MT_UNSAFE_ONE;callTimedCbs45,1417
+    static bool callValueCbs() VL_MT_UNSAFE_ONE;callValueCbs48,1568
+    static bool callCbs(uint32_t reason) VL_MT_UNSAFE_ONE;callCbs51,1726
+    static QData cbNextDeadline() VL_MT_UNSAFE_ONE;cbNextDeadline54,1885
+    static void dumpCbs() VL_MT_UNSAFE_ONE;dumpCbs56,1969
+    static void selfTest() VL_MT_UNSAFE_ONE;selfTest59,2054
