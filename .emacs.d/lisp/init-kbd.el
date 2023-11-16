@@ -79,15 +79,16 @@
 ;; C-v scrolls the full screen to distract your attention.
 (global-set-key (kbd "C-v") 'yank)
 
-; Copy the symbol at point.
-(defun copy-symbol-at-point ()
+; Mark the symbol at point.
+(defun mark-symbol-at-point ()
   "Copy the symbol at point."
   (interactive)
   (let ((sym (thing-at-point 'symbol)))
     (when sym
-	(kill-new sym)
-	(message "Copied '%s' to kill ring" sym))))
-(global-set-key (kbd "C-x C-M-SPC") 'copy-symbol-at-point)
+        (forward-symbol -1)
+        (mark-sexp)
+        (message "Mark set"))))
+(global-set-key (kbd "C-x C-M-SPC") 'mark-symbol-at-point)
 
 ; Copy the word at point.
 (defun copy-word-at-point ()
@@ -95,8 +96,8 @@
   (interactive)
   (let ((word (thing-at-point 'word)))
     (when word
-	(kill-new word)
-	(message "Copied '%s' to kill ring" word))))
+        (kill-new word)
+        (message "Copied '%s' to kill ring" word))))
 (global-set-key (kbd "C-x M-w") 'copy-word-at-point)
 
 
