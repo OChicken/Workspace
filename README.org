@@ -10,9 +10,9 @@
 (This article is not intended for Emacs beginners, but for those who have coded in Emacs for some months)
 
 This blog is my configuration of Emacs as a personal workspace, includes:
-- *A mini-IDE for programming;*
-- *Use Org mode to preview LaTeX TikZ pictures;*
-- *Use Org mode Babel, like what you do in Jupyter.*
+- Use *Org mode Babel as yet another Jupyter* and can *preview LaTeX TikZ* pictures;
+- Use *Org mode to generate blog pages* and deploy to VPS, *not rely on Hugo* and Hexo;
+- A *mini-IDE* for programming.
 #+end_abstract
 
 * Before You Start (CN+EN)
