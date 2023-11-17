@@ -25,6 +25,9 @@ This blog is my configuration of Emacs as a personal workspace, includes:
 /This article is *not intended for Emacs beginners*, but for those who have coded in Emacs for some months./
 
 ** What You DON'T Need And What You Need
+:PROPERTIES:
+:CUSTOM_ID: what-you-do-not-need-and-what-you-need
+:END:
 
 Many people shared how they use Emacs as an OS. My goal is really humble in comparison. I DON'T require Emacs to
 - Browsing the web --- Emacs's EWW can indeed do this, but I have never use it to browsing the web;
@@ -68,6 +71,10 @@ Math and science students are very attached to the block-by-block execution feat
 
 
 ** Refs
+:PROPERTIES:
+:CUSTOM_ID: before-you-start-refs
+:END:
+
 
 Use Emacs as an *IDE*:
 - [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Maintaining.html][29 Maintaining (GNU Emacs Manual)]]
@@ -82,6 +89,9 @@ Use Emacs as *yet another Jupyter*:
 
 
 ** My Preference on KBD
+:PROPERTIES:
+:CUSTOM_ID: my-preference-on-kbd
+:END:
 
 As you can read from many other blogs, the author's editor's usage history affects her/his Emacs config preference, especially the key-binding. For example, if the person has used Vim previously, it's very likely that she/he will use evil, the plugin that uses the Vim's kbd in Emacs. I used Sublime Text before, and *don't have history baggage on Vim*, so I *don't use evil, ivy, helm* etc other popular plugins (I think they dirty the native configurations and increase unnecessary complications).
 
@@ -105,10 +115,16 @@ I customized shortcuts in =init-kbd.el=, s.t. operations like *single line scrol
 
 
 ** Structure of the Repo
+:PROPERTIES:
+:CUSTOM_ID: structure-of-the-repo
+:END:
 
 The code is available on this [[https://github.com/OChicken/Workspace][repo]].
 
 *** Emacs & Org mode Config
+:PROPERTIES:
+:CUSTOM_ID: emacs-&-org-mode-config
+:END:
 
 Consists of the following. Read Chapter [[#ya-jupyter]] for detail.
 #+begin_src txt
@@ -149,6 +165,9 @@ Consists of the following. Read Chapter [[#ya-jupyter]] for detail.
 
 
 *** Blog config
+:PROPERTIES:
+:CUSTOM_ID: blog-config
+:END:
 
 Consists of the following. Read Chapter [[#export-blog]] for detail (or [[https://ochicken.net/projects/server/][this]] in CN).
 #+begin_src txt
@@ -173,10 +192,13 @@ Consists of the following. Read Chapter [[#export-blog]] for detail (or [[https:
 
 
 *** Sample Projects of Mini-IDE
+:PROPERTIES:
+:CUSTOM_ID: sample-projects-of-mini-ide
+:END:
 
 Instead of focusing on the contents of =.emacs.d= (like many articles talking about), I would like to tell you more about the project's dir. This is because each project dir have their own structure, and it is unwise to write the global configuration in =.emacs.d=.
 
-There are 4 sample projects. =mini-ide/= & =eglot-clangd/= & =eglot-ccls/= have almost the same structure, while =ede/= has slightly more (it is a minimum GNU make project).
+There are 4 sample projects. =mini-ide/= & =eglot-clangd/= & =eglot-ccls/= have almost the same structure, while =ede/= has slightly more (it is a minimum GNU make project). Read Chapter [[#mini-ide]] for detail.
 #+begin_src txt
 .
 ├── mini-ide/ or eglot-clangd/ or eglot-ccls/
@@ -215,6 +237,9 @@ There are 4 sample projects. =mini-ide/= & =eglot-clangd/= & =eglot-ccls/= have 
 
 
 ** Recap: C-h to Fetch Info
+:PROPERTIES:
+:CUSTOM_ID: recap
+:END:
 
 Use =C-h v= to see a variable. Execute the following command to reset it.
 #+begin_src emacs-lisp
@@ -250,6 +275,9 @@ If you are currently viewing [[https://github.com/OChicken/Workspace][README.org
 [[https://necromuralist.github.io/posts/org-babel-cheat-sheet/][Org-Babel Cheat Sheet | The Cloistered Monkey]]
 
 ** Org mode + LaTeX
+:PROPERTIES:
+:CUSTOM_ID: org-latex
+:END:
 
 TikZ drawing is the most suitable example to illustrate how powerful it is. Example comes from [[https://www.overleaf.com/learn/latex/TikZ_package][Overleaf]].
 
@@ -270,10 +298,16 @@ TikZ drawing is the most suitable example to illustrate how powerful it is. Exam
 
 
 ** Org mode + Babel
+:PROPERTIES:
+:CUSTOM_ID: org-babel
+:END:
 
 Use =C-c C-x C-v= to toggle image show.
 
 *** C
+:PROPERTIES:
+:CUSTOM_ID: org-babel-c
+:END:
 
 #+begin_src C :flags "-Wall -O2" :libs "-lgcrypt -lm" :results verbatim
 #include <stdio.h>
@@ -328,6 +362,9 @@ Though it's off-topic, it's still worthwhile to mention [[https://github.com/roo
 
 
 *** Python
+:PROPERTIES:
+:CUSTOM_ID: org-babel-python
+:END:
 
 #+begin_src python :results file link
 import numpy as np
@@ -345,6 +382,9 @@ return "/tmp/python.png"
 
 
 *** SageMath
+:PROPERTIES:
+:CUSTOM_ID: org-babel-sagemath
+:END:
 
 #+begin_src sage :session t :results drawer
 m = random_matrix(ZZ, 3, 3)
@@ -362,6 +402,9 @@ latexp(m)                      # This function is defined in .sage/init.sage
 
 
 *** Gnuplot
+:PROPERTIES:
+:CUSTOM_ID: org-babel-gnuplot
+:END:
 
 #+begin_src gnuplot :file /tmp/gnuplot.png
 set title "Some Math Functions"
@@ -389,8 +432,14 @@ As you can see in the footer, this blog is generated by *Emacs Org mode*. The th
 #+end_export
 
 ** Introduction
+:PROPERTIES:
+:CUSTOM_ID: blog-intro
+:END:
 
 *** My Preference
+:PROPERTIES:
+:CUSTOM_ID: blog-preference
+:END:
 
 I use [[https://hexo.io/][Hexo]] previously for many years. Its workflow is simple: write md files in your editor, =hexo g= to generate html files, =hexo s= to locally preview in =http://localhost:4000/=, and =hexo d= to deploy to VPS. Its [[https://theme-next.js.org/][NexT.Pisces]] theme is wonderful. Besides this theme are many other choices on its official side. This fact worth a paragraph to praise 👍
 
@@ -404,6 +453,9 @@ Later I realized that, *CSS file contributes 90% of what makes a web page look n
 
 
 *** Your Choices of CSS
+:PROPERTIES:
+:CUSTOM_ID: blog-choices-css
+:END:
 
 There are many choices of CSS files:
 - [[https://stackoverflow.com/questions/70693619/how-to-use-display-table-of-contents-in-sidebar-with-arbitrary-html-file][css - How to use display Table of Contents in sidebar with arbitrary HTML file? - Stack Overflow]]
@@ -427,6 +479,9 @@ Dr. gongzhitao made his own
 
 
 *** Before the Start
+:PROPERTIES:
+:CUSTOM_ID: blog-before-start
+:END:
 
 These two articles have a very easy demo to start:
 - [[https://taingram.org/blog/org-mode-blog.html][Building a Emacs Org-Mode Blog]]
@@ -458,6 +513,9 @@ The structure of my home dir is
 
 
 ** Layout: header, preamble & postamble
+:PROPERTIES:
+:CUSTOM_ID: blog-layout
+:END:
 
 The html file generated by Org mode is shown in the following. Replace the contents in =head.html,= =preamble.html= & =postamble.html= with yourself.
 #+begin_src html -n
@@ -506,6 +564,9 @@ You can find some samples of these three files, from the html in =./public/= gen
 
 
 ** Build: Makefile & blog.el
+:PROPERTIES:
+:CUSTOM_ID: blog-build
+:END:
 
 Hexo uses =hexo g=, =hexo s=, =hexo d= to generate html, preview locally, and deploy to git. You can write your own =Makefile= by =make g=, =make s=, =make d=.
 
@@ -539,6 +600,9 @@ The provided =blog.el= & =Makefile= are in the [[https://github.com/OChicken/Wor
 
 
 ** CSS
+:PROPERTIES:
+:CUSTOM_ID: blog-css
+:END:
 
 As stated before, the CSS files I used to DIY are
 1. The CSS generated by [[https://hexo.io/][Hexo]]'s [[https://theme-next.js.org/][NexT.Pisces]]. It's huge, more than 2000 lines.
@@ -586,6 +650,9 @@ Note: though there is a project dir =ede/=, it is actually NOT a project built b
 #+end_export
 
 ** Flycheck & Include Path
+:PROPERTIES:
+:CUSTOM_ID: flycheck
+:END:
 
 [[https://www.flycheck.org/en/latest/][Flycheck]] is ready to go-out-of-the-box (开箱即用) after you set the follows. Use =C-c ! c= to rerun it and =C-c ! l= to list errors.
 #+begin_src emacs-lisp
@@ -614,6 +681,9 @@ Emacs's team also has Flymake. You'll dislike it after having a try. I assure yo
 
 
 ** Company
+:PROPERTIES:
+:CUSTOM_ID: company
+:END:
 
 [[https://company-mode.github.io/][Company]] is ready to go-out-of-the-box after you set
 #+begin_src emacs-lisp
@@ -622,6 +692,9 @@ Emacs's team also has Flymake. You'll dislike it after having a try. I assure yo
 
 
 ** Projectile
+:PROPERTIES:
+:CUSTOM_ID: projectile
+:END:
 
 [[https://docs.projectile.mx/projectile/][Projectile]] is ready to go-out-of-the-box after you set
 #+begin_src emacs-lisp
@@ -636,42 +709,10 @@ Emacs's team also has Flymake. You'll dislike it after having a try. I assure yo
 #+end_src
 
 
-** About Emacs's EDE
-
-*TLDR*: Emacs's built-in EDE is a white elephant (鸡肋). Write your own =Makefile= then =M-x compile RET make= is better.
-
-=ede= is a sample project on how to write GNU make. cd to it and do:
-#+begin_src shell
-mkdir build m4
-autoreconf -i; cd build; ../configure; make all
-make-clean.sh
-#+end_src
-
-[[https://www.gnu.org/software/automake/manual/automake.html#Hello-World][automake: 2.4.1 Creating amhello-1.0.tar.gz]] 🚩
-[[https://www.gnu.org/software/emacs/manual/html_node/emacs/EDE.html][29.5 EDE (GNU Emacs Manual)]]
-[[https://www.gnu.org/software/emacs/manual/html_node/ede/Quick-Start.html][3. Quick Start (EDE)]]
-[[https://www.gnu.org/software/emacs/manual/html_node/ede/index.html][EDE manual - GNU Project - Free Software Foundation (FSF)]]
-
-Emacs provides a built-in EDE to help you generate =configure.ac= & =Makefile.am=, the two essential files for a typical GNU-make project. However, few body says EDE is convenient to use:
-[[https://www.reddit.com/r/emacs/comments/12ptn61/does_anyone_use_ede_emacs_development_environment/][Does anyone use "EDE" (Emacs Development Environment)? If so, what do you like/dislike about it and how does your config look for it? : emacs]]
-#+begin_quote
-I was a long time EDE user, but basically had to give it up.
-1. It's no longer maintained, so the bugs that are in there are staying in there.
-2. It is difficult to set up and configure, compared with e.g. Treemacs + lsp-mode.
-So there it is. EDE, CEDET, all that has been supplanted by newer and better things like LSP.
-#+end_quote
-
-我自己使用 EDE 的体验是, 其文档 [[https://www.gnu.org/software/emacs/manual/html_node/ede/Quick-Start.html][Quick Start]] 实际上做的只是这三连命令. 但凡有过一点写 =configure.ac= 和 =Makefile.am= 的经验的人, 都不会认为把这种可以自行高度定制化的任务外包给一个年久失修的项目去生成, 是简化了工作的, 甚至是安全的.
-My experience on using EDE is, what its [[https://www.gnu.org/software/emacs/manual/html_node/ede/Quick-Start.html][Quick Start]] talking about is nothing but the following commands. *Anybody has experience on writing =configure.ac= & =Makefile.am= will /NOT/ think that it's "simplified your life" (and even safe) to outsource such a highly customizable task to an outdated project.*
-#+begin_src shell
-autoreconf -f -i; ./configure; make -f Makefile all  # EDE's commands
-autoreconf -i; cd build; ../configure; make all      # You can put the *.o to build/
-#+end_src
-
-[[file:demo/ede-make.png]]
-
-
 ** Identifier References (jump-to-&-back)
+:PROPERTIES:
+:CUSTOM_ID: identifier
+:END:
 
 [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Xref.html][29.4 Xref (GNU Emacs Manual)]]
 
@@ -686,6 +727,9 @@ A work-around is, *for system headers*, you can simply generate a =TAGS= file fo
 - [[https://tuhdo.github.io/c-ide.html#orgheadline37][C/C++ Development Environment for Emacs]]
 
 *** Find Identifiers (29.4.1)
+:PROPERTIES:
+:CUSTOM_ID: identifier-find
+:END:
 
 [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Find-Identifiers.html][29.4.1 Find Identifiers (GNU Emacs Manual)]]
 [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Looking-Up-Identifiers.html][29.4.1.1 Looking Up Identifiers (GNU Emacs Manual)]]
@@ -701,6 +745,9 @@ M-?                            # xref-find-references
 
 
 *** Tags Tables (29.4.2)
+:PROPERTIES:
+:CUSTOM_ID: identifier-tags-tables
+:END:
 
 *TLDR*: Use =ctags= to generate =TAGS= file, do not use Emacs's built-in =etags=.
 
@@ -747,6 +794,9 @@ Here are the links that hint me (search "ctags not generate =printf="):
 
 
 *** Selecting a Tags Table (29.4.3)
+:PROPERTIES:
+:CUSTOM_ID: identifier-selecting-tags-table
+:END:
 
 You may add TAGS via
 #+begin_src shell
@@ -760,6 +810,9 @@ I didn't add =TAGS-verilator= and =TAGS-linux=, simply because they are barely u
 
 
 *** Semantic
+:PROPERTIES:
+:CUSTOM_ID: identifier-semantic
+:END:
 
 Semantic is an alternate framework to generate tags: in its context, the =TAGS= files is a *database* in =.emacs.d/semanticdb/=.
 
@@ -781,20 +834,67 @@ I am not the Semantic user, but still put the settings I have tried (it works, o
 #+end_src
 
 
+** About Emacs's EDE
+:PROPERTIES:
+:CUSTOM_ID: ede
+:END:
+
+*TLDR*: Emacs's built-in EDE is a white elephant (鸡肋). Write your own =Makefile= then =M-x compile RET make= is better.
+
+=ede= is a sample project on how to write GNU make. cd to it and do:
+#+begin_src shell
+mkdir build m4
+autoreconf -i; cd build; ../configure; make all
+make-clean.sh
+#+end_src
+
+[[https://www.gnu.org/software/automake/manual/automake.html#Hello-World][automake: 2.4.1 Creating amhello-1.0.tar.gz]] 🚩
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/EDE.html][29.5 EDE (GNU Emacs Manual)]]
+[[https://www.gnu.org/software/emacs/manual/html_node/ede/Quick-Start.html][3. Quick Start (EDE)]]
+[[https://www.gnu.org/software/emacs/manual/html_node/ede/index.html][EDE manual - GNU Project - Free Software Foundation (FSF)]]
+
+Emacs provides a built-in EDE to help you generate =configure.ac= & =Makefile.am=, the two essential files for a typical GNU-make project. However, few body says EDE is convenient to use:
+[[https://www.reddit.com/r/emacs/comments/12ptn61/does_anyone_use_ede_emacs_development_environment/][Does anyone use "EDE" (Emacs Development Environment)? If so, what do you like/dislike about it and how does your config look for it? : emacs]]
+#+begin_quote
+I was a long time EDE user, but basically had to give it up.
+1. It's no longer maintained, so the bugs that are in there are staying in there.
+2. It is difficult to set up and configure, compared with e.g. Treemacs + lsp-mode.
+So there it is. EDE, CEDET, all that has been supplanted by newer and better things like LSP.
+#+end_quote
+
+我自己使用 EDE 的体验是, 其文档 [[https://www.gnu.org/software/emacs/manual/html_node/ede/Quick-Start.html][Quick Start]] 实际上做的只是这三连命令. 但凡有过一点写 =configure.ac= 和 =Makefile.am= 的经验的人, 都不会认为把这种可以自行高度定制化的任务外包给一个年久失修的项目去生成, 是简化了工作的, 甚至是安全的.
+My experience on using EDE is, what its [[https://www.gnu.org/software/emacs/manual/html_node/ede/Quick-Start.html][Quick Start]] talking about is nothing but the following commands. *Anybody has experience on writing =configure.ac= & =Makefile.am= will /NOT/ think that it's "simplified your life" (and even safe) to outsource such a highly customizable task to an outdated project.*
+#+begin_src shell
+autoreconf -f -i; ./configure; make -f Makefile all  # EDE's commands
+autoreconf -i; cd build; ../configure; make all      # You can put the *.o to build/
+#+end_src
+
+[[file:demo/ede-make.png]]
+
+
 ** LSP Tools: Eglot & lsp-mode
+:PROPERTIES:
+:CUSTOM_ID: lsp-tools
+:END:
 
 As the title explains, LSP tools are encompassed, Eglot & =lsp-mode= are two of them. Readers should familiar that /they are two competitors/. *I use Eglot*.
 
 *** Background
+:PROPERTIES:
+:CUSTOM_ID: lsp-tools-background
+:END:
 
-读者应该也清楚, LSP 的 backends 主要是 clangd. 其实除它以外还有 *ccls* 等, *但是, gcc 通常不作为 LSP 的 backend*.
 Readers should familiar with the fact that *clangd* is the backend of LSP, but besides clangd, there are other options such as *ccls* etc. *However, gcc is not served as the backend of LSP*.
 
-gcc 诞生的时间比较早, 最初设计时集成了编译的所有阶段, 包括 *词法分析, 语法分析, 语义分析和代码生成* 四个任务, *紧密耦合* (这大概也解释了 "cc" 的含义: compiler collection). 后来随着编译器和编辑器技术的发展, 人们意识到, 在编辑的时候要做的词法分析其实并不需要生成机器代码, 解耦前后端好处多多, 遂引入了 *中间表象* 这个概念作为一个通用的接口, 使得可以在不生成最终机器代码的情况下完成前三项任务, 这为编辑器以及其他工具链提供了更灵活的接口. 现代编译器的代表性项目就是 clangd 和 ccls, 其优势主要在于 *前端编辑的时候做实时语法检查,* gcc 就并不胜任这一点.
 gcc was born relatively early, initially designed to integrate all stages of compilation, including *lexical analysis, syntax analysis, semantic analysis and code generation.* Four tasks are tightly coupled (this probably also explains the meaning of "cc": compiler collection). Later, as compiler and editor technologies evolved, people realize that the lexical/syntax/semantic analysis during editing *does not require machine code generation*, and that decoupling the frontend and backend has much benefit. So the concept of *intermediate representations* was introduced as a common interface that allowed the first three tasks to be accomplished without generating the final machine code, which provided a more flexible interface to editors and other tool-chains. Modern compilers, such as clangd and ccls, have the advantage of doing real-time syntax checking during front-end editing, which gcc is not capable of doing.
 
-可以采用 "Eglot + ccls" 或 "Eglot + clangd", 我都会在这里介绍. 我不是 =lsp-mode= 用户, 但也不是 =Eglot= 的忠实用户: 实际上 Mini-IDE 一章所涉及的工具已经陪伴我走过了很长一段路.
 You can choose either "Eglot + ccls" or "Eglot + clangd". I will talk about them here. I am not the =lsp-mode= user, but also not the faithful user of =Eglot=: actually, the tools involved in Mini-IDE have been with me for a long time.
+
+读者应该也清楚, LSP 的 backends 主要是 clangd. 其实除它以外还有 *ccls* 等, *但是, gcc 通常不作为 LSP 的 backend*.
+
+gcc 诞生的时间比较早, 最初设计时集成了编译的所有阶段, 包括 *词法分析, 语法分析, 语义分析和代码生成* 四个任务, *紧密耦合* (这大概也解释了 "cc" 的含义: compiler collection). 后来随着编译器和编辑器技术的发展, 人们意识到, 在编辑的时候要做的词法分析其实并不需要生成机器代码, 解耦前后端好处多多, 遂引入了 *中间表象* 这个概念作为一个通用的接口, 使得可以在不生成最终机器代码的情况下完成前三项任务, 这为编辑器以及其他工具链提供了更灵活的接口. 现代编译器的代表性项目就是 clangd 和 ccls, 其优势主要在于 *前端编辑的时候做实时语法检查,* gcc 就并不胜任这一点.
+
+可以采用 "Eglot + ccls" 或 "Eglot + clangd", 我都会在这里介绍. 我不是 =lsp-mode= 用户, 但也不是 =Eglot= 的忠实用户: 实际上 Mini-IDE 一章所涉及的工具已经陪伴我走过了很长一段路.
 
 Eglot:
 - [[https://github.com/joaotavora/eglot][GitHub - joaotavora/eglot: A client for Language Server Protocol servers]]
@@ -810,6 +910,9 @@ lsp-mode:
 
 
 *** Eglot Basic Use
+:PROPERTIES:
+:CUSTOM_ID: eglot-basic-use
+:END:
 
 After setting =compile_commands.json= (for clangd) and/or =.ccls= (for ccls) in the project root, =M-x eglot= to open. The candidates of =eglot-xxx= are not so much, altogether 31. Three of them are what you want:
 - =eglot-find-declaration=
@@ -823,13 +926,16 @@ In the variable =eglot-server-programs=, there are two candidates: clangd & ccls
 
 
 *** Eglot + clangd
+:PROPERTIES:
+:CUSTOM_ID: eglot-clangd
+:END:
 
 The contents of the project dir =eglot-clangd= is exactly the same as =mini-ide=: *a series of =Makefile= are prepared*. As they are prepared, do this command in the project root
 #+begin_src shell
 bear -- make
 #+end_src
 which will generate the important =compile_commands.json=. Its content is
-#+begin_src json
+#+begin_src js
 [
   {
     "arguments": [
@@ -850,6 +956,9 @@ The [[https://clangd.llvm.org/installation.html][official site of clangd]] itsel
 
 
 *** Eglot + ccls (buggy)
+:PROPERTIES:
+:CUSTOM_ID: eglot-ccls
+:END:
 
 Put =.ccls= to the projects folders. Its content is the following:
 
