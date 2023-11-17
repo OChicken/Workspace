@@ -27,7 +27,7 @@
   anzu
   move-dup xclip multiple-cursors symbol-overlay whole-line-or-region
   ; view
-  htmlize crontab-mode markdown-mode web-mode
+  htmlize crontab-mode markdown-mode web-mode php-mode
   highlight-escape-sequences
   vertico rainbow-delimiters mode-line-bell page-break-lines diminish
   vscode-dark-plus-theme
