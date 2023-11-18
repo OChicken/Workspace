@@ -146,6 +146,7 @@
 (require 'magit)
 ; It's Magit! A Git Porcelain inside Emacs
 ; https://magit.vc/
+(setq magit-section-visibility-indicator '(magit-fringe-bitmap> . magit-fringe-bitmapv))
 
 (require 'git-gutter)
 ; Emacs port of GitGutter which is Sublime Text Plugin
