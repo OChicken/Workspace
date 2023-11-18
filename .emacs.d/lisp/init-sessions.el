@@ -48,12 +48,11 @@
         (shell-command-history    . 50)
         ))
 
-; enable desktop-save-mode if the opened frame is GUI
-(if window-system  ; is nil if TTY, and 'x' if GUI X window
-    (desktop-save-mode t))
-; The idea behind this setting is, I would only use one GUI Emacs frame, while
-; at the same time would open many TTY Emacs in various TTYs.
+(desktop-save-mode t)
 
+; fix warning: Wrong type argument: number-or-marker-p, nil
+; https://stackoverflow.com/questions/18612742/emacs-desktop-save-mode-error
+(setq desktop-restore-forces-onscreen nil)
 
 (provide 'init-sessions)
 ;;; init-sessions.el ends here
