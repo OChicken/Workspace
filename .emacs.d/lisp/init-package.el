@@ -12,11 +12,12 @@
   ; utils
   which-key list-unicode-display
   ; org
+  ob-go ob-php ob-sagemath
   org-fragtog xenops org-ref
   gnuplot
   imenu-list rainbow-mode
   yaml yaml-mode
-  rust-mode ob-sagemath sage-shell-mode multi-term auctex gnuplot-mode
+  rust-mode sage-shell-mode multi-term auctex gnuplot-mode
   ; progmodes
   flycheck flycheck-clang-tidy
   yasnippet-snippets yasnippet
@@ -26,8 +27,10 @@
   magit git-gutter ibuffer-vc
   anzu
   move-dup xclip multiple-cursors symbol-overlay whole-line-or-region
+  ; lang
+  crontab-mode go-mode magma-mode markdown-mode php-mode web-mode
   ; view
-  htmlize crontab-mode markdown-mode web-mode php-mode magma-mode
+  htmlize
   highlight-escape-sequences
   vertico rainbow-delimiters mode-line-bell page-break-lines diminish
   vscode-dark-plus-theme

@@ -152,6 +152,7 @@
       (ditaa . t)
       (emacs-lisp . t)
       (gnuplot . t)
+      (go . t)
       (js .t)
       (latex . t)
       (octave . t)
