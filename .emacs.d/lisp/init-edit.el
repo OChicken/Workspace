@@ -68,16 +68,31 @@
 (setq mc/cmds-to-run-for-all
       '(
 	beginning-of-visual-line
+	c-indent-line-or-region
 	delete-pair
 	end-of-buffer
 	end-of-visual-line
+	ido-switch-buffer
+	indent-for-tab-command
+	indent-tabs-mode
 	org-cycle
 	org-delete-char
+	org-end-of-line
 	org-force-self-insert
 	org-self-insert-command
 	org-yank
 	overwrite-mode
 	previous-buffer
+	scroll-down-line
+	))
+(setq mc/cmds-to-run-once
+      '(
+	describe-key-briefly
+	eval-last-sexp
+	ignore
+	shell-command
+	symbol-overlay-put
+	whole-line-or-region-kill-region
 	))
 
 (require 'move-dup)
