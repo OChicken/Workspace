@@ -121,6 +121,11 @@
 ; file:///usr/share/emacs/29.1/lisp/eshell/em-hist.el.gz
 (define-key eshell-hist-mode-map (kbd "M-q") 'eshell-previous-matching-input-from-input)
 
+(require 'gud)
+; Grand Unified Debugger mode for running GDB and other debuggers
+; file:///usr/share/emacs/29.1/lisp/progmodes/gud.el.gz
+(define-key gud-mode-map         (kbd "M-q") 'comint-previous-input)
+
 ; M-e originally maps to forward-sentence, but I am barely use it. Instead, I
 ; want a <return> for left-hand, so M-e, where `e' for `enter', is a nice choice.
 (global-unset-key (kbd "M-e"))  ; origin: forward-sentence
