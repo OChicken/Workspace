@@ -20,7 +20,7 @@
 ; Recommended keymap prefix on Windows/Linux
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 ; A list of files considered to mark the root of a project
-(dolist (file '(".dir-locals.el" ".ccls" "compile_flags.el"))
+(dolist (file '(".gitignore" ".dir-locals.el" "compile_commands.json"))
   (add-to-list 'projectile-project-root-files-bottom-up file t))
 (diminish 'projectile-mode)
 

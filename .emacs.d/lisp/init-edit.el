@@ -90,6 +90,7 @@
 	describe-key-briefly
 	eval-last-sexp
 	ignore
+	org-ctrl-c-ctrl-c
 	shell-command
 	symbol-overlay-put
 	whole-line-or-region-kill-region
