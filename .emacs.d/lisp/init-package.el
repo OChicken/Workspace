@@ -28,7 +28,7 @@
   anzu
   move-dup xclip multiple-cursors symbol-overlay whole-line-or-region
   ; lang
-  crontab-mode go-mode magma-mode markdown-mode php-mode web-mode
+  cmake-mode crontab-mode go-mode magma-mode markdown-mode php-mode web-mode
   ; view
   htmlize
   highlight-escape-sequences
