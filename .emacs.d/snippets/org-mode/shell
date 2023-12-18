@@ -3,5 +3,5 @@
 # key:  shell_
 # --
 #+begin_src shell
-  $0
+$0
 #+end_src

@@ -669,12 +669,12 @@ The *global* search path is configured in =.emacs.d/='s file:
 #+end_src
 Paths like =/usr/include/= and =/usr/lib/gcc/.../include/= are automatically searched, so need not add.
 
-The *local* search path is =.dir.locals.el= in your project dir. Its content is
+The *local* search path is =.dir-locals.el= in your project dir. Its content is
 #+begin_src emacs-lisp
 ((c-mode . ((flycheck-clang-include-path . ("/absolute/path/to/mini-ide/include"
                                             "/absolute/path/to/mini-ide/build")))))
 #+end_src
-After you set =.dir.locals.el=, do =C-x x g= to revert the opened =c= file.[fn:1]
+After you set =.dir-locals.el=, do =C-x x g= to revert the opened =c= file.[fn:1]
 
 
 Emacs's team also has Flymake. You'll dislike it after having a try. I assure you.
@@ -783,6 +783,11 @@ where =-a= means *append* to =TAGS= if it exists. These are commands to generate
 #+begin_src shell
 ctags -e --kinds-c=+px-d -f TAGS-verilator    /usr/share/verilator/include/*.h
 ctags -e --kinds-c=+px-d -f TAGS-linux     -R /usr/src/linux/
+#+end_src
+To generate tags for linux src:
+#+begin_src shell
+cd ~/linux-src/
+ctags -e -a --kinds-c=+px-d -R ./ --exclude=./.git/* --exclude=./drivers/*
 #+end_src
 
 =etags= does not have so much options like =ctags=, so that it cannot even generate the references like identifier =printf=, the *function prototype* of =stdio.h=, which is its *huge drawback*; but =ctags= can.
@@ -991,4 +996,4 @@ PayPal: shouran.ma@gmail.com; [[file:WeChatPay.png][WeChat Pay]]
 
 * Footnotes
 
-[fn:1] Setting =.dir.locals.el= in this way covers the global settings, so that if you =#include <header.h>= where =header.h= located in =~/.local/include=, Flycheck would warn header not found. However, if you alternately use =setq= or =add-to-list= to append the local settings to the global, there would gives an "unsafe warn", if you type 'y' or '!', the local paths are merged with the global (the distinguish between local and global vanishes), and register in =safe-local-variable=. This tricky fact is due to the *"trust safe local var" nature in elisp*. I have an unsatisfactory workaround up to my current knowledge, but want to keep it secret.
+[fn:1] Setting =.dir-locals.el= in this way covers the global settings, so that if you =#include <header.h>= where =header.h= located in =~/.local/include=, Flycheck would warn header not found. However, if you alternately use =setq= or =add-to-list= to append the local settings to the global, there would gives an "unsafe warn", if you type 'y' or '!', the local paths are merged with the global (the distinguish between local and global vanishes), and register in =safe-local-variable=. This tricky fact is due to the *"trust safe local var" nature in elisp*. I have an unsatisfactory workaround up to my current knowledge, but want to keep it secret.

@@ -3,5 +3,5 @@
 # key:  latex-graphics
 # --
 #+begin_src latex :results file graphics :file /tmp/pic.png
-  $0
+$0
 #+end_src

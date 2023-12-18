@@ -11,10 +11,9 @@
 ;;; Code:
 
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Scroll one line up/down ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;       Scroll one line up/down       ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Scroll up/down by one line via C-<up/down> is a VERY frequently used command
 ;; in Sublime Text.
@@ -39,10 +38,9 @@
 (global-set-key (kbd "M-S-z"   ) 'previous-line)
 
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Scroll half screen up/down ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;      Scroll half screen up/down     ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; The default "C-v" and "M-v" are bounded to scroll-up/down-command, which are
 ;; equivalent to <Page Down> and <Page Up> respectively. They scroll the full
@@ -70,10 +68,9 @@
 (global-set-key (kbd "C-x M-v") 'scroll-down-half) ; M-v bounds to scroll-down-command
 
 
-
-;;;;;;;;;;;;;;;;;;;;;;;
-;; Copy & paste/yank ;;
-;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;          Copy & paste/yank          ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Nobody would resist the sweet C-v paste/yank, especially when the original
 ;; C-v scrolls the full screen to distract your attention.
@@ -101,7 +98,6 @@
 (global-set-key (kbd "C-x M-w") 'copy-word-at-point)
 
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 				     ; Left-hand 'RET' and 'previous-command' ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -132,25 +128,9 @@
 (global-set-key (kbd "M-e") (kbd "RET"))
 
 
-
-;;;;;;;;;;;;;;;;;;;;;;;
-;; Newline behaviour ;;
-;;;;;;;;;;;;;;;;;;;;;;;
-
-(global-set-key (kbd "RET") 'newline-and-indent)  ; origin: newline
-(defun newline-at-end-of-line ()
-  "Move to end of line, enter a newline, then indent."
-  ; You can feed a new line, even when the cursor is in the middle of the line.
-  (interactive)
-  (move-end-of-line 1)
-  (newline-and-indent))
-(global-set-key (kbd "S-<return>") 'newline-at-end-of-line)
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;
-;; Beginning of line ;;
-;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;          Beginning of line          ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Exchange the "beginning of the line" behaviour: the very beginning of the
 ;; visual line, and the beginning of the line with indentation. Remark: M-m
@@ -160,10 +140,9 @@
 (global-set-key (kbd "M-a") 'beginning-of-visual-line)  ; origin: backward-sentence
 
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Toggling among windows ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;        Togging among windows        ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Toggling among windows. This modifies the default "C-<tab>" and "C-S-<tab>"
 ;; behaviour, that toggling among tabs. In practice, toggling among tabs is
@@ -174,14 +153,26 @@
 ;; file and hunk (magit-section-toggle), which makes "C-<tab>" not able to
 ;; escape from the magit-status window. So I use "C-x C-<tab>" instead.
 
-(global-set-key (kbd "C-<tab>")           'next-window-any-frame)      ; origin: tab-next
-(global-set-key (kbd "C-S-<iso-lefttab>") 'previous-window-any-frame)  ; origin: tab-previous
+(global-set-key (kbd "C-<tab>") 'next-window-any-frame)                    ; origin: tab-next
+(if window-system
+    (global-set-key (kbd "C-S-<iso-lefttab>") 'previous-window-any-frame)  ; origin: tab-previous
+  (global-set-key (kbd "C-S-<tab>") 'previous-window-any-frame))           ; origin: tab-previous
 
 (defun magit-status-toggle-window ()
   "The kbds enable you to escape from the matig-status window to the next window."
-  (global-set-key (kbd "C-x C-<tab>")           'next-window-any-frame)       ; origin: undefined
-  (global-set-key (kbd "C-x C-S-<iso-lefttab>") 'previous-window-any-frame))  ; origin: undefined
+  (global-set-key (kbd "C-x C-<tab>")           'next-window-any-frame)          ; origin: undefined
+  (if window-system
+      (global-set-key (kbd "C-x C-S-<iso-lefttab>") 'previous-window-any-frame)  ; origin: undefined
+    (global-set-key (kbd "C-x C-S-<tab>") 'previous-window-any-frame)))          ; origin: undefined
 (add-hook 'magit-status-mode-hook 'magit-status-toggle-window)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;         Toggling among tabs         ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key (kbd "C-<prior>") 'tab-bar-switch-to-prev-tab)  ; origin: scroll-right
+(global-set-key (kbd "C-<next>")  'tab-bar-switch-to-next-tab)  ; origin: scroll-left
 
 
 (provide 'init-kbd)

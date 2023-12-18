@@ -9,8 +9,7 @@
 ; y-or-n instead of yes-or-no
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(setq indent-tabs-mode nil
-      create-lockfiles nil
+(setq create-lockfiles nil
       mouse-yank-at-point t
       save-interprogram-paste-before-kill t
       set-mark-command-repeat-pop t
@@ -68,10 +67,14 @@
 (setq mc/cmds-to-run-for-all
       '(
 	beginning-of-visual-line
+	c-electric-delete-forward
+	c-electric-star
 	c-indent-line-or-region
 	delete-pair
 	end-of-buffer
 	end-of-visual-line
+	eshell-bol
+	eshell-next-matching-input-from-input
 	ido-switch-buffer
 	indent-for-tab-command
 	indent-tabs-mode
@@ -84,13 +87,16 @@
 	overwrite-mode
 	previous-buffer
 	scroll-down-line
+	whole-line-or-region-kill-ring-save
 	))
 (setq mc/cmds-to-run-once
       '(
 	describe-key-briefly
+	eshell-previous-matching-input-from-input
 	eval-last-sexp
 	ignore
 	org-ctrl-c-ctrl-c
+	previous-window-any-frame
 	shell-command
 	symbol-overlay-put
 	whole-line-or-region-kill-region
@@ -273,19 +279,13 @@ Feel free to use command to toggle between them."
 
 (setq initial-scratch-message
       (concat initial-scratch-message
-       ";; Some useful German  letters: ä Ä ö Ö ü Ü ß\n"
-       ";; Some useful Swedish letters: ä Ä ö Ö å Å\n\n"
-       ";; Some useful box-drawing symbols:\n"
-       ";; │   ├── A\n"
-       ";; │   └── B\n"
-       ";; ├── C\n"
-       ";; └── D\n\n"
        ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
 
 (require 'immortal-scratch)
 ; Respawn the scratch buffer when it's killed
 ; https://github.com/jpkotta/immortal-scratch
 (add-hook 'after-init-hook 'immortal-scratch-mode)
+
 
 (provide 'init-edit)
 ;;; init-edit.el ends here

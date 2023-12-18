@@ -3,5 +3,5 @@
 # key:  sage_
 # --
 #+begin_src sage :session t :results drawer
-  $0
+$0
 #+end_src

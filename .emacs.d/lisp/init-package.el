@@ -17,9 +17,9 @@
   gnuplot
   imenu-list rainbow-mode
   yaml yaml-mode
-  rust-mode sage-shell-mode multi-term auctex gnuplot-mode
+  rust-mode sage-shell-mode auctex gnuplot-mode
   ; progmodes
-  flycheck flycheck-clang-tidy
+  flycheck flycheck-clang-tidy flycheck-rust
   yasnippet-snippets yasnippet
   company-math company-c-headers company-auctex company
   projectile ibuffer-projectile

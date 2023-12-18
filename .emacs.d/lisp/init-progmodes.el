@@ -111,13 +111,12 @@
 (require 'cc-vars)
 ; User customization variables for CC Mode
 ; file:///usr/share/emacs/29.1/lisp/progmodes/cc-vars.el.gz
-(setq c-basic-offset 8)
+(setq c-default-style "linux")
 (dolist (hook '(c-mode-hook c++-mode-hook))
   (add-hook hook
 	    (lambda()
-	      (local-set-key (kbd "C-c C-c") 'compile)  ; origin: whole-line-or-region-comment-region
-	      (local-set-key (kbd "M-e") (kbd "RET"))   ; origin: c-end-of-statement
-	      'indent-tabs-mode)))
+	      (local-set-key (kbd "C-c C-c") 'compile)    ; origin: whole-line-or-region-comment-region
+	      (local-set-key (kbd "M-e") (kbd "RET")))))  ; origin: c-end-of-statement
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -23,7 +23,8 @@
 (require 'desktop)
 ; Save partial status of Emacs when killed
 ; file:///usr/share/emacs/29.1/lisp/desktop.el.gz
-(setq desktop-globals-to-save
+(setq desktop-path (list user-emacs-directory)
+      desktop-globals-to-save
       '((comint-input-ring        . 50)
         (compile-history          . 30)
         desktop-missing-file-warning
@@ -48,11 +49,11 @@
         (shell-command-history    . 50)
         ))
 
+; Closing emacs results in "Current desktop was not loaded from a file" even though desktop-save-mode was set before start
+; https://emacs.stackexchange.com/a/66822
 (desktop-save-mode t)
+(desktop-read)
 
-; fix warning: Wrong type argument: number-or-marker-p, nil
-; https://stackoverflow.com/questions/18612742/emacs-desktop-save-mode-error
-(setq desktop-restore-forces-onscreen nil)
 
 (provide 'init-sessions)
 ;;; init-sessions.el ends here
