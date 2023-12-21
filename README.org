@@ -787,7 +787,11 @@ ctags -e --kinds-c=+px-d -f TAGS-linux     -R /usr/src/linux/
 To generate tags for linux src:
 #+begin_src shell
 cd ~/linux-src/
-ctags -e -a --kinds-c=+px-d -R ./ --exclude=./.git/* --exclude=./drivers/*
+ctags -e -a --kinds-c=+px -R ./ --exclude=./.git/* --exclude=./drivers/*
+#+end_src
+For the usage of =--kinds-c=, consult
+#+begin_src shell
+ctags --list-kinds-full
 #+end_src
 
 =etags= does not have so much options like =ctags=, so that it cannot even generate the references like identifier =printf=, the *function prototype* of =stdio.h=, which is its *huge drawback*; but =ctags= can.

@@ -196,6 +196,11 @@
 ;; Syntax (auto-mode): auto major mode for file name pattern (extensions) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'make-mode)
+; makefile editing commands for Emacs
+; file:///usr/share/emacs/29.1/lisp/progmodes/make-mode.el.gz
+(add-to-list 'auto-mode-alist '("\\Makefile\\(?:\\..*\\)\\'" . makefile-mode))
+
 (require 'sh-script)
 ; Shell-script editing commands for Emacs
 ; file:///usr/share/emacs/29.1/lisp/progmodes/sh-script.el.gz
