@@ -49,7 +49,7 @@
 (setq org-agenda-files (list "~/Documents/gtd.org")
       org-agenda-compact-blocks t
       org-agenda-sticky t
-      org-agenda-start-on-weekday nil
+      org-agenda-start-on-weekday 0
       org-agenda-span 'day
       org-agenda-include-diary nil
       org-agenda-window-setup 'current-window  ; make org-agenda open up in the current window
