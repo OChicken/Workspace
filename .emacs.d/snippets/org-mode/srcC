@@ -2,6 +2,6 @@
 # name: srcC
 # key:  srcC
 # --
-#+begin_src C :flags "-O2" :libs "-lgcrypt -lm" :results verbatim
+#+begin_src C :flags "-O2" :include "header.h" :libs "-lgcrypt -lm" :results verbatim
 $0
 #+end_src
