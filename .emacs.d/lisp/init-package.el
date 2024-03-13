@@ -27,6 +27,7 @@
   magit git-gutter ibuffer-vc
   anzu
   move-dup xclip multiple-cursors symbol-overlay whole-line-or-region
+  wrap-region
   ; lang
   cmake-mode crontab-mode go-mode magma-mode markdown-mode php-mode web-mode
   ; view

@@ -57,6 +57,20 @@
 (with-eval-after-load 'whole-line-or-region
   (diminish 'whole-line-or-region-local-mode))
 
+(require 'wrap-region)
+; Wrap text with punctation or tag
+; https://github.com/rejeep/wrap-region.el
+(wrap-region-mode t)
+(wrap-region-add-wrappers
+ '(("(" ")" nil c-mode)
+   ("\"" "\"" nil c-mode)))
+(wrap-region-add-wrappers
+ '(("*" "*" nil org-mode)
+   ("/" "/" nil org-mode)
+   ("~" "~" nil org-mode)
+   ("=" "=" nil org-mode)
+   ("+" "+" nil org-mode)))
+
 (require 'multiple-cursors)
 ; Multiple cursors for emacs
 ; https://github.com/magnars/multiple-cursors.el
