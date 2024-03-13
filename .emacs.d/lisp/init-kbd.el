@@ -39,6 +39,20 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;         recenter-top-bottom-hl      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun recenter-top-bottom-hl (&optional arg)
+  "Call `recenter-top-bottom' in the current window and highlight pulse it.
+With numeric prefix ARG, move current line to window-line ARG."
+  (interactive "P")
+  (recenter-top-bottom arg)
+  (pulse-momentary-highlight-one-line (point)))
+
+(global-set-key (kbd "C-l") 'recenter-top-bottom-hl)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;      Scroll half screen up/down     ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
