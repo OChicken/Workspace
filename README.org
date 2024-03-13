@@ -775,6 +775,7 @@ First create =~/.emacs.d/ctags/= and cd to it. To create the =TAGS= for the freq
 #+begin_src shell
 ctags -e -a --kinds-c=+px-d /usr/include/*.h --exclude=gcrypt.h --exclude=gpg-error.h
 ctags -e -a --kinds-c=+p -R /usr/include/bits/
+ctags -e -a --kinds-c=+p -R /usr/include/sys/
 ctags -e -a --kinds-c=+p    /usr/include/gcrypt.h /usr/include/gpg-error.h
 ctags -e -a --kinds-c=+p -R /usr/include/NTL/
 ctags -e -a --kinds-c=+px-d /usr/lib/gcc/x86_64-pc-linux-gnu/$(gcc --version | awk 'NR==1{print $3}')/include/*.h
