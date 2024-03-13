@@ -137,7 +137,7 @@
 ; https://www.gnu.org/software/auctex/
 (require 'latex)    ; ~/.emacs.d/elpa/auctex-13.2.1/latex.el
 (require 'preview)  ; ~/.emacs.d/elpa/auctex-13.2.1/preview.el
-(add-hook 'LaTeX-mode-hook (lambda ()
+(add-hook 'latex-mode-hook (lambda ()
   (setq
     LaTeX-math-mode 1          ; real-time preview
     TeX-auto-save t
