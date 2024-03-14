@@ -75,57 +75,11 @@
 ; Multiple cursors for emacs
 ; https://github.com/magnars/multiple-cursors.el
 (global-set-key (kbd "C-c C-SPC") 'mc/mark-pop)
-
 (global-set-key (kbd "C-M-l")   'mc/mark-next-like-this)     ; origin: reposition-window
 (global-set-key (kbd "C-M-S-l") 'mc/mark-previous-like-this) ; origin: recenter-other-window
-
 (global-set-key (kbd "C-M-w")   'mc/mark-next-like-this-word)      ; origin: append-next-kill
 (global-set-key (kbd "C-M-S-w") 'mc/mark-previous-like-this-word)  ; origin: NULL
-
 (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
-(setq mc/cmds-to-run-for-all
-      '(
-	asm-comment
-	beginning-of-visual-line
-	c-electric-delete-forward
-	c-electric-star
-	c-indent-line-or-region
-	delete-pair
-	end-of-buffer
-	end-of-visual-line
-	eshell-bol
-	eshell-next-matching-input-from-input
-	forward-sexp
-	ido-switch-buffer
-	indent-for-tab-command
-	indent-tabs-mode
-	magit-copy-buffer-revision
-	org-cycle
-	org-delete-char
-	org-end-of-line
-	org-force-self-insert
-	org-self-insert-command
-	org-yank
-	overwrite-mode
-	previous-buffer
-	scroll-down-line
-	whole-line-or-region-comment-dwim-2
-	whole-line-or-region-kill-ring-save
-	))
-(setq mc/cmds-to-run-once
-      '(
-	c-electric-pound
-	describe-key-briefly
-	eshell-previous-matching-input-from-input
-	eval-last-sexp
-	goto-line
-	ignore
-	org-ctrl-c-ctrl-c
-	previous-window-any-frame
-	shell-command
-	symbol-overlay-put
-	whole-line-or-region-kill-region
-	))
 
 (require 'move-dup)
 ; Moving and duplications of lines or selections with convenient key bindings.
