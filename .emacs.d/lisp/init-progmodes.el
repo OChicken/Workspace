@@ -137,18 +137,18 @@
 ; https://www.gnu.org/software/auctex/
 (require 'latex)    ; ~/.emacs.d/elpa/auctex-13.2.1/latex.el
 (require 'preview)  ; ~/.emacs.d/elpa/auctex-13.2.1/preview.el
-(add-hook 'latex-mode-hook (lambda ()
+(add-hook 'LaTeX-mode-hook (lambda ()
+  (add-to-list 'TeX-view-program-selection '(output-pdf "qpdfview"))
+  (add-to-list 'TeX-view-program-list '("qpdfview" "qpdfview --unique  %o"))
   (setq
     LaTeX-math-mode 1          ; real-time preview
     TeX-auto-save t
     TeX-engine 'xetex          ; use XeLaTeX default
     TeX-show-compilation nil   ; NOT display compilation windows
     TeX-save-query nil
-    TeX-view-program-list '(("qpdfview" "qpdfview --unique  %o"))
-    TeX-view-program-selection '((output-pdf "qpdfview"))
     preview-colors '((nil  nil  nil)
- 		     (1.0  1.0  1.0)
- 		     (nil  nil  nil))
+                     (1.0  1.0  1.0)
+                     (nil  nil  nil))
     ; preview-pdf-color-adjust-method
 )))
 
