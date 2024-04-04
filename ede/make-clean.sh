@@ -19,7 +19,7 @@ rm -rf build/
 rm -rf build-aux/
 
 # rm executable files
-find . -type f -executable -exec rm -f {} \;
+find . -type f -executable ! \( -name "make-clean.sh" \) -exec rm -f {} \;
 
 # rm .deps
 find . -type d -exec rm -rf {}/.deps/ \;
