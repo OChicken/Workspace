@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: python-value
+# key:  pyv
+# --
+#+begin_src python :session py-default :results value
+$0
+#+end_src
