@@ -15,22 +15,6 @@
 ; Search for and list unicode characters in Emacs
 ; https://github.com/purcell/list-unicode-display
 
-(defun copy-file-path ()
-  "Copy the path of the opened buffer to the kill ring."
-  (interactive)
-  (let ((file-path (buffer-file-name)))
-    (if file-path
-        (kill-new (abbreviate-file-name file-path))
-        (message "Buffer is not associated with a file."))))
-
-(defun show-file-path ()
-  "Copy the path of the opened buffer to the kill ring."
-  (interactive)
-  (let ((file-path (buffer-file-name)))
-    (if file-path
-        (message (abbreviate-file-name file-path))
-        (message "Buffer is not associated with a file."))))
-
 (defun kill-dired-buffers ()
   "Kill all Dired buffers."
   (interactive)

@@ -57,20 +57,6 @@
 (with-eval-after-load 'whole-line-or-region
   (diminish 'whole-line-or-region-local-mode))
 
-(require 'wrap-region)
-; Wrap text with punctation or tag
-; https://github.com/rejeep/wrap-region.el
-(wrap-region-mode t)
-(wrap-region-add-wrappers
- '(("(" ")" nil c-mode)
-   ("\"" "\"" nil c-mode)))
-(wrap-region-add-wrappers
- '(("*" "*" nil org-mode)
-   ("/" "/" nil org-mode)
-   ("~" "~" nil org-mode)
-   ("=" "=" nil org-mode)
-   ("+" "+" nil org-mode)))
-
 (require 'multiple-cursors)
 ; Multiple cursors for emacs
 ; https://github.com/magnars/multiple-cursors.el
@@ -249,21 +235,6 @@ Feel free to use command to toggle between them."
 ; Show the current buffer's imenu entries in a separate buffer
 ; https://github.com/bmag/imenu-list
 (setq imenu-list-size 50)
-
-
-
-;;;;;;;;;;;;;;;
-;; *scratch* ;;
-;;;;;;;;;;;;;;;
-
-(setq initial-scratch-message
-      (concat initial-scratch-message
-       ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
-
-(require 'immortal-scratch)
-; Respawn the scratch buffer when it's killed
-; https://github.com/jpkotta/immortal-scratch
-(add-hook 'after-init-hook 'immortal-scratch-mode)
 
 
 (provide 'init-edit)

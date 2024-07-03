@@ -13,7 +13,10 @@
 (setq-default display-line-numbers-width 4)
 (add-hook 'find-file-hook
           (lambda ()
-            (unless (memq major-mode '(doc-view-mode image-mode))
+            (unless (memq major-mode '(doc-view-mode
+				       image-mode
+				       grep-mode
+				       eshell-mode))
               (display-line-numbers-mode t))))
 
 ;; display fill column indicator on column 80
@@ -22,11 +25,26 @@
               fill-column 80)
 (add-hook 'find-file-hook 'display-fill-column-indicator-mode)
 
-;; display tab bar
-(tab-bar-mode t)
-
 ;; disable the tool bar (It's very ugly and provides limited functionalities)
 (tool-bar-mode -1)
+
+(window-divider-mode t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;               tab-bar               ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(tab-bar-mode t)
+;; (set-face-attribute 'tab-bar nil :height 100)
+
+;; (require 'time)
+; display time, load and mail indicator in mode line of Emacs
+; file:///usr/share/emacs/29.3/lisp/time.el.gz
+;; (dolist (format '(tab-bar-format-align-right tab-bar-format-global))
+;;   (add-to-list 'tab-bar-format format t))
+;; (setq display-time-format "%F %T %z")
+;; (setq display-time-interval 1)
+;; (display-time-mode)
 
 
 
@@ -163,7 +181,7 @@
 (require 'vertico)
 ; VERTical Interactive COmpletion
 ; https://github.com/minad/vertico
-(add-hook 'after-init-hook 'vertico-mode)
+; (add-hook 'after-init-hook 'vertico-mode)
 (global-set-key (kbd "C-x C-M-v") 'vertico-mode)
 
 
@@ -196,47 +214,6 @@
 ;; Syntax (auto-mode): auto major mode for file name pattern (extensions) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'make-mode)
-; makefile editing commands for Emacs
-; file:///usr/share/emacs/29.1/lisp/progmodes/make-mode.el.gz
-(add-to-list 'auto-mode-alist '("\\Makefile\\(?:\\..*\\)\\'" . makefile-mode))
-
-(require 'sh-script)
-; Shell-script editing commands for Emacs
-; file:///usr/share/emacs/29.1/lisp/progmodes/sh-script.el.gz
-(add-to-list 'auto-mode-alist '("\\.bash\\(rc\\|_\\w+\\)\\'" . sh-mode))
-
-(require 'crontab-mode)
-; crontab-mode - MELPA
-; https://melpa.org/#/crontab-mode
-(add-to-list 'auto-mode-alist '("\\.?cron\\(tab\\)?\\'" . crontab-mode))
-
-(require 'htmlize)
-
-(require 'markdown-mode)
-; Markdown Mode for Emacs
-; https://jblevins.org/projects/markdown-mode/
-(autoload 'markdown-mode "markdown-mode"
-    "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist
-  '("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode))
-(autoload 'gfm-mode "markdown-mode"
-  "Major mode for editing GitHub Flavored Markdown files" t)
-(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-
-(require 'css-mode)
-; Major mode to edit CSS files
-; file:///usr/share/emacs/29.1/lisp/textmodes/css-mode.el.gz
-(add-hook 'css-mode-hook 'rainbow-mode)
-(add-to-list 'auto-mode-alist '("\\.styl\\'" . css-mode))
-(with-eval-after-load 'rainbow-mode
-  (dolist (hook '(css-mode-hook html-mode-hook sass-mode-hook))
-    (add-hook hook 'rainbow-mode)))
-
-(require 'web-mode)
-; web-mode.el - html template editing for emacs
-; https://web-mode.org/
-(add-to-list 'html-mode-hook 'web-mode)
 
 (provide 'init-view)
 ;;; init-view.el ends here

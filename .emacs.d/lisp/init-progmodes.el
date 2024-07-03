@@ -6,7 +6,13 @@
 ; run `grep' and display the results
 ; file:///usr/share/emacs/29.1/lisp/progmodes/grep.el.gz
 (setq grep-use-null-device nil
-      grep-command "grep --color=auto -nr -F ")
+      grep-command "grep --color=auto -nr -F --exclude-dir=.git --exclude-dir=fs --exclude-dir=drivers --exclude-dir=Documentation --exclude-dir=net --exclude=TAGS --exclude=.emacs.desktop ")
+
+(require 'em-unix)
+; UNIX command aliases
+; file:///usr/share/emacs/29.3/lisp/eshell/em-unix.el.gz
+(setq eshell-plain-grep-behavior t)
+; https://emacs.stackexchange.com/questions/57714/how-to-keep-grep-results-in-eshell-buffer
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -33,6 +39,8 @@
 ; https://www.flycheck.org/en/latest/
 (dolist (hook '(prog-mode-hook text-mode-hook))
   (add-hook hook 'flycheck-mode))
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 (setq flycheck-clang-include-path
       (list
        (expand-file-name "~/.local/include/")
@@ -94,6 +102,24 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;             wrap-region             ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'wrap-region)
+; Wrap text with punctation or tag
+; https://github.com/rejeep/wrap-region.el
+(wrap-region-global-mode t)
+(wrap-region-add-wrappers
+ '(("\(" "\)" nil c-mode)
+   ("\"" "\"" nil c-mode)
+   ("*" "*" nil org-mode)
+   ("/" "/" nil org-mode)
+   ("~" "~" nil org-mode)
+   ("=" "=" nil org-mode)
+   ("+" "+" nil org-mode)))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;                Eglot                ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -105,6 +131,22 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;          Emacs Lisp config          ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq initial-scratch-message
+      (concat initial-scratch-message
+       ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
+
+(add-hook 'lisp-interaction-mode-hook 'display-line-numbers-mode)
+
+(require 'immortal-scratch)
+; Respawn the scratch buffer when it's killed
+; https://github.com/jpkotta/immortal-scratch
+(add-hook 'after-init-hook 'immortal-scratch-mode)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;             C/C++ config            ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -115,8 +157,9 @@
 (dolist (hook '(c-mode-hook c++-mode-hook))
   (add-hook hook
 	    (lambda()
-	      (local-set-key (kbd "C-c C-c") 'compile)    ; origin: whole-line-or-region-comment-region
-	      (local-set-key (kbd "M-e") (kbd "RET")))))  ; origin: c-end-of-statement
+	      (local-set-key (kbd "C-c C-c") 'compile)                  ; origin: whole-line-or-region-comment-region
+	      (local-set-key (kbd "M-e") (kbd "RET"))                   ; origin: c-end-of-statement
+	      (local-set-key (kbd "M-a") 'beginning-of-visual-line))))  ; origin: c-beginning-of-statement
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -138,6 +181,7 @@
 (require 'latex)    ; ~/.emacs.d/elpa/auctex-13.2.1/latex.el
 (require 'preview)  ; ~/.emacs.d/elpa/auctex-13.2.1/preview.el
 (add-hook 'LaTeX-mode-hook (lambda ()
+  (prettify-symbols-mode t)
   (add-to-list 'TeX-view-program-selection '(output-pdf "qpdfview"))
   (add-to-list 'TeX-view-program-list '("qpdfview" "qpdfview --unique  %o"))
   (setq

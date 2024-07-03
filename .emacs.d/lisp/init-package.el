@@ -17,12 +17,13 @@
   gnuplot
   imenu-list rainbow-mode
   yaml yaml-mode
-  rust-mode sage-shell-mode auctex gnuplot-mode
+  rust-mode sage-shell-mode gnuplot-mode
   ; progmodes
   flycheck flycheck-clang-tidy flycheck-rust
   yasnippet-snippets yasnippet
   company-math company-c-headers company-auctex company
   projectile ibuffer-projectile
+  auctex
   ; edit
   magit git-gutter ibuffer-vc
   anzu

@@ -24,6 +24,7 @@
 ; Save partial status of Emacs when killed
 ; file:///usr/share/emacs/29.1/lisp/desktop.el.gz
 (setq desktop-path (list user-emacs-directory)
+      desktop-load-locked-desktop 'check-pid
       desktop-globals-to-save
       '((comint-input-ring        . 50)
         (compile-history          . 30)
@@ -51,6 +52,7 @@
 
 ; Closing emacs results in "Current desktop was not loaded from a file" even though desktop-save-mode was set before start
 ; https://emacs.stackexchange.com/a/66822
+(desktop-change-dir ".")
 (desktop-save-mode t)
 (desktop-read)
 

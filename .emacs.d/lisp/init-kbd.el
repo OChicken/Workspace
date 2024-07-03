@@ -10,6 +10,22 @@
 
 ;;; Code:
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;          Previous/Next Line         ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key (kbd "C-z") 'next-line)  ; origin: suspend-frame
+(global-set-key (kbd "C-q") 'previous-line)  ; origin: quoted-insert
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					;    quoted-inset & read-only-mode    ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key (kbd "C-x C-q") 'quoted-insert)   ; origin: read-only-mode
+(global-set-key (kbd "C-x C-r") 'read-only-mode)  ; origin: find-file-read-only
+                                                  ; and/or ido-find-file-read-only
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 					;       Scroll one line up/down       ;
@@ -32,10 +48,20 @@
 (global-set-key (kbd "C-S-p"   ) 'scroll-down-line)
 
 ;; "z" preference
-(global-set-key (kbd "C-z"     ) 'scroll-up-line)    ; origin: suspend-frame
-(global-set-key (kbd "M-z"     ) 'scroll-down-line)  ; origin: zap-to-char
-(global-set-key (kbd "C-S-z"   ) 'next-line)
-(global-set-key (kbd "M-S-z"   ) 'previous-line)
+(defun scroll-up-line-keep-cur ()
+  "Scroll text next one line."
+  (interactive)
+  (progn
+    (scroll-up-line)
+    (forward-line -1)))
+(defun scroll-down-line-keep-cur ()
+  "Scroll text previous one line."
+  (interactive)
+  (progn
+    (scroll-down-line)
+    (forward-line 1)))
+(global-set-key (kbd "C-M-z") 'scroll-up-line-keep-cur)    ; origin: suspend-frame
+(global-set-key (kbd "C-M-q") 'scroll-down-line-keep-cur)  ; origin: quoted-insert
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -70,7 +96,7 @@ With numeric prefix ARG, move current line to window-line ARG."
   (progn
     (move-to-window-line -1)
     (recenter)))
-(global-set-key (kbd "C-x C-v") 'scroll-up-half) ; C-v bounds to scroll-up-command
+(global-set-key (kbd "C-x C-v") 'scroll-up-half) ; origin: ido-find-alternative-file
 
 ;; scroll-down-half
 (defun scroll-down-half ()
@@ -79,7 +105,7 @@ With numeric prefix ARG, move current line to window-line ARG."
   (progn
     (move-to-window-line 0)
     (recenter)))
-(global-set-key (kbd "C-x M-v") 'scroll-down-half) ; M-v bounds to scroll-down-command
+(global-set-key (kbd "C-x C-S-v") 'scroll-down-half)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -113,7 +139,18 @@ With numeric prefix ARG, move current line to window-line ARG."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-				     ; Left-hand 'RET' and 'previous-command' ;
+					;           Left-hand 'RET'           ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; M-e originally maps to forward-sentence, but I am barely use it. Instead, I
+; want a <return> for left-hand, so M-e, where `e' for `enter', is a nice choice.
+(global-unset-key (kbd "M-e"))  ; origin: forward-sentence
+(global-set-key (kbd "M-e") (kbd "RET"))
+(global-set-key (kbd "M-E") (kbd "C-o"))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					; Left-hand '{previous/next}-command' ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; During compiling, it's so frequently to do the following steps:
@@ -125,21 +162,24 @@ With numeric prefix ARG, move current line to window-line ARG."
 ; M-q maps to fill-paragraph in global-map. Map it to previous-history-element
 ; in minibuffer-local-completion-map is of course OK.
 (define-key minibuffer-local-map (kbd "M-q") 'previous-history-element)
+(define-key minibuffer-local-map (kbd "M-z") 'next-history-element)
 
 (require 'em-hist)
 ; history list management
 ; file:///usr/share/emacs/29.1/lisp/eshell/em-hist.el.gz
 (define-key eshell-hist-mode-map (kbd "M-q") 'eshell-previous-matching-input-from-input)
+(define-key eshell-hist-mode-map (kbd "M-z") 'eshell-next-matching-input-from-input)
 
-(require 'gud)
-; Grand Unified Debugger mode for running GDB and other debuggers
-; file:///usr/share/emacs/29.1/lisp/progmodes/gud.el.gz
-(define-key gud-mode-map         (kbd "M-q") 'comint-previous-input)
+(require 'isearch)
+; incremental search minor mode
+; file:///usr/share/emacs/29.3/lisp/isearch.el.gz
+(define-key isearch-mode-map (kbd "M-q") 'isearch-ring-retreat)
 
-; M-e originally maps to forward-sentence, but I am barely use it. Instead, I
-; want a <return> for left-hand, so M-e, where `e' for `enter', is a nice choice.
-(global-unset-key (kbd "M-e"))  ; origin: forward-sentence
-(global-set-key (kbd "M-e") (kbd "RET"))
+(require 'comint)
+; general command interpreter in a window stuff
+; file:///usr/share/emacs/29.3/lisp/comint.el.gz
+(define-key comint-mode-map (kbd "M-q") 'comint-previous-input)
+(define-key comint-mode-map (kbd "M-z") 'comint-next-input)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

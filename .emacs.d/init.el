@@ -33,6 +33,7 @@
 (require 'init-package)  ; Machinery for installing required packages
 
 ;; Load configs for specific features and modes
+(require 'init-modes)
 (require 'init-view)       ; rainbow
 (require 'init-edit)       ; multi-line edit, spell check, git, dir navigation
 (require 'init-sessions)   ; recentf, session, desktop
@@ -41,6 +42,7 @@
 (require 'init-utils)
 (require 'init-opt)        ; Wakatime, sunshine
 (require 'init-gnus)
+(require 'init-crypto)
 
 ; Personal key-bindings preferences
 (when *use-personal-kbd*
