@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: shell
-# key:  shell_
-# --
-#+begin_src shell
-$0
-#+end_src

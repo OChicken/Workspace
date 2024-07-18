@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: sage
-# key:  sage_
-# --
-#+begin_src sage :session t :results drawer
-$0
-#+end_src

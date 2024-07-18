@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: python-output
-# key:  pyo
-# --
-#+begin_src python :session py-default :results output
-$0
-#+end_src
